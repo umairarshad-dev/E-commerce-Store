@@ -11,13 +11,13 @@ export default function HeroSection() {
         style={{ backgroundImage: `url('/hero img.png')` }}
       >
         <img
-          src="/star.png"
+          src="/black-star.png"
           alt="star"
           className="absolute top-22 right-22 w-[104px] h-[104px]"
         />
         <img
-          src="/star.png"
-          alt="star"
+          src="/black-star.png"
+          alt="black-star"
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[56px] h-[56px] top-"
         />
 
