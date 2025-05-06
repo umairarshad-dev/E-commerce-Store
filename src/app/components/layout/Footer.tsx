@@ -136,7 +136,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex flex-wrap justify-center sm:justify-end gap-2 sm:gap-4">
-                  {['visa', 'mastercard', 'paypal', 'apple pay', 'g pay'].map((brand) => (
+                  {['visa', 'mastercard', 'paypal', 'apple-pay', 'g pay'].map((brand) => (
                     <div key={brand} className="w-[46px] h-[30px] rounded-[5px] border border-[#D6DCE5] bg-white flex items-center justify-center">
                       <img
                         src={`/${brand}.png`}
