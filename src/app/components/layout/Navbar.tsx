@@ -26,7 +26,7 @@ export default function Navbar() {
 
           <div className="w-[577px] h-[48px] flex items-center gap-3 px-4 py-3 rounded-[62px] bg-[#F0F0F0]">
             <div className="w-[20.27px] h-[20.27px] flex items-center justify-center rounded-full">
-              <img src="/frame.png" alt="Search" className="w-[14px] h-[14px]" />
+              <img src="/search.png" alt="Search" className="w-[14px] h-[14px] opacity-40" />
             </div>
             <input
               type="text"
