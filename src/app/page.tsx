@@ -56,9 +56,9 @@ export default function HeroSection() {
 
 
         <div className="absolute  bottom-0 left-0 right-0 bg-black w-full h-[122px]  flex justify-between items-center px-24 py-4">
-          <img src="/versace.png" alt="versace" className=" w-[166.48px] h-[33.16px] top-841px left-100px " />
+          <img src="/versace.png" alt="Versace" className=" w-[166.48px] h-[33.16px] top-841px left-100px " />
           <img src="/zara.png" alt="zara" className="w-[91px] h-[38px] top-839px left-372.48px " />
-          <img src="/gucci.png" alt="gucci" className="w-[156px] h-[36px] top-840px left-569.48px" />
+          <img src="/gucci.png" alt="Gucci" className="w-[156px] h-[36px] top-840px left-569.48px" />
           <img src="/prada.png" alt="prada" className="w-[194px] h-[31px] top-0.4px border-1.02px" />
           <img src="/calvin.png" alt="calvin" className="w-[206.79px] h-[33px] top-841px left-1131.48px" />
         </div>
