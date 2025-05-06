@@ -185,7 +185,7 @@ const ShopPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
 
-      <div className="container mx-auto py-4 flex flex-col md:flex-row md:items-center md:justify-between">
+      <div className=" mx-auto py-4 flex flex-col md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-2 pr-20">
           <span className="text-sm text-black">Home</span>
           <img src="/drop-right.png" alt="Shop" className="w-[8.5px] h-[6.5px]  mt-[2px] text-black" />
