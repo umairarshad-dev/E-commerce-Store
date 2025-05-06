@@ -80,8 +80,8 @@ const Reviews: React.FC = () => {
                 <div className="flex items-center mt-4 mb-2">
                   <h3 className="text-black text-[20px] leading-[22px] tracking-normal font-bold mr-2">{testimonial.name}</h3>
                   <Image 
-                    src="/verified.png" 
-                    alt="Verified" 
+                    src="/verified-tick.png" 
+                    alt="verified" 
                     width={16} 
                     height={16}
                   />
