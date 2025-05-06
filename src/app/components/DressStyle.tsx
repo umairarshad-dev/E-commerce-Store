@@ -4,22 +4,22 @@ const DressStyle = () => {
   const dressStyles = [
     { 
       name: '', 
-      image: '/casual.png',
+      image: '/casual-dress.png',
       containerClass: 'w-[407px] h-[289px] absolute top-[60px] left-[84px]'
     },
     { 
       name: '', 
-      image: '/formal.png',
+      image: '/formal-dress.png',
       containerClass: 'w-[684px] h-[289px] absolute top-[60px] left-[540px]'
     },
     { 
       name: '', 
-      image: '/party.png',
+      image: '/party-dress.png',
       containerClass: 'w-[684px] h-[289px] absolute top-[380px] left-[84px]'
     },
     { 
       name: '', 
-      image: '/gym.png',
+      image: '/gym-dress.png',
       containerClass: 'w-[407px] h-[289px] absolute top-[380px] left-[816px]'
     },
   ];
