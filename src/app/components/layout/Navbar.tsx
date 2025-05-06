@@ -37,7 +37,7 @@ export default function Navbar() {
           <div className="w-[62px] h-[24px] flex items-center gap-[14px]">
             <Link href="/cart" className="relative">
               <div className="w-[22.12px] h-[20.25px] flex items-center justify-center rounded">
-                <img src="/shopping cart.png" alt="Cart" className="w-full h-full object-contain" />
+                <img src="/shopping-cart.png" alt="Cart" className="w-full h-full object-contain" />
                 {cartCount > 0 && (
                   <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                     {cartCount}
