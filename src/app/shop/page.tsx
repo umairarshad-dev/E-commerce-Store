@@ -185,7 +185,7 @@ const ShopPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
 
-      <div className=" mx-auto py-4 flex flex-col md:flex-row md:items-center md:justify-between">
+      <div className=" container mx-auto py-4 flex flex-col md:flex-row md:items-center md:justify-between">
         <div className="flex items-center gap-2 pr-20">
           <span className="text-sm text-black">Home</span>
           <img src="/drop-right.png" alt="Shop" className="w-[8.5px] h-[6.5px]  mt-[2px] text-black" />
@@ -197,7 +197,7 @@ const ShopPage = () => {
         </div>
       </div>
 
-      <div className="container mx-auto py-8">
+      <div className="container  mx-auto py-8">
         <div className="flex gap-8">
           <div className="w-64 flex-shrink-0  ">
             <div className="shadow-sm p-6 space-y-8 pb-20 rounded-[20px]   px-[24px] py-[20px] gap-[24px]">

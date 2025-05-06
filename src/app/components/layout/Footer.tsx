@@ -47,35 +47,35 @@ export default function Footer() {
                     We have clothes that suit your style and which you're proud to wear. From women to men.
                   </p>
                   <div className="flex items-center gap-3">
-                    <div className="w-[28px] h-[28px] flex items-center justify-center rounded-full border border-[#00000033] bg-white hover:bg-[#1DA1F2] transition-colors duration-200">
+                    <div className="w-[28px] h-[28px] flex items-center justify-center rounded-full border border-[#00000033] bg-white hover:bg-black transition-colors duration-200 group">
                       <img
                         src="/twitter.png"
                         alt="Twitter"
-                        className="w-[11px] h-[9px] hover:filter hover:brightness-0 hover:invert transition-all duration-200"
+                        className="w-[11px] h-[9px] group-hover:filter group-hover:brightness-0 group-hover:invert transition-all duration-200"
                       />
                     </div>
 
-                    <div className="w-[28px] h-[28px] flex items-center justify-center rounded-full border border-[#00000033] bg-black hover:bg-[#1DA1F2] transition-colors duration-200">
+                    <div className="w-[28px] h-[28px] flex items-center justify-center rounded-full border border-[#00000033] bg-black hover:bg-white transition-colors duration-200 group">
                       <img
                         src="/facebook.png"
                         alt="Facebook"
-                        className="w-[6.32px] h-[12.17px] hover:filter hover:brightness-0 hover:invert transition-all duration-200"
+                        className="w-[6.32px] h-[12.17px] filter brightness-0 invert group-hover:filter-none group-hover:brightness-100 group-hover:invert-0 transition-all duration-200"
                       />
                     </div>
 
-                    <div className="w-[28px] h-[28px] flex items-center justify-center rounded-full border border-[#00000033] bg-white hover:bg-[#1DA1F2] transition-colors duration-200">
+                    <div className="w-[28px] h-[28px] flex items-center justify-center rounded-full border border-[#00000033] bg-white hover:bg-black transition-colors duration-200 group">
                       <img
                         src="/instagram.png"
                         alt="Instagram"
-                        className="w-[13.55px] h-[9px] hover:filter hover:brightness-0 hover:invert transition-all duration-200"
+                        className="w-[13.55px] h-[9px] group-hover:filter group-hover:brightness-0 group-hover:invert transition-all duration-200"
                       />
                     </div>
 
-                    <div className="w-[28px] h-[28px] flex items-center justify-center rounded-full border border-[#00000033] bg-white hover:bg-[#1DA1F2] transition-colors duration-200">
+                    <div className="w-[28px] h-[28px] flex items-center justify-center rounded-full border border-[#00000033] bg-white hover:bg-black transition-colors duration-200 group">
                       <img
                         src="/github.png"
                         alt="GitHub"
-                        className="w-[12.96px] h-[12.65px] hover:filter hover:brightness-0 hover:invert transition-all duration-200"
+                        className="w-[12.96px] h-[12.65px] group-hover:filter group-hover:brightness-0 group-hover:invert transition-all duration-200"
                       />
                     </div>
                   </div>
