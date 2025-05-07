@@ -8,13 +8,13 @@ export default function Navbar() {
   
   return (
     <nav className="bg-white text-[#000000] shadow px-24 py-2">
-      <div className="flex justify-center mt-4 mb-4">
+      <div className="flex w-full  mt-4 mb-4">
         <div className="w-[1440px] h-[48px] top-[62px] left-[100px] gap-14 flex items-center">
           <div className="w-[160px] h-[22px] font-bold text-[32px] leading-[100%] tracking-[0%] font-['Integral_CF']">
             <span className="font-family['Integral CF']">SHOP.CO</span>
           </div>
 
-          <div className="w-[321px] h-[22px] gap-6 flex items-center">
+          <div className="w-[600px] h-[22px] gap-20 flex items-center">
             <a href="/shop" className="flex items-center gap-1 font-normal text-base leading-[100%] tracking-[0%] font-['satoshi']">
               Shop
               <img src="/dropdown.png" alt="Shop" className="w-[7px] h-[5px] mt-[2px]" />
