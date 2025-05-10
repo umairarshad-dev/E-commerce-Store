@@ -102,25 +102,23 @@ export default function TopSelling() {
   ];
 
   return (
-    <div className="w-full mx-auto px-8 py-7 bg-white">
-      <div className="max-w-screen-xl mx-auto">
-        <div className="flex justify-center">
-          <div className="font-['Integral CF'] font-bold text-center mb-8 text-[48px] leading-[100%] tracking-[0%] text-black">New Arrival</div>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              {...product}
-            />
-          ))}
-        </div>
+    <div className="w-full mx-auto px-14 py-8 bg-white">
+      <div className="flex justify-center ">
+        <div className="font-['Integral CF'] font-bold text-center mb-8 text-[48px] leading-[100%] tracking-[0%] text-black w-[403px] h-[58px]">New Arrival</div>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            {...product}
+          />
+        ))}
+      </div>
 
-        <div className="flex justify-center mt-8">
-          <button className="w-[218px] h-[52px] rounded-full py-4 px-14 border border-black/10 font-sans font-medium text-base leading-none tracking-normal text-black gap-3">
-            View All
-          </button>
-        </div>
+      <div className="flex justify-center mt-8">
+      <button className="w-[218px] h-[52px] rounded-full py-4 px-14 border border-black/10 font-sans font-medium text-base leading-none tracking-normal text-black gap-3">
+    View All
+  </button>
       </div>
     </div>
   );
