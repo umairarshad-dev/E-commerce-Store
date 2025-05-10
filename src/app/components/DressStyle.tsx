@@ -25,8 +25,9 @@ const DressStyle = () => {
   ];
 
   return (
-    <section className="flex justify-center items-center py-12 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="w-[1320px] h-[830px] rounded-[40px] bg-[#F0F0F0] relative">
+    <section className="w-full mx-auto px-8 py-7 bg-white">
+      <div className="max-w-screen-xl mx-auto">
+        <div className="w-full h-[830px] rounded-[40px] bg-[#F0F0F0] relative">
          <h2 className="font-bold text-[48px] leading-none pt-[40px] text-center text-black ">
           BROWSE BY DRESS STYLE
         </h2>
@@ -54,6 +55,7 @@ const DressStyle = () => {
               </div>
             </div>
           ))}
+        </div>
         </div>
       </div>
     </section>

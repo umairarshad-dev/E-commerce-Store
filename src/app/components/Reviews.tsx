@@ -48,13 +48,13 @@ const StarRating = ({ rating }: { rating: number }) => {
 
 const Reviews: React.FC = () => {
   return (
-    <div className="w-full bg-white py-12 px-4">
-      <div className="w-[1320px]">
-        <div className="mb-8">
-          <h2 className="font-integralCF font-bold text-[48px] leading-[100%] tracking-normal align-middle text-black w-[654px] h-[58px] ml-[100px]">
+    <div className="w-full mx-auto px-8 py-7 bg-white">
+      <div className="max-w-screen-xl mx-auto">
+        <div className="mb-8 flex items-center justify-between">
+          <h2 className="font-integralCF font-bold text-[48px] leading-[100%] tracking-normal align-middle text-black">
             OUR HAPPY CUSTOMERS
           </h2>
-          <div className="flex gap-4 justify-end ml-[120px] ">
+          <div className="flex gap-4 justify-end">
             <Image 
               src="/Arrow-left.png" 
               alt="Previous" 
@@ -72,10 +72,10 @@ const Reviews: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pb-20">
           {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="pb-20">
-              <div className="bg-white rounded-[20px] p-[20px_32px] w-[400px] h-[240px] ml-[90px] gap-[320px] border border-[#0000001A]">
+            <div key={testimonial.id} className="pb-8">
+              <div className="bg-white rounded-[20px] p-6 w-full h-auto border border-[#0000001A]">
                 <StarRating rating={testimonial.stars} />
                 <div className="flex items-center mt-4 mb-2">
                   <h3 className="text-black text-[20px] leading-[22px] tracking-normal font-bold mr-2">{testimonial.name}</h3>
