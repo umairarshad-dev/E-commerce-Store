@@ -1,4 +1,4 @@
-  import Image from 'next/image';
+import Image from 'next/image';
 
 interface Testimonial {
   id: number;
@@ -48,50 +48,52 @@ const StarRating = ({ rating }: { rating: number }) => {
 
 const Reviews: React.FC = () => {
   return (
-    <div className="w-full bg-white py-12 ">
-      <div className="w-full">
-        <div className="mb-8">
-          <h2 className="font-integralCF font-bold text-[48px] leading-[100%] tracking-normal align-middle text-black ml-[100px]">
-            OUR HAPPY CUSTOMERS
-          </h2>
-          {/* <div className="flex gap-4 justify-end ml-[150px] ">
-            <Image 
-              src="/Arrow-left.png" 
-              alt="Previous" 
-              width={16} 
-              height={13}
-              className="cursor-pointer" 
-            />
-            <Image 
-              src="/Arrow-right.png" 
-              alt="Next" 
-              width={16} 
-              height={13}
-              className="cursor-pointer" 
-            />
-          </div> */}
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="pb-20">
-              <div className="bg-white rounded-[20px] p-[20px_32px] w-[450px] h-[240px] ml-[90px] gap-[320px] border border-[#0000001A]">
-                <StarRating rating={testimonial.stars} />
-                <div className="flex items-center mt-4 mb-2">
-                  <h3 className="text-black text-[20px] leading-[22px] tracking-normal font-bold mr-2">{testimonial.name}</h3>
-                  <Image 
-                    src="/verified-tick.png" 
-                    alt="verified" 
-                    width={16} 
-                    height={16}
-                  />
-                </div>
-                <p className="text-gray-600 mt-2 text-[16px] leading-[22px] tracking-normal font-normal">
-                  &quot;{testimonial.text}&quot;
-                </p>
-              </div>
+    <div className="relative w-full flex justify-center items-center bg-white pb-20">
+      <div className="w-full flex justify-center items-center px-4 lg:px-24">
+        <div className="container mx-auto lg:mx-0">
+          <div className="mb-8 flex justify-between items-center">
+            <h2 className="font-['Integral CF'] font-bold text-[32px] leading-[38px] lg:text-[64px] lg:leading-[76px] tracking-normal text-black">
+              OUR HAPPY CUSTOMERS
+            </h2>
+            <div className="flex gap-4">
+              <Image 
+                src="/Arrow-left.png" 
+                alt="Previous" 
+                width={16} 
+                height={13}
+                className="cursor-pointer" 
+              />
+              <Image 
+                src="/Arrow-right.png" 
+                alt="Next" 
+                width={16} 
+                height={13}
+                className="cursor-pointer" 
+              />
             </div>
-          ))}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-[36px]">
+            {testimonials.map((testimonial) => (
+              <div key={testimonial.id} className="pb-20">
+                <div className="bg-white rounded-[20px] p-[20px_32px] w-full max-w-[400px] h-[240px] border border-[#0000001A]">
+                  <StarRating rating={testimonial.stars} />
+                  <div className="flex items-center mt-4 mb-2">
+                    <h3 className="text-black text-[20px] leading-[22px] tracking-normal font-bold mr-2">{testimonial.name}</h3>
+                    <Image 
+                      src="/verified-tick.png" 
+                      alt="verified" 
+                      width={16} 
+                      height={16}
+                    />
+                  </div>
+                  <p className="text-gray-600 mt-2 text-[16px] leading-[22px] tracking-normal font-normal">
+                    &quot;{testimonial.text}&quot;
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
