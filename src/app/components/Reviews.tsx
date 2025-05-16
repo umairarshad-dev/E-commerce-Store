@@ -48,13 +48,13 @@ const StarRating = ({ rating }: { rating: number }) => {
 
 const Reviews: React.FC = () => {
   return (
-    <div className="w-full bg-white py-12 px-4">
-      <div className="w-[1320px]">
+    <div className="w-full bg-white py-12 ">
+      <div className="w-full">
         <div className="mb-8">
-          <h2 className="font-integralCF font-bold text-[48px] leading-[100%] tracking-normal align-middle text-black w-[654px] h-[58px] ml-[100px]">
+          <h2 className="font-integralCF font-bold text-[48px] leading-[100%] tracking-normal align-middle text-black ml-[100px]">
             OUR HAPPY CUSTOMERS
           </h2>
-          <div className="flex gap-4 justify-end ml-[120px] ">
+          {/* <div className="flex gap-4 justify-end ml-[150px] ">
             <Image 
               src="/Arrow-left.png" 
               alt="Previous" 
@@ -69,13 +69,13 @@ const Reviews: React.FC = () => {
               height={13}
               className="cursor-pointer" 
             />
-          </div>
+          </div> */}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {testimonials.map((testimonial) => (
             <div key={testimonial.id} className="pb-20">
-              <div className="bg-white rounded-[20px] p-[20px_32px] w-[400px] h-[240px] ml-[90px] gap-[320px] border border-[#0000001A]">
+              <div className="bg-white rounded-[20px] p-[20px_32px] w-[450px] h-[240px] ml-[90px] gap-[320px] border border-[#0000001A]">
                 <StarRating rating={testimonial.stars} />
                 <div className="flex items-center mt-4 mb-2">
                   <h3 className="text-black text-[20px] leading-[22px] tracking-normal font-bold mr-2">{testimonial.name}</h3>

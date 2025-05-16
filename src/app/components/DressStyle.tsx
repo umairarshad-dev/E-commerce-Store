@@ -5,28 +5,28 @@ const DressStyle = () => {
     { 
       name: '', 
       image: '/casual-dress.png',
-      containerClass: 'w-[407px] h-[289px] absolute top-[60px] left-[84px]'
+      containerClass: 'w-[507px] h-[289px] absolute top-[60px] left-[150px]'
     },
     { 
       name: '', 
       image: '/formal-dress.png',
-      containerClass: 'w-[684px] h-[289px] absolute top-[60px] left-[540px]'
+      containerClass: 'w-[850px] h-[289px] absolute top-[60px] left-[700px]'
     },
     { 
       name: '', 
       image: '/party-dress.png',
-      containerClass: 'w-[684px] h-[289px] absolute top-[380px] left-[84px]'
+      containerClass: 'w-[800px] h-[289px] absolute top-[380px] left-[150px]'
     },
     { 
       name: '', 
       image: '/gym-dress.png',
-      containerClass: 'w-[407px] h-[289px] absolute top-[380px] left-[816px]'
+      containerClass: 'w-[550px] h-[289px] absolute top-[380px] left-[1000px]'
     },
   ];
 
   return (
     <section className="flex justify-center items-center py-12 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="w-[1320px] h-[830px] rounded-[40px] bg-[#F0F0F0] relative">
+      <div className="w-[1700px] h-[830px] rounded-[40px] bg-[#F0F0F0] relative">
          <h2 className="font-bold text-[48px] leading-none pt-[40px] text-center text-black ">
           BROWSE BY DRESS STYLE
         </h2>

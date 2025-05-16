@@ -98,7 +98,7 @@ export default function TopSelling() {
   ];
 
   return (
-    <div className="w-full mx-auto px-14 py-8 bg-white">
+    <div className="w-full mx-auto py-8 bg-white">
       <div className="flex justify-center ">
         <div className="font-['Integral CF'] font-bold text-center mb-8 text-[48px] leading-[100%] tracking-[0%] text-black w-[403px] h-[58px]">Top Selling</div>
       </div>

@@ -7,7 +7,7 @@ import Reviews from './components/Reviews';
 export default function HeroSection() {
   return (
     <>
-      <div className="relative w-full min-h-screen bg-[#F2F0F1] bg-cover bg-center"
+      <div className="relative w-full flex justify-center items-center min-h-screen bg-[#F2F0F1] bg-cover bg-center"
         style={{ backgroundImage: `url('/hero img.png')` }}
       >
          <img
@@ -21,8 +21,8 @@ export default function HeroSection() {
           className="absolute hidden lg:block top-1/2 left-[45%] w-[56px] h-[56px]"
         />
 
-         <div className="w-full px-4 lg:px-24 pt-16 lg:pt-32">
-          <div className="max-w-[345px] lg:max-w-[577px] mx-auto lg:mx-0">
+         <div className="w-full flex justify-center items-center px-4 lg:px-24 pt-16 lg:pt-32">
+          <div className="container mx-auto lg:mx-0">
             <h1 className="font-['Integral_CF'] font-bold text-[32px] leading-[38px] lg:text-[64px] lg:leading-[76px] tracking-normal text-left text-black mb-4 lg:mb-6">
               FIND CLOTHES<br />THAT MATCHES<br />YOUR STYLE
             </h1>
@@ -52,7 +52,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-         <div className="absolute  bottom-0 left-0 right-0 bg-black w-full h-[122px]  flex justify-between items-center px-24 py-4">
+         <div className="absolute  bottom-0 left-0 right-0 bg-black w-full h-[122px] gap-26 flex justify-center items-center px-24 py-4">
           <img src="/versace-collection.png" alt="Versace" className=" w-[166.48px] h-[33.16px] top-841px left-100px " />
           <img src="/zara-collection.png" alt="zara" className="w-[91px] h-[38px] top-839px left-372.48px " />
           <img src="/gucci-collection.png" alt="Gucci" className="w-[156px] h-[36px] top-840px left-569.48px" />
