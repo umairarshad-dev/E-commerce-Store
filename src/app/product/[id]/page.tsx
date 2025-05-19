@@ -161,15 +161,16 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
   const allThumbnails = product.images;
 
   return (
-    <div className="w-full mx-auto px-28 py-8 bg-white">
-      <div className="flex flex-col md:flex-row gap-10">
-        <div className="flex gap-4">
-          <div className="flex flex-col gap-3">
+    <div className="w-full mx-auto px-4 sm:px-6 lg:px-28 py-8 bg-white">
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
+        {/* Product Images */}
+        <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+          <div className="flex sm:flex-col gap-3 order-2 sm:order-1">
             {allThumbnails.map((img, idx) => (
               <button
                 key={img}
                 onClick={() => setMainImage(idx)}
-                className={`border-2 rounded-lg overflow-hidden w-16 h-16 flex items-center justify-center bg-white transition-all duration-150 ${mainImage === idx ? 'border-[#1570EF]' : 'border-gray-200'}`}
+                className={`border-2 rounded-lg overflow-hidden w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-white transition-all duration-150 ${mainImage === idx ? 'border-[#1570EF]' : 'border-gray-200'}`}
                 style={{ boxShadow: mainImage === idx ? '0 0 0 2px #1570EF' : undefined }}
               >
                 <Image 
@@ -184,7 +185,7 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
               </button>
             ))}
           </div>
-          <div className="relative w-80 h-80 md:w-[350px] md:h-[350px] rounded-xl overflow-hidden bg-white flex items-center justify-center">
+          <div className="relative w-full sm:w-64 sm:h-64 lg:w-80 lg:h-80 xl:w-[350px] xl:h-[350px] rounded-xl overflow-hidden bg-white flex items-center justify-center order-1 sm:order-2">
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
                 <div className="w-8 h-8 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div>
@@ -206,47 +207,53 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
           </div>
         </div>
 
+        {/* Product Info */}
         <div className="flex-1">
           <div className="flex flex-col gap-2">
-            <h1 className="w-[600px] h-[48px] top-[216px] left-[750px] font-integral font-bold text-[40px] leading-[100%] tracking-[0%] align-middle text-black">{product.name}</h1>
+            <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-integral font-bold leading-[100%] text-black">
+              {product.name}
+            </h1>
           
             <div className="flex items-center gap-3 mt-2">
-              <span className="text-2xl font-bold text-black">${product.salePrice}</span>
-              <span className="text-xl text-gray-400 line-through">${product.price}</span>
+              <span className="text-xl sm:text-2xl font-bold text-black">${product.salePrice}</span>
+              <span className="text-lg sm:text-xl text-gray-400 line-through">${product.price}</span>
               <span className="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-full">{product.discount}% OFF</span>
             </div>
-            <p className="text-gray-600 text-sm mt-2 max-w-lg">{product.description}</p>
+            <p className="text-gray-600 text-sm mt-2">{product.description}</p>
           </div>
 
           <div className="mt-6 flex flex-col gap-4">
-            <div className="flex items-center gap-4">
+            {/* Color Selection */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
               <span className="text-sm font-semibold text-black">Color:</span>
               <div className="flex gap-2">
                 {product.colors.map((color) => (
                   <button
                     key={`${color.name}-${color.code}`}
                     onClick={() => setSelectedColor(color.name)}
-                    className={`w-7 h-7 rounded-full border-2 flex items-center justify-center ${selectedColor === color.name ? 'border-black' : 'border-gray-200'}`}
+                    className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full border-2 flex items-center justify-center ${selectedColor === color.name ? 'border-black' : 'border-gray-200'}`}
                     style={{ backgroundColor: color.code }}
                   >
                     {selectedColor === color.name && color.name !== 'white' && (
-                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
                     )}
                     {selectedColor === color.name && color.name === 'white' && (
-                      <span className="w-3 h-3 rounded-full bg-black block"></span>
+                      <span className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-black block"></span>
                     )}
                   </button>
                 ))}
               </div>
             </div>
-            <div className="flex items-center gap-4">
+            
+            {/* Size Selection */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
               <span className="text-sm font-semibold text-black">Choose size:</span>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {product.sizes.map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-3 py-1 rounded-full text-sm border transition-all ${selectedSize === size ? 'bg-black text-white border-black' : 'bg-[#F0F0F0] text-[#00000099] border-gray-200'}`}
+                    className={`px-2 py-1 sm:px-3 rounded-full text-xs sm:text-sm border transition-all ${selectedSize === size ? 'bg-black text-white border-black' : 'bg-[#F0F0F0] text-[#00000099] border-gray-200'}`}
                   >
                     {size}
                   </button>
@@ -255,7 +262,8 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
             </div>
           </div>
 
-          <div className="flex items-center gap-4 mt-6">
+          {/* Quantity and Add to Cart */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mt-6">
             <div className="flex items-center border border-gray-200 rounded-full px-2 py-1 bg-white">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -273,31 +281,31 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
             </div>
             <button 
               onClick={handleAddToCart}
-              className="w-[179px] h-[52px] bg-black rounded-[62px] text-white font-bold text-base leading-[100%] tracking-[0%] font-['satoshi'] hover:bg-gray-800 transition-colors"
+              className="w-full sm:w-[179px] h-[52px] bg-black rounded-[62px] text-white font-bold text-base leading-[100%] tracking-[0%] font-['satoshi'] hover:bg-gray-800 transition-colors"
             >
               Add to Cart
             </button>
-           
           </div>
         </div>
       </div>
 
+      {/* Product Tabs */}
       <div className="mt-10 border-b border-gray-200">
-        <nav className="flex justify-between">
+        <nav className="flex flex-col sm:flex-row justify-between">
           <button
-            className={`py-3 px-1 text-base font-semibold border-b-2 transition-all ${activeTab === 'details' ? 'border-black text-black' : 'border-transparent text-gray-400'}`}
+            className={`py-3 px-1 text-sm sm:text-base font-semibold border-b-2 transition-all ${activeTab === 'details' ? 'border-black text-black' : 'border-transparent text-gray-400'}`}
             onClick={() => setActiveTab('details')}
           >
             Product Details
           </button>
           <button
-            className={`py-3 px-1 text-base font-semibold border-b-2 transition-all ${activeTab === 'reviews' ? 'border-black text-black' : 'border-transparent text-gray-400'}`}
+            className={`py-3 px-1 text-sm sm:text-base font-semibold border-b-2 transition-all ${activeTab === 'reviews' ? 'border-black text-black' : 'border-transparent text-gray-400'}`}
             onClick={() => setActiveTab('reviews')}
           >
             Rating & Reviews
           </button>
           <button
-            className={`py-3 px-1 text-base font-semibold border-b-2 transition-all ${activeTab === 'faq' ? 'border-black text-black' : 'border-transparent text-gray-400'}`}
+            className={`py-3 px-1 text-sm sm:text-base font-semibold border-b-2 transition-all ${activeTab === 'faq' ? 'border-black text-black' : 'border-transparent text-gray-400'}`}
             onClick={() => setActiveTab('faq')}
           >
             FAQs
@@ -305,19 +313,20 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
         </nav>
       </div>
 
+      {/* Tab Content */}
       <div className="mt-6">
         {activeTab === 'details' && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Product Overview</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Product Overview</h2>
               <p className="text-gray-700 mb-6">This premium olive green graphic t-shirt features our signature "One Life" typography design on the chest. Crafted for comfort and style, this versatile piece makes a subtle statement while maintaining a timeless aesthetic.</p>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Price</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Price</h2>
               <div className="flex items-center gap-4 mb-6">
-                <span className="text-2xl font-bold text-black">$280 USD</span>
-                <span className="text-lg text-gray-400 line-through">$350</span>
-                <span className="bg-red-50 text-red-600 text-sm font-semibold px-3 py-1 rounded-full">20% Off</span>
+                <span className="text-xl sm:text-2xl font-bold text-black">$280 USD</span>
+                <span className="text-base sm:text-lg text-gray-400 line-through">$350</span>
+                <span className="bg-red-50 text-red-600 text-xs sm:text-sm font-semibold px-2 sm:px-3 py-1 rounded-full">20% Off</span>
               </div>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Details</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Details</h2>
               <ul className="list-disc list-inside text-gray-700 mb-6 space-y-1">
                 <li>Regular fit</li>
                 <li>100% organic cotton jersey</li>
@@ -328,13 +337,13 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
                 <li>Straight hem</li>
                 <li>Machine washable</li>
               </ul>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Size & Fit</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Size & Fit</h2>
               <ul className="list-disc list-inside text-gray-700 mb-6 space-y-1">
                 <li>Model is 6'1" (185cm) and wears size M</li>
                 <li>Regular fit, true to size</li>
                 <li>Available in sizes XS, S, M, L, XL, XXL</li>
               </ul>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Material & Care</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Material & Care</h2>
               <ul className="list-disc list-inside text-gray-700 mb-6 space-y-1">
                 <li>100% GOTS certified organic cotton</li>
                 <li>220 gsm midweight jersey</li>
@@ -346,14 +355,14 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
               </ul>
             </div>
             <div>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Colors Available</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Colors Available</h2>
               <ul className="list-disc list-inside text-gray-700 mb-6 space-y-1">
                 <li>Olive Green (shown)</li>
                 <li>Black</li>
                 <li>Navy</li>
                 <li>White</li>
               </ul>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Sustainability</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Sustainability</h2>
               <ul className="list-disc list-inside text-gray-700 mb-6 space-y-1">
                 <li>GOTS certified organic cotton</li>
                 <li>Water-based, non-toxic dyes</li>
@@ -361,14 +370,14 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
                 <li>Carbon-neutral shipping</li>
                 <li>Recyclable packaging</li>
               </ul>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Shipping & Returns</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Shipping & Returns</h2>
               <ul className="list-disc list-inside text-gray-700 mb-6 space-y-1">
                 <li>Free standard shipping (3-5 business days)</li>
                 <li>Express shipping available ($15)</li>
                 <li>Free returns within 30 days</li>
                 <li>See our full return policy for details</li>
               </ul>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Product Code</h2>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">Product Code</h2>
               <p className="text-gray-700">OLG-TS-OLV-2024</p>
             </div>
           </div>
@@ -381,95 +390,89 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
           />
         )}
         {activeTab === 'faq' && (
-        <div className="prose max-w-none">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-        
-        <div className="mb-8">
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">Ordering & Payment</h3>
-          <details className="mb-4 border-b border-gray-200 pb-4">
-            <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">How do I place an order?</summary>
-            <p className="mt-2 text-gray-600">Browse our collection, select your desired product, choose the size and color, and click "Add to Cart." When you're ready to complete your purchase, proceed to checkout where you can enter your shipping information and payment details.</p>
-          </details>
-          <details className="mb-4 border-b border-gray-200 pb-4">
-            <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">What payment methods do you accept?</summary>
-            <p className="mt-2 text-gray-600">We accept all major credit cards (Visa, Mastercard, American Express, Discover), PayPal, Apple Pay, Google Pay, and Shop Pay. All transactions are securely processed.</p>
-          </details>
-          <details className="mb-4 border-b border-gray-200 pb-4">
-            <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">Is my payment information secure?</summary>
-            <p className="mt-2 text-gray-600">Yes, all payment information is encrypted and processed through secure payment gateways. We do not store your full credit card details on our servers.</p>
-          </details>
-         
-        </div>
-  
-        <div className="mb-8">
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">Shipping & Delivery</h3>
-          <details className="mb-4 border-b border-gray-200 pb-4">
-            <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">How long will it take to receive my order?</summary>
-            <ul className="mt-2 list-disc pl-5 space-y-2 text-gray-600">
-              <li>Standard Shipping: 3-5 business days (free on all orders)</li>
-              <li>Express Shipping: 1-2 business days ($15)</li>
-              <li>International Shipping: 7-14 business days (varies by location)</li>
-            </ul>
-          </details>
-          <details className="mb-4 border-b border-gray-200 pb-4">
-            <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">Do you ship internationally?</summary>
-            <p className="mt-2 text-gray-600">Yes, we ship to over 90 countries worldwide. International shipping times and costs vary by location. Import duties and taxes may apply and are the responsibility of the customer.</p>
-          </details>
-          <details className="mb-4 border-b border-gray-200 pb-4">
-            <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">How can I track my order?</summary>
-            <p className="mt-2 text-gray-600">Once your order ships, you'll receive a confirmation email with tracking information. You can also track your order by logging into your account on our website.</p>
-          </details>
-        
-        </div>
-  
-        <div className="mb-8">
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">Returns & Exchanges</h3>
-          <details className="mb-4 border-b border-gray-200 pb-4">
-            <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">What is your return policy?</summary>
-            <p className="mt-2 text-gray-600">We offer free returns within 30 days of delivery. Items must be unworn, unwashed, and with original tags attached. Return shipping is free for domestic orders.</p>
-          </details>
-          <details className="mb-4 border-b border-gray-200 pb-4">
-            <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">How do I initiate a return or exchange?</summary>
-            <p className="mt-2 text-gray-600">Log into your account, go to "Order History," select the order containing the item you wish to return, and follow the return instructions. You'll receive a prepaid shipping label for domestic returns.</p>
-          </details>
-          <details className="mb-4 border-b border-gray-200 pb-4">
-            <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">How long does it take to process a return?</summary>
-            <p className="mt-2 text-gray-600">Once we receive your return, it takes 3-5 business days to process. Refunds will be issued to your original payment method and may take an additional 3-5 business days to appear on your statement.</p>
-          </details>
-        
-        </div>
-  
-      
-  
-        <div className="mb-8">
-          <h3 className="text-xl font-semibold text-gray-800 mb-4">Contact & Support</h3>
-          <details className="mb-4 border-b border-gray-200 pb-4">
-            <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">How can I contact customer service?</summary>
-            <div className="mt-2 text-gray-600">
-              <p>Our customer service team is available Monday through Friday, 9 AM - 6 PM EST. You can reach us via:</p>
-              <ul className="mt-2 list-disc pl-5 space-y-2">
-                <li>Email: support@onelifeclothing.com</li>
-                <li>Live Chat: Available on our website during business hours</li>
-                <li>Phone: 1-800-ONE-LIFE (1-800-663-5433)</li>
-              </ul>
+          <div className="prose max-w-none">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+            
+            <div className="mb-8">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Ordering & Payment</h3>
+              <details className="mb-4 border-b border-gray-200 pb-4">
+                <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">How do I place an order?</summary>
+                <p className="mt-2 text-gray-600">Browse our collection, select your desired product, choose the size and color, and click "Add to Cart." When you're ready to complete your purchase, proceed to checkout where you can enter your shipping information and payment details.</p>
+              </details>
+              <details className="mb-4 border-b border-gray-200 pb-4">
+                <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">What payment methods do you accept?</summary>
+                <p className="mt-2 text-gray-600">We accept all major credit cards (Visa, Mastercard, American Express, Discover), PayPal, Apple Pay, Google Pay, and Shop Pay. All transactions are securely processed.</p>
+              </details>
+              <details className="mb-4 border-b border-gray-200 pb-4">
+                <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">Is my payment information secure?</summary>
+                <p className="mt-2 text-gray-600">Yes, all payment information is encrypted and processed through secure payment gateways. We do not store your full credit card details on our servers.</p>
+              </details>
             </div>
-          </details>
-          <details className="mb-4 border-b border-gray-200 pb-4">
-            <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">Do you have physical stores?</summary>
-            <p className="mt-2 text-gray-600">Currently, we operate exclusively online, but we host pop-up shops in major cities throughout the year. Sign up for our newsletter to stay informed about upcoming events.</p>
-          </details>
-          <details className="mb-4 border-b border-gray-200 pb-4">
-            <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">Do you offer wholesale opportunities?</summary>
-            <p className="mt-2 text-gray-600">Yes, we offer wholesale opportunities for select retailers. Please contact wholesale@onelifeclothing.com for more information.</p>
-          </details>
-         
-        </div>
-      </div>
+      
+            <div className="mb-8">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Shipping & Delivery</h3>
+              <details className="mb-4 border-b border-gray-200 pb-4">
+                <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">How long will it take to receive my order?</summary>
+                <ul className="mt-2 list-disc pl-5 space-y-2 text-gray-600">
+                  <li>Standard Shipping: 3-5 business days (free on all orders)</li>
+                  <li>Express Shipping: 1-2 business days ($15)</li>
+                  <li>International Shipping: 7-14 business days (varies by location)</li>
+                </ul>
+              </details>
+              <details className="mb-4 border-b border-gray-200 pb-4">
+                <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">Do you ship internationally?</summary>
+                <p className="mt-2 text-gray-600">Yes, we ship to over 90 countries worldwide. International shipping times and costs vary by location. Import duties and taxes may apply and are the responsibility of the customer.</p>
+              </details>
+              <details className="mb-4 border-b border-gray-200 pb-4">
+                <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">How can I track my order?</summary>
+                <p className="mt-2 text-gray-600">Once your order ships, you'll receive a confirmation email with tracking information. You can also track your order by logging into your account on our website.</p>
+              </details>
+            </div>
+      
+            <div className="mb-8">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Returns & Exchanges</h3>
+              <details className="mb-4 border-b border-gray-200 pb-4">
+                <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">What is your return policy?</summary>
+                <p className="mt-2 text-gray-600">We offer free returns within 30 days of delivery. Items must be unworn, unwashed, and with original tags attached. Return shipping is free for domestic orders.</p>
+              </details>
+              <details className="mb-4 border-b border-gray-200 pb-4">
+                <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">How do I initiate a return or exchange?</summary>
+                <p className="mt-2 text-gray-600">Log into your account, go to "Order History," select the order containing the item you wish to return, and follow the return instructions. You'll receive a prepaid shipping label for domestic returns.</p>
+              </details>
+              <details className="mb-4 border-b border-gray-200 pb-4">
+                <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">How long does it take to process a return?</summary>
+                <p className="mt-2 text-gray-600">Once we receive your return, it takes 3-5 business days to process. Refunds will be issued to your original payment method and may take an additional 3-5 business days to appear on your statement.</p>
+              </details>
+            </div>
+      
+            <div className="mb-8">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800 mb-4">Contact & Support</h3>
+              <details className="mb-4 border-b border-gray-200 pb-4">
+                <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">How can I contact customer service?</summary>
+                <div className="mt-2 text-gray-600">
+                  <p>Our customer service team is available Monday through Friday, 9 AM - 6 PM EST. You can reach us via:</p>
+                  <ul className="mt-2 list-disc pl-5 space-y-2">
+                    <li>Email: support@onelifeclothing.com</li>
+                    <li>Live Chat: Available on our website during business hours</li>
+                    <li>Phone: 1-800-ONE-LIFE (1-800-663-5433)</li>
+                  </ul>
+                </div>
+              </details>
+              <details className="mb-4 border-b border-gray-200 pb-4">
+                <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">Do you have physical stores?</summary>
+                <p className="mt-2 text-gray-600">Currently, we operate exclusively online, but we host pop-up shops in major cities throughout the year. Sign up for our newsletter to stay informed about upcoming events.</p>
+              </details>
+              <details className="mb-4 border-b border-gray-200 pb-4">
+                <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">Do you offer wholesale opportunities?</summary>
+                <p className="mt-2 text-gray-600">Yes, we offer wholesale opportunities for select retailers. Please contact wholesale@onelifeclothing.com for more information.</p>
+              </details>
+            </div>
+          </div>
         )}
       </div>
 
-      <div className="mt-20">
-        <h2 className="text-2xl md:text-3xl font-extrabold text-center mb-8 tracking-tight">YOU MIGHT ALSO LIKE</h2>
+      {/* Related Products */}
+      <div className="mt-12 lg:mt-20">
         <RelatedProducts products={relatedProducts} />
       </div>
     </div>

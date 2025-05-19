@@ -53,32 +53,34 @@ export default function HeroSection() {
         </div>
 
         {/* Fixed bottom brand section */}
-        <div className="absolute bottom-0 left-0 right-0 bg-black w-full h-[122px] flex justify-center items-center px-24 py-4 gap-26">
-          <img 
-            src="/versace-collection.png" 
-            alt="versace" 
-            className="w-[166.48px] h-[33.16px]" 
-          />
-          <img 
-            src="/zara-collection.png" 
-            alt="zara" 
-            className="w-[91px] h-[38px]" 
-          />
-          <img 
-            src="/gucci-collection.png" 
-            alt="Gucci" 
-            className="w-[156px] h-[36px]" 
-          />
-          <img 
-            src="/prada-collection.png" 
-            alt="prada-collection" 
-            className="w-[194px] h-[31px]" 
-          />
-          <img 
-            src="/calvin-collection.png" 
-            alt="calvin-collection" 
-            className="w-[206.79px] h-[33px]" 
-          />
+        <div className="absolute bottom-0 left-0 right-0 bg-black w-full">
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 lg:gap-26 px-4 md:px-12 lg:px-24 py-6 md:py-8 lg:py-4">
+            <img 
+              src="/versace-collection.png" 
+              alt="versace" 
+              className="w-[100px] h-auto md:w-[130px] lg:w-[166.48px]" 
+            />
+            <img 
+              src="/zara-collection.png" 
+              alt="zara" 
+              className="w-[60px] h-auto md:w-[75px] lg:w-[91px]" 
+            />
+            <img 
+              src="/gucci-collection.png" 
+              alt="Gucci" 
+              className="w-[100px] h-auto md:w-[130px] lg:w-[156px]" 
+            />
+            <img 
+              src="/prada-collection.png" 
+              alt="prada-collection" 
+              className="w-[120px] h-auto md:w-[160px] lg:w-[194px]" 
+            />
+            <img 
+              src="/calvin-collection.png" 
+              alt="calvin-collection" 
+              className="w-[130px] h-auto md:w-[170px] lg:w-[206.79px]" 
+            />
+          </div>
         </div>
       </div>
 
