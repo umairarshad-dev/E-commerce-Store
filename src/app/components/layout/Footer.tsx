@@ -139,8 +139,7 @@ export default function Footer() {
                   {['visa-card', 'master-card', 'paypal-card', 'apple-pay', 'googlepay-card'].map((brand) => (
                     <div key={brand} className="w-[46px] h-[30px] rounded-[5px] border border-[#D6DCE5] bg-white flex items-center justify-center">
                       <img
-                        src={`/${brand}.png`}
-                        alt={brand}
+                         alt={brand}
                         className="object-contain p-1 max-h-full"
                       />
                     </div>
