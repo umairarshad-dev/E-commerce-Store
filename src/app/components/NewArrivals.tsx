@@ -28,7 +28,7 @@ const ProductCard = ({
           alt={name}
           width={260}
           height={272}
-          className="w-65 h-68 rounded-3xl bg-[#F0EEED] object-cover"
+          className="w-65 h-100 rounded-3xl bg-[#F0EEED] object-cover"
         />
         {discount && (
           <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
@@ -73,7 +73,7 @@ export default function TopSelling() {
       reviews: 4,
       currentPrice: 212,
       originalPrice: 232,
-      image: '/shirt01.png',
+      image: '/shoe-01.jpg',
     },
     {
       id: 2,
@@ -81,7 +81,7 @@ export default function TopSelling() {
       rating: 3.5,
       reviews: 3,
       currentPrice: 145,
-      image: '/pent01.png',
+      image: '/shoe-02.jpg',
     },
     {
       id: 3,
@@ -89,7 +89,7 @@ export default function TopSelling() {
       rating: 4.5,
       reviews: 4,
       currentPrice: 80,
-      image: '/shirt02.png',
+      image: '/shoe-03.jpg',
     },
     {
       id: 4,
@@ -97,7 +97,7 @@ export default function TopSelling() {
       rating: 4.5,
       reviews: 4.5,
       currentPrice: 210,
-      image: '/shirt03.png',
+      image: '/shoe-04.jpg',
     },
   ];
 

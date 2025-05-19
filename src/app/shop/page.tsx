@@ -47,7 +47,7 @@ const ProductCard = ({
         <img
           src={image}
           alt={name}
-          className="w-full h-full rounded-3xl bg-[#F0EEED] object-cover"
+          className="w-65 h-100 rounded-3xl bg-[#F0EEED] object-cover"
         />
         {discount && (
           <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
@@ -87,7 +87,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4,
     currentPrice: 145,
-    image: '/shirt06.png',
+    image: '/shoe-20.jpg',
   },
   {
     id: 2,
@@ -95,7 +95,7 @@ const products: Product[] = [
     rating: 3.5,
     reviews: 3,
     currentPrice: 180,
-    image: '/shirt07.png',
+    image: '/shoe-10.jpg',
   },
   {
     id: 3,
@@ -103,7 +103,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4,
     currentPrice: 120,
-    image: '/shirt08.png',
+    image: '/shoe-11.jpg',
   },
   {
     id: 4,
@@ -111,7 +111,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4.5,
     currentPrice: 210,
-    image: '/pent01.png',
+    image: '/shoe-12.jpg',
   },
   {
     id: 5,
@@ -119,7 +119,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4,
     currentPrice: 80,
-    image: '/shirt02.png',
+    image: '/shoe-13.jpg',
   },
   {
     id: 6,
@@ -127,7 +127,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4.5,
     currentPrice: 210,
-    image: '/shirt03.png',
+    image: '/shoe-14.jpg',
   },
   {
     id: 7,
@@ -135,7 +135,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4,
     currentPrice: 80,
-    image: '/shirt04.png',
+    image: '/shoe-15.jpg',
   },
   {
     id: 8,
@@ -143,7 +143,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4.5,
     currentPrice: 210,
-    image: '/shirt05.png',
+    image: '/shoe-16.jpg',
   },
   {
     id: 9,
@@ -151,7 +151,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4,
     currentPrice: 80,
-    image: '/pent02.png',
+    image: '/shoe-19.jpg',
   },
 ];
 
