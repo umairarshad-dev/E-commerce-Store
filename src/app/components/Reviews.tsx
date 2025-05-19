@@ -56,20 +56,24 @@ const Reviews: React.FC = () => {
               OUR HAPPY CUSTOMERS
             </h2>
             <div className="flex gap-4">
-              <Image 
-                src="/Arrow-left.png" 
-                alt="Previous" 
-                width={16} 
-                height={13}
-                className="cursor-pointer" 
-              />
-              <Image 
-                src="/Arrow-right.png" 
-                alt="Next" 
-                width={16} 
-                height={13}
-                className="cursor-pointer" 
-              />
+              <div className="bg-gray-100 rounded-full p-2">
+                <Image 
+                  src="/Arrow-left.png" 
+                  alt="Previous" 
+                  width={16} 
+                  height={13}
+                  className="cursor-pointer" 
+                />
+              </div>
+              <div className="bg-gray-100 rounded-full p-2">
+                <Image 
+                  src="/Arrow-right.png" 
+                  alt="Next" 
+                  width={16} 
+                  height={13}
+                  className="cursor-pointer" 
+                />
+              </div>
             </div>
           </div>
 

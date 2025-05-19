@@ -105,7 +105,7 @@ export default function TopSelling() {
     <div className="relative w-full flex justify-center items-center bg-white">
       <div className="w-full flex justify-center items-center px-4 lg:px-24">
         <div className="container mx-auto lg:mx-0">
-          <div className="font-['Integral CF'] text-center font-bold text-[32px] leading-[38px] lg:text-[64px] lg:leading-[76px] tracking-normal text-black px-4 py-24">
+          <div className="font-['Integral CF'] text-center font-bold text-[32px] leading-[38px] lg:text-[64px] lg:leading-[76px] tracking-normal text-black px-4 py-16">
             New Arrival
           </div>
           

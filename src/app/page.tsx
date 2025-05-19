@@ -28,27 +28,27 @@ export default function HeroSection() {
             </h1>
 
             <p className="font-integralCF text-sm lg:text-base leading-[21px] lg:leading-[24px] text-black/60 text-left mb-8">
-              Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.
+              Browse through our diverse range of meticulously crafted garments,<br/> designed to bring out your individuality and cater to your sense of style.
             </p>
 
             <button className="font-['Integral_CF'] w-[132px] h-[48px] lg:w-[210px] lg:h-[52px] text-white text-sm lg:text-base rounded-[62px] font-medium bg-black hover:bg-black/90 transition-colors mb-12 lg:mb-16">
               Shop Now
             </button>
 
-             <div className="grid grid-cols-3 gap-4 lg:gap-[36px]">
-              <div className="text-left">
-                <h2 className="font-satoshi font-bold text-2xl lg:text-[40px] leading-tight text-black mb-1">200+</h2>
-                <p className="font-satoshi text-xs lg:text-base text-black/60">International Brands</p>
-              </div>
-              <div className="text-left">
-                <h2 className="font-satoshi font-bold text-2xl lg:text-[40px] leading-tight text-black mb-1">2,000+</h2>
-                <p className="font-satoshi text-xs lg:text-base text-black/60">High-Quality Products</p>
-              </div>
-              <div className="text-left">
-                <h2 className="font-satoshi font-bold text-2xl lg:text-[40px] leading-tight text-black mb-1">30,000+</h2>
-                <p className="font-satoshi text-xs lg:text-base text-black/60">Happy Customers</p>
-              </div>
-            </div>
+             <div className="flex space-x-6 lg:space-x-12">
+          <div className="text-left">
+            <h2 className="font-bold text-2xl lg:text-4xl leading-tight text-black mb-0">200+</h2>
+            <p className="text-xs lg:text-sm text-gray-600">International Brands</p>
+          </div>
+          <div className="text-left">
+            <h2 className="font-bold text-2xl lg:text-4xl leading-tight text-black mb-0">2,000+</h2>
+            <p className="text-xs lg:text-sm text-gray-600">High-Quality Products</p>
+          </div>
+          <div className="text-left">
+            <h2 className="font-bold text-2xl lg:text-4xl leading-tight text-black mb-0">30,000+</h2>
+            <p className="text-xs lg:text-sm text-gray-600">Happy Customers</p>
+          </div>
+        </div>
           </div>
         </div>
 
