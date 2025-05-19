@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { StarIcon } from '@heroicons/react/24/solid';
-import { ChevronRightIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
+import { ChevronRightIcon, ChevronDownIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
 const categories = ['T-shirts', 'Shorts', 'Shirts', 'Hoodie', 'Jeans'];
@@ -13,7 +13,6 @@ const colors = [
   { name: 'blue', code: '#0ea5e9' },
   { name: 'cyan', code: '#06b6d4' },
   { name: 'pink', code: '#ec4899' },
-  // { name: 'white', code: '#fff' },
   { name: 'black', code: '#000' },
 ];
 const sizes = [
@@ -43,12 +42,12 @@ const ProductCard = ({
   image,
 }: Product) => {
   return (
-    <Link href={`/product/${id}`} className="flex flex-col items-center hover:opacity-90 transition-opacity">
-      <div className="relative">
+    <Link href={`/product/${id}`} className="flex flex-col items-center hover:opacity-90 transition-opacity w-full">
+      <div className="relative w-full aspect-square">
         <img
           src={image}
           alt={name}
-          className="w-65 h-68 rounded-3xl bg-[#F0EEED] object-cover"
+          className="w-full h-full rounded-3xl bg-[#F0EEED] object-cover"
         />
         {discount && (
           <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
@@ -56,9 +55,9 @@ const ProductCard = ({
           </div>
         )}
       </div>
-      <div className="pt-4">
-        <h3 className="text-black font-bold text-xl leading-none tracking-normal align-middle">{name}</h3>
-        <div className="flex items-center">
+      <div className="pt-4 w-full">
+        <h3 className="text-black font-bold text-lg md:text-xl leading-none tracking-normal align-middle line-clamp-2">{name}</h3>
+        <div className="flex items-center mt-1">
           <div className="flex text-yellow-400 mr-2">
             {[...Array(5)].map((_, i) => (
               <span key={i}>
@@ -68,10 +67,10 @@ const ProductCard = ({
           </div>
           <span className="text-gray-500 text-sm">({reviews})</span>
         </div>
-        <div className="w-52 h-8 top-[1480px] left-[415px]">
-          <span className="pr-2 text-black font-sans font-bold text-2xl leading-none tracking-normal align-middle">${currentPrice}</span>
+        <div className="mt-2">
+          <span className="pr-2 text-black font-sans font-bold text-xl md:text-2xl leading-none tracking-normal align-middle">${currentPrice}</span>
           {originalPrice && (
-            <span className="text-black/40 font-bold text-2xl leading-none tracking-normal align-middle line-through">
+            <span className="text-black/40 font-bold text-xl md:text-2xl leading-none tracking-normal align-middle line-through">
               ${originalPrice}
             </span>
           )}
@@ -172,6 +171,7 @@ const ShopPage = () => {
   const [openSizes, setOpenSizes] = useState(false);
   const [openDressStyle, setOpenDressStyle] = useState(false);
   const [openPrice, setOpenPrice] = useState(false);
+  const [showMobileFilters, setShowMobileFilters] = useState(false);
 
   const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newMin = Math.min(Number(e.target.value), price[1] - 1);
@@ -184,36 +184,41 @@ const ShopPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-
-      <div className=" container mx-auto py-4 flex flex-col md:flex-row md:items-center md:justify-between">
-        <div className="flex items-center gap-2 pr-20">
+      {/* Breadcrumb and Sort */}
+      <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between">
+        <div className="flex items-center gap-2 mb-2 md:mb-0">
           <span className="text-sm text-black">Home</span>
-          <img src="/drop-right.png" alt="Shop" className="w-[8.5px] h-[6.5px]  mt-[2px] text-black" />
+          <img src="/drop-right.png" alt="Shop" className="w-[8.5px] h-[6.5px] mt-[2px] text-black" />
           <span className="text-sm text-black flex items-center gap-1">Casual</span>
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-sm text-black">Showing 1-10 of 100 Products</span>
+          <span className="text-sm text-black hidden sm:inline">Showing 1-10 of 100 Products</span>
           <span className="text-sm text-black flex items-center gap-1">Sort by: <span className="font-semibold">Most Popular</span> <ChevronDownIcon className="w-4 h-4 text-black" /></span>
         </div>
       </div>
 
-      <div className="container  mx-auto py-8">
-        <div className="flex gap-8">
-          <div className="w-64 flex-shrink-0  ">
-            <div className="shadow-sm p-6 space-y-8 pb-20 rounded-[20px]   px-[24px] py-[20px] gap-[24px]">
-              <div className="flex items-center justify-between mb-2 w-[210px] h-[27px] ">
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex flex-col md:flex-row gap-8">
+          {/* Mobile filter toggle */}
+          <button 
+            className="md:hidden flex items-center justify-center gap-2 bg-black text-white py-2 px-4 rounded-full mb-4"
+            onClick={() => setShowMobileFilters(!showMobileFilters)}
+          >
+            <FunnelIcon className="w-4 h-4" />
+            Filters
+          </button>
+
+          {/* Filters - Hidden on mobile unless toggled */}
+          <div className={`${showMobileFilters ? 'block' : 'hidden'} md:block w-full md:w-64 flex-shrink-0`}>
+            <div className="shadow-sm p-6 space-y-8 pb-20 rounded-[20px] px-[24px] py-[20px] gap-[24px] bg-white">
+              <div className="flex items-center justify-between mb-2 w-full h-[27px]">
                 <span className="font-[Satoshi] font-bold text-[20px] leading-[100%] tracking-[0%] align-middle text-[#000000]">
                   Filters
                 </span>
-                <img
-                  src="/filter.png"
-                  alt="Shop"
-                  className="w-[20px] h-[16.5px] top-[2.63px] left-[1.88px] text-black"
-                />
+                <FunnelIcon className="w-5 h-5 text-black" />
               </div>
 
-              <div className="w-[210px] border-b border-[#0000001A] border-[1px]"></div>
-
+              <div className="w-full border-b border-[#0000001A] border-[1px]"></div>
 
               <div>
                 <button
@@ -229,12 +234,12 @@ const ShopPage = () => {
                   )}
                 </button>
                 {openCategories && (
-                  <div className="space-y-1 w-[216px] h-[160px] gap-[20px]">
+                  <div className="space-y-1 w-full h-auto gap-[20px]">
                     {categories.map((cat) => (
                       <button
                         key={cat}
                         onClick={() => setSelectedCategory(cat)}
-                        className={`flex items-center justify-between font-[Satoshi] font-normal text-[16px] leading-[100%] tracking-[0%] text-[#00000099] w-full px-2 py-1 rounded-md  hover:bg-gray-100 ${selectedCategory === cat ? 'font-bold' : ''}`}
+                        className={`flex items-center justify-between font-[Satoshi] font-normal text-[16px] leading-[100%] tracking-[0%] text-[#00000099] w-full px-2 py-1 rounded-md hover:bg-gray-100 ${selectedCategory === cat ? 'font-bold' : ''}`}
                       >
                         <span>{cat}</span>
                         <ChevronRightIcon className="w-4 h-4 text-black" />
@@ -243,7 +248,8 @@ const ShopPage = () => {
                   </div>
                 )}
               </div>
-               <div>
+
+              <div>
                 <button
                   className="flex items-center justify-between w-full mb-2 select-none"
                   onClick={() => setOpenPrice((v) => !v)}
@@ -259,7 +265,7 @@ const ShopPage = () => {
                 {openPrice && (
                   <div className="py-2">
                     <div className="relative h-8 flex items-center">
-                       <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-2 bg-gray-100 rounded-full" />
+                      <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-2 bg-gray-100 rounded-full" />
                       <div
                         className="absolute top-1/2 -translate-y-1/2 h-2 bg-black rounded-full"
                         style={{
@@ -267,7 +273,7 @@ const ShopPage = () => {
                           right: `${100 - ((price[1] - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
                         }}
                       />
-                       <input
+                      <input
                         type="range"
                         min={MIN_PRICE}
                         max={MAX_PRICE}
@@ -276,7 +282,7 @@ const ShopPage = () => {
                         className="absolute w-full h-8 bg-transparent appearance-none pointer-events-auto z-10"
                         style={{ pointerEvents: 'auto' }}
                       />
-                       <input
+                      <input
                         type="range"
                         min={MIN_PRICE}
                         max={MAX_PRICE}
@@ -285,7 +291,7 @@ const ShopPage = () => {
                         className="absolute w-full h-8 bg-transparent appearance-none pointer-events-auto z-10"
                         style={{ pointerEvents: 'auto' }}
                       />
-                       <style>{`
+                      <style>{`
                         input[type='range']::-webkit-slider-thumb {
                           -webkit-appearance: none;
                           appearance: none;
@@ -338,7 +344,8 @@ const ShopPage = () => {
                   </div>
                 )}
               </div>
-               <div>
+
+              <div>
                 <button
                   className="flex items-center justify-between w-full mb-2 select-none"
                   onClick={() => setOpenColors((v) => !v)}
@@ -372,7 +379,6 @@ const ShopPage = () => {
                 )}
               </div>
 
-
               <div>
                 <button
                   className="flex items-center justify-between w-full mb-2 select-none"
@@ -387,25 +393,24 @@ const ShopPage = () => {
                   )}
                 </button>
                 {openSizes && (
-             <div className="flex flex-wrap gap-2">
-             {sizes.map((size) => (
-               <button
-                 key={size}
-                 onClick={() => setSelectedSize(size)}
-                 className={`px-3 py-1 rounded-full text-sm border transition-all ${
-                   selectedSize === size
-                     ? 'bg-black text-white border-black'
-                     : 'bg-[#F0F0F0] text-[#00000099] border-gray-200'
-                 }`}
-               >
-                 {size}
-               </button>
-             ))}
-           </div>
-           
-
+                  <div className="flex flex-wrap gap-2">
+                    {sizes.map((size) => (
+                      <button
+                        key={size}
+                        onClick={() => setSelectedSize(size)}
+                        className={`px-3 py-1 rounded-full text-sm border transition-all ${
+                          selectedSize === size
+                            ? 'bg-black text-white border-black'
+                            : 'bg-[#F0F0F0] text-[#00000099] border-gray-200'
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
                 )}
               </div>
+
               <div>
                 <button
                   className="flex items-center justify-between w-full mb-2 select-none"
@@ -420,12 +425,12 @@ const ShopPage = () => {
                   )}
                 </button>
                 {openDressStyle && (
-                  <div className="space-y-1 w-[216px] h-[160px] gap-[20px]">
+                  <div className="space-y-1 w-full h-auto gap-[20px]">
                     {dressStyles.map((style) => (
                       <button
                         key={style}
                         onClick={() => setSelectedDressStyle(style)}
-                        className={`flex items-center justify-between font-[Satoshi] font-normal text-[16px] leading-[100%] tracking-[0%] text-[#00000099] w-full px-2 py-1 rounded-md  hover:bg-gray-100 ${selectedDressStyle === style ? 'font-bold' : ''}`}
+                        className={`flex items-center justify-between font-[Satoshi] font-normal text-[16px] leading-[100%] tracking-[0%] text-[#00000099] w-full px-2 py-1 rounded-md hover:bg-gray-100 ${selectedDressStyle === style ? 'font-bold' : ''}`}
                       >
                         <span>{style}</span>
                         <ChevronRightIcon className="w-4 h-4 text-black" />
@@ -434,37 +439,51 @@ const ShopPage = () => {
                   </div>
                 )}
               </div>
-              <button className="w-full bg-black text-white py-2 px-4 rounded-full mt-4 font-semibold">Apply Filter</button>
+
+              <button className="w-full bg-black text-white py-2 px-4 rounded-full mt-4 font-semibold">
+                Apply Filter
+              </button>
             </div>
           </div>
 
+          {/* Products */}
           <div className="flex-1">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {products.map((product) => (
                 <ProductCard key={product.id} {...product} />
               ))}
             </div>
 
-             <div className="mt-10 flex justify-center">
-              <nav className="flex items-center gap-2">
+            {/* Pagination */}
+            <div className="mt-10 flex justify-center">
+              <nav className="flex items-center gap-2 flex-wrap justify-center">
                 <button
-                  className="px-4 py-2 rounded-full border text-black disabled:opacity-50"
+                  className="px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black disabled:opacity-50 text-sm sm:text-base"
                   disabled={page === 1}
                   onClick={() => setPage(page - 1)}
                 >
                   Previous
                 </button>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((p) => (
+                {[1, 2, 3, 4, 5].map((p) => (
                   <button
                     key={p}
-                    className={`px-4 py-2 rounded-full border text-black ${page === p ? 'bg-black text-white' : ''}`}
+                    className={`px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black text-sm sm:text-base ${
+                      page === p ? 'bg-black text-white' : ''
+                    }`}
                     onClick={() => setPage(p)}
                   >
                     {p}
                   </button>
                 ))}
+                <span className="px-2 text-black">...</span>
                 <button
-                  className="px-4 py-2 rounded-full border text-black disabled:opacity-50"
+                  className="px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black text-sm sm:text-base"
+                  onClick={() => setPage(10)}
+                >
+                  10
+                </button>
+                <button
+                  className="px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black disabled:opacity-50 text-sm sm:text-base"
                   disabled={page === 10}
                   onClick={() => setPage(page + 1)}
                 >
@@ -479,4 +498,4 @@ const ShopPage = () => {
   );
 };
 
-export default ShopPage; 
+export default ShopPage;
