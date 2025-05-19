@@ -102,23 +102,28 @@ export default function TopSelling() {
   ];
 
   return (
-    <div className="w-full mx-auto px-14 py-8 bg-white">
-      <div className="flex justify-center ">
-        <div className="font-['Integral CF'] font-bold text-center mb-8 text-[48px] leading-[100%] tracking-[0%] text-black w-[403px] h-[58px]">New Arrival</div>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            {...product}
-          />
-        ))}
-      </div>
+    <div className="relative w-full flex justify-center items-center bg-white">
+      <div className="w-full flex justify-center items-center px-4 lg:px-24">
+        <div className="container mx-auto lg:mx-0">
+          <div className="font-['Integral CF'] text-center font-bold text-[32px] leading-[38px] lg:text-[64px] lg:leading-[76px] tracking-normal text-black px-4 py-24">
+            New Arrival
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-[36px]">
+            {products.map((product) => (
+              <ProductCard
+                key={product.id}
+                {...product}
+              />
+            ))}
+          </div>
 
-      <div className="flex justify-center mt-8">
-      <button className="w-[218px] h-[52px] rounded-full py-4 px-14 border border-black/10 font-sans font-medium text-base leading-none tracking-normal text-black gap-3">
-    View All
-  </button>
+          <div className="flex justify-center mt-8">
+            <button className="w-[132px] h-[48px] lg:w-[218px] lg:h-[52px] rounded-full py-4 px-8 border border-black/10 font-sans font-medium text-base leading-none tracking-normal text-black">
+              View All
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
