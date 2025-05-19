@@ -51,24 +51,41 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
-<<<<<<< HEAD
 
-         <div className="absolute  bottom-0 left-0 right-0 bg-black w-full h-[122px] gap-26 flex justify-center items-center px-24 py-4">
-=======
-     <div className="absolute  bottom-0 left-0 right-0 bg-black w-full h-[122px] gap-26 flex justify-center items-center px-24 py-4">
->>>>>>> 4146e89 (revert the all changes on dress style , top selling, hero section)
-          <img src="/versace-collection.png" alt="Versace" className=" w-[166.48px] h-[33.16px] top-841px left-100px " />
-          <img src="/zara-collection.png" alt="zara" className="w-[91px] h-[38px] top-839px left-372.48px " />
-          <img src="/gucci-collection.png" alt="Gucci" className="w-[156px] h-[36px] top-840px left-569.48px" />
-          <img src="/prada-collection.png" alt="prada-collection" className="w-[194px] h-[31px] top-0.4px border-1.02px" />
-          <img src="/calvin-collection.png" alt="calvin-collection" className="w-[206.79px] h-[33px] top-841px left-1131.48px" />
+        {/* Fixed bottom brand section */}
+        <div className="absolute bottom-0 left-0 right-0 bg-black w-full h-[122px] flex justify-center items-center px-24 py-4 gap-26">
+          <img 
+            src="/versace-collection.png" 
+            alt="versace" 
+            className="w-[166.48px] h-[33.16px]" 
+          />
+          <img 
+            src="/zara-collection.png" 
+            alt="zara" 
+            className="w-[91px] h-[38px]" 
+          />
+          <img 
+            src="/gucci-collection.png" 
+            alt="Gucci" 
+            className="w-[156px] h-[36px]" 
+          />
+          <img 
+            src="/prada-collection.png" 
+            alt="prada-collection" 
+            className="w-[194px] h-[31px]" 
+          />
+          <img 
+            src="/calvin-collection.png" 
+            alt="calvin-collection" 
+            className="w-[206.79px] h-[33px]" 
+          />
         </div>
       </div>
 
-         <NewArrivals />
-        <TopSelling />
-        <DressStyle />
-        <Reviews />
-     </>
+      <NewArrivals />
+      <TopSelling />
+      <DressStyle />
+      <Reviews />
+    </>
   );
 }

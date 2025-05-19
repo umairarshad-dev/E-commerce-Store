@@ -21,7 +21,7 @@ export default function Navbar() {
   return (
     <nav className="bg-white text-black border-b sticky top-0 z-50 w-full">
       <div className="w-full flex justify-center items-center mx-auto px-4 lg:px-24 py-4">
-        <div className=" container flex items-center justify-between w-full">
+        <div className="container flex items-center justify-between w-full">
           <Link href="/" className="font-['Integral_CF'] font-bold text-2xl">
             SHOP.CO
           </Link>
@@ -74,6 +74,7 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile menu */}
       {isMobile && isMenuOpen && (
         <div className="fixed inset-0 bg-white z-50 pt-20 px-6">
           <button
