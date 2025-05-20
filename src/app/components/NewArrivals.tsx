@@ -124,11 +124,7 @@ export default function TopSelling() {
             </button>
           </div>
         </div>
-          {/* <div className="flex justify-center mt-8">
-            <button className="w-[132px] h-[48px] lg:w-[218px] lg:h-[52px] rounded-full py-4 px-8 border border-black/10 font-sans font-medium text-base leading-none tracking-normal text-black">
-              View All
-            </button>
-          </div> */}
+      
         </div>
       </div>
    );

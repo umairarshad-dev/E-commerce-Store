@@ -1,5 +1,5 @@
 import Image from 'next/image';
- 
+    
 interface Testimonial {
   id: number;
   name: string;
