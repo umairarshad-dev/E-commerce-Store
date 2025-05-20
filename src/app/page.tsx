@@ -8,7 +8,6 @@ export default function HeroSection() {
   return (
     <>
       <div className="relative w-full flex justify-center items-center min-h-screen bg-[#F2F0F1] bg-cover bg-center"
-      <div className="relative w-full flex justify-center items-center min-h-screen bg-[#F2F0F1] bg-cover bg-center"
         style={{ backgroundImage: `url('/hero img.png')` }}
       >
          <img
@@ -22,8 +21,6 @@ export default function HeroSection() {
           className="absolute hidden lg:block top-1/2 left-[45%] w-[56px] h-[56px]"
         />
 
-         <div className="w-full flex justify-center items-center px-4 lg:px-24 pt-16 lg:pt-32">
-          <div className="container mx-auto lg:mx-0">
          <div className="w-full flex justify-center items-center px-4 lg:px-24 pt-16 lg:pt-32">
           <div className="container mx-auto lg:mx-0">
             <h1 className="font-['Integral_CF'] font-bold text-[32px] leading-[38px] lg:text-[64px] lg:leading-[76px] tracking-normal text-left text-black mb-4 lg:mb-6">
