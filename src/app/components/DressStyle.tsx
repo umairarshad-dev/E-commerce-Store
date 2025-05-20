@@ -1,24 +1,25 @@
 import Image from 'next/image';
+import Image from 'next/image';
 
 const DressStyle = () => {
   const dressStyles = [
     { 
-      name: '', 
+      name: 'Casual', 
       image: '/casual-dress.png',
       containerClass: 'sm:h-[200px] md:h-[240px] lg:w-[407px] lg:h-[289px] lg:absolute lg:top-[60px] lg:left-[50px]'
     },
     { 
-      name: '', 
+      name: 'Formal', 
       image: '/formal-dress.png',
       containerClass: 'sm:h-[200px] md:h-[240px] lg:w-[684px] lg:h-[289px] lg:absolute lg:top-[60px] lg:left-[500px]'
     },
     { 
-      name: '', 
+      name: 'Party', 
       image: '/party-dress.png',
       containerClass: 'sm:h-[200px] md:h-[240px] lg:w-[684px] lg:h-[289px] lg:absolute lg:top-[380px] lg:left-[50px]'
     },
     { 
-      name: '', 
+      name: 'Gym', 
       image: '/gym-dress.png',
       containerClass: 'sm:h-[200px] md:h-[240px] lg:w-[407px] lg:h-[289px] lg:absolute lg:top-[380px] lg:left-[780px]'
     },
