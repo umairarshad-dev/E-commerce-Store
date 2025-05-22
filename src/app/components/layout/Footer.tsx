@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <div className="relative">
       <div className="absolute -top-1/5 left-0 right-0 flex justify-center">
-        <div className="bg-black text-white py-6 sm:py-8 px-4 w-full max-w-[1320px] h-auto sm:h-[180px] rounded-[20px] mx-4">
+        <div className="bg-black text-white py-6 sm:py-8 px-4 w-full max-w-[1260px] h-auto sm:h-[180px] rounded-[20px] mx-4">
           <div className="flex flex-col sm:flex-row justify-between items-center h-full px-4 sm:px-8 gap-6 sm:gap-0">
             <div className="text-center sm:text-left">
               <h2 className="font-bold text-xl sm:text-2xl md:text-[40px] leading-tight tracking-normal text-white">
@@ -37,7 +37,7 @@ export default function Footer() {
       <footer className="bg-[#F0F0F0] text-[#000000] border-t border-[#EAEAEA] pt-[100px]">
         <div className="px-4 sm:px-6 py-8">
           <div className="flex justify-center">
-            <div className="w-[1320px] flex flex-col">
+            <div className="w-[1260px] flex flex-col">
               <div className="flex flex-col sm:flex-row justify-between mb-12 gap-8 sm:gap-4">
                 <div className="w-full sm:w-[248px] flex flex-col gap-4 sm:gap-[25px]">
                   <div className="font-bold text-2xl sm:text-[32px] leading-none tracking-[0%] font-['Integral_CF']">
