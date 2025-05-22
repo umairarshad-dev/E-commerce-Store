@@ -20,11 +20,11 @@ const ProductCard = ({
 }: Product) => {
   return (
     <div className="flex flex-col items-center">
-      <div className="relative">
+      <div className="relative w-full aspect-[3/4]">
         <img
           src={image}
           alt={name}
-          className="w-65 h-100 rounded-3xl bg-[#F0EEED] object-cover"
+          className="w-full h-full rounded-3xl bg-[#F0EEED] object-cover"
         />
         {discount && (
           <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
@@ -33,24 +33,24 @@ const ProductCard = ({
         )}
       </div>
 
-      <div className="pt-4 ">
-        <h3 className="text-black font-bold text-xl leading-none tracking-normal align-middle">{name}</h3>
+      <div className="pt-4 w-full">
+        <h3 className="text-black font-bold text-lg sm:text-xl leading-none tracking-normal align-middle">{name}</h3>
 
-        <div className="flex items-center">
+        <div className="flex items-center mt-2">
           <div className="flex text-yellow-400 mr-2">
             {[...Array(5)].map((_, i) => (
-              <span key={i}>
+              <span key={i} className="text-sm sm:text-base">
                 {i < Math.floor(rating) ? '★' : '☆'}
               </span>
             ))}
           </div>
-          <span className="text-gray-500 text-sm">({reviews})</span>
+          <span className="text-gray-500 text-xs sm:text-sm">({reviews})</span>
         </div>
 
-        <div className="w-52 h-8 top-[1480px] left-[415px] ">
-          <span className="pr-2 text-black  font-sans font-bold text-2xl leading-none tracking-normal align-middle">${currentPrice}</span>
+        <div className="mt-2">
+          <span className="pr-2 text-black font-sans font-bold text-xl sm:text-2xl leading-none tracking-normal align-middle">${currentPrice}</span>
           {originalPrice && (
-            <span className="text-black/40  font-bold text-2xl leading-none tracking-normal align-middle line-through">
+            <span className="text-black/40 font-bold text-xl sm:text-2xl leading-none tracking-normal align-middle line-through">
               ${originalPrice}
             </span>
           )}
@@ -93,19 +93,19 @@ export default function TopSelling() {
       rating: 4.5,
       reviews: 4.5,
       currentPrice: 210,
-      image: '/shoe-08.jpg',
+      image: '/shoe-01.jpg',
     },
   ];
 
   return (
-    <div className="relative w-full flex justify-center items-center bg-white">
+    <div className="relative w-full flex justify-center items-center bg-white py-8 sm:py-12">
       <div className="w-full flex justify-center items-center px-4 lg:px-24">
         <div className="container mx-auto lg:mx-0">
-           <div className="font-['Integral CF'] text-center font-bold text-[32px] leading-[38px] lg:text-[64px] lg:leading-[76px] tracking-normal text-black px-4 py-16">
+           <div className="font-['Integral CF'] text-center font-bold text-[28px] sm:text-[36px] lg:text-[64px] leading-[38px] lg:leading-[76px] tracking-normal text-black px-4 py-8 sm:py-12">
             Top Selling
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-[36px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-[36px]">
             {products.map((product) => (
               <ProductCard
                 key={product.id}
@@ -114,8 +114,8 @@ export default function TopSelling() {
             ))}
           </div>
 
-          <div className="flex justify-center mt-8">
-            <button className="w-[132px] h-[48px] lg:w-[218px] lg:h-[52px] rounded-full py-4 px-8 border border-black/10 font-sans font-medium text-base leading-none tracking-normal text-black">
+          <div className="flex justify-center mt-8 sm:mt-12">
+            <button className="w-[132px] h-[48px] lg:w-[218px] lg:h-[52px] rounded-full py-4 px-8 border border-black/10 font-sans font-medium text-sm sm:text-base leading-none tracking-normal text-black hover:bg-gray-50 transition-colors">
               View All
             </button>
           </div>
