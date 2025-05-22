@@ -59,33 +59,32 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Brand logos section */}
-        <div className="absolute bottom-0 left-0 right-0 bg-black w-full h-[122px] flex flex-col justify-center items-center px-4 lg:px-24 gap-4 lg:gap-6">
-          {/* Top row - VERSACE, GUCCI */}
-          <div className="flex flex-row items-center justify-center gap-8 lg:gap-[72px]">
+        <div className="absolute bottom-0 left-0 right-0 bg-black w-full h-[122px] flex justify-center items-center px-4">
+          <div className="flex flex-row items-center justify-center gap-4 lg:gap-12 flex-wrap">
             <img
               src="/versace-collection.png"
               alt="Versace"
-              className="w-[100px] lg:w-[166.48px] h-[20px] lg:h-[33.16px]"
+              className="h-[20px] lg:h-[24px] w-auto object-contain"
+            />
+            <img
+              src="/zna-collection.png"
+              alt="ZNA"
+              className="h-[20px] lg:h-[26px] w-auto object-contain"
             />
             <img
               src="/gucci-collection.png"
               alt="Gucci"
-              className="w-[80px] lg:w-[156px] h-[20px] lg:h-[36px]"
+              className="h-[20px] lg:h-[25px] w-auto object-contain"
             />
-          </div>
-
-          {/* Bottom row - PRADA, Calvin Klein */}
-          <div className="flex flex-row items-center justify-center gap-8 lg:gap-[72px]">
             <img
               src="/prada-collection.png"
               alt="Prada"
-              className="w-[120px] lg:w-[194px] h-[18px] lg:h-[31px]"
+              className="h-[18px] lg:h-[22px] w-auto object-contain"
             />
             <img
               src="/calvin-collection.png"
               alt="Calvin Klein"
-              className="w-[130px] lg:w-[206.79px] h-[20px] lg:h-[33px]"
+              className="h-[20px] lg:h-[24px] w-auto object-contain"
             />
           </div>
         </div>
