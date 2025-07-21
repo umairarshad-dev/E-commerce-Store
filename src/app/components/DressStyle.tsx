@@ -5,41 +5,39 @@ const DressStyle = () => {
     { 
       name: '', 
       image: '/casual-dress.png',
-      containerClass: 'sm:h-[200px] md:h-[240px] lg:w-[407px] lg:h-[289px] lg:absolute lg:top-[60px] lg:left-[50px]'
+      containerClass: 'w-full h-[200px] sm:h-[250px] md:h-[280px] lg:w-[407px] lg:h-[289px] lg:absolute lg:top-[60px] lg:left-[50px]'
     },
     { 
       name: '', 
       image: '/formal-dress.png',
-      containerClass: 'sm:h-[200px] md:h-[240px] lg:w-[684px] lg:h-[289px] lg:absolute lg:top-[60px] lg:left-[500px]'
+      containerClass: 'w-full h-[200px] sm:h-[250px] md:h-[280px] lg:w-[684px] lg:h-[289px] lg:absolute lg:top-[60px] lg:left-[500px]'
     },
     { 
       name: '', 
       image: '/party-dress.png',
-      containerClass: 'sm:h-[200px] md:h-[240px] lg:w-[684px] lg:h-[289px] lg:absolute lg:top-[380px] lg:left-[50px]'
+      containerClass: 'w-full h-[200px] sm:h-[250px] md:h-[280px] lg:w-[684px] lg:h-[289px] lg:absolute lg:top-[380px] lg:left-[50px]'
     },
     { 
       name: '', 
       image: '/gym-dress.png',
-      containerClass: 'sm:h-[200px] md:h-[240px] lg:w-[407px] lg:h-[289px] lg:absolute lg:top-[380px] lg:left-[780px]'
+      containerClass: 'w-full h-[200px] sm:h-[250px] md:h-[280px] lg:w-[407px] lg:h-[289px] lg:absolute lg:top-[380px] lg:left-[780px]'
     },
   ];
 
   return (
-    <section className="flex justify-center items-center py-4 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="w-full max-w-[1240px] min-h-[auto] sm:min-h-[600px] lg:min-h-[830px] rounded-[12px] sm:rounded-[16px] lg:rounded-[40px] bg-[#F0F0F0] relative">
-        <h2 className="font-bold text-[20px] sm:text-[24px] lg:text-[48px] leading-tight pt-[16px] sm:pt-[20px] lg:pt-[40px] text-center text-black px-4">
+    <section className="flex justify-center items-center py-8 px-4 sm:px-6 lg:px-8 bg-white">
+      <div className="w-full lg:w-[1240px] min-h-[830px] rounded-[20px] lg:rounded-[40px] bg-[#F0F0F0] relative">
+        <h2 className="font-bold text-[28px] sm:text-[36px] lg:text-[48px] leading-none pt-[24px] lg:pt-[40px] text-center text-black">
           BROWSE BY DRESS STYLE
         </h2>
         
-        <div className="relative w-full p-3 sm:p-4 lg:p-0 lg:h-[calc(100%-120px)]">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:block">
+        <div className="relative w-full p-4 lg:p-0 lg:h-[calc(100%-120px)]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:block">
             {dressStyles.map((style, index) => (
               <div 
                 key={index}
                 className={`
-                  relative h-[140px] w-full rounded-[8px] 
-                  sm:rounded-[12px] lg:rounded-[20px] 
-                  overflow-hidden group 
+                  relative rounded-[12px] lg:rounded-[20px] overflow-hidden group 
                   transition-all duration-300 hover:scale-[1.02]
                   ${style.containerClass}
                 `}
@@ -49,14 +47,13 @@ const DressStyle = () => {
                   alt={style.name}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1239px) 50vw, 1239px"
-                  priority={index < 2}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 1239px"
                 />
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                 
-                <div className="absolute bottom-2 sm:bottom-3 lg:bottom-6 left-3 sm:left-4 lg:left-6">
-                  <h3 className="text-[18px] sm:text-[20px] lg:text-[32px] font-bold text-white">
+                <div className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6">
+                  <h3 className="text-[20px] sm:text-[24px] lg:text-[32px] font-bold text-white">
                     {style.name}
                   </h3>
                 </div>
