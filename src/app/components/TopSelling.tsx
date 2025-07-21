@@ -93,7 +93,7 @@ export default function TopSelling() {
       rating: 4.5,
       reviews: 4.5,
       currentPrice: 210,
-      image: '/shoe-01.jpg',
+      image: '/shirt02.png',
     },
   ];
 

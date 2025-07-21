@@ -151,7 +151,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4,
     currentPrice: 80,
-    image: '/shirt09.png',
+    image: '/pent01.png',
   },
 ];
 
