@@ -69,7 +69,7 @@ export default function TopSelling() {
       reviews: 4,
       currentPrice: 212,
       originalPrice: 232,
-      image: '/shoe-05.jpg',
+      image: '/shirt04.png',
     },
     {
       id: 2,
@@ -77,7 +77,7 @@ export default function TopSelling() {
       rating: 3.5,
       reviews: 3,
       currentPrice: 145,
-      image: '/shoe-06.jpg',
+      image: '/shirt05.png',
     },
     {
       id: 3,
@@ -85,7 +85,7 @@ export default function TopSelling() {
       rating: 4.5,
       reviews: 4,
       currentPrice: 80,
-      image: '/shoe-07.jpg',
+      image: '/pent02.png',
     },
     {
       id: 4,
@@ -93,7 +93,7 @@ export default function TopSelling() {
       rating: 4.5,
       reviews: 4.5,
       currentPrice: 210,
-      image: '/shoe-08.jpg',
+      image: '/pent03.png',
     },
   ];
 

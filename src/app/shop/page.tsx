@@ -87,7 +87,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4,
     currentPrice: 145,
-    image: '/shoe-20.jpg',
+    image: '/shirt06.png',
   },
   {
     id: 2,
@@ -95,7 +95,7 @@ const products: Product[] = [
     rating: 3.5,
     reviews: 3,
     currentPrice: 180,
-    image: '/shoe-10.jpg',
+    image: '/shirt07.png',
   },
   {
     id: 3,
@@ -103,7 +103,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4,
     currentPrice: 120,
-    image: '/shoe-11.jpg',
+    image: '/shirt08.png',
   },
   {
     id: 4,
@@ -111,7 +111,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4.5,
     currentPrice: 210,
-    image: '/shoe-12.jpg',
+    image: '/pent01.png',
   },
   {
     id: 5,
@@ -119,7 +119,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4,
     currentPrice: 80,
-    image: '/shoe-13.jpg',
+    image: '/shirt02.png',
   },
   {
     id: 6,
@@ -127,7 +127,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4.5,
     currentPrice: 210,
-    image: '/shoe-14.jpg',
+    image: '/shirt03.png',
   },
   {
     id: 7,
@@ -135,7 +135,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4,
     currentPrice: 80,
-    image: '/shoe-15.jpg',
+    image: '/shirt04.png',
   },
   {
     id: 8,
@@ -143,7 +143,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4.5,
     currentPrice: 210,
-    image: '/shoe-16.jpg',
+    image: '/shirt06.png',
   },
   {
     id: 9,
@@ -151,7 +151,7 @@ const products: Product[] = [
     rating: 4.5,
     reviews: 4,
     currentPrice: 80,
-    image: '/shoe-19.jpg',
+    image: '/shirt09.png',
   },
 ];
 
