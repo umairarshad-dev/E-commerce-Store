@@ -2,7 +2,7 @@
 
 A modern, minimal e-commerce storefront built with Next.js, TypeScript and Tailwind CSS  Vercel-ready and optimized for performance and SEO.
 
-Demo: (add your demo URL here)
+Demo: (?)
 
 ## Features
 
