@@ -28,7 +28,7 @@ const ProductCard = ({
           alt={name}
           width={260}
           height={320}
-          className="w-65 h-100 rounded-3xl bg-[#F0EEED] object-cover"
+          className="w-full h-64 sm:h-80 rounded-3xl bg-[#F0EEED] object-cover"
         />
         {discount && (
           <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
@@ -51,10 +51,10 @@ const ProductCard = ({
           <span className="text-gray-500 text-sm">({reviews})</span>
         </div>
 
-        <div className="w-52 h-8 top-[1480px] left-[415px] ">
-          <span className="pr-2 text-black  font-sans font-bold text-2xl leading-none tracking-normal align-middle">${currentPrice}</span>
+        <div className="flex items-center justify-center">
+          <span className="text-black font-bold text-xl md:text-2xl leading-none tracking-normal">${currentPrice}</span>
           {originalPrice && (
-            <span className="text-black/40  font-bold text-2xl leading-none tracking-normal align-middle line-through">
+            <span className="text-black/40 font-bold text-xl md:text-2xl leading-none tracking-normal line-through ml-2">
               ${originalPrice}
             </span>
           )}
@@ -64,7 +64,7 @@ const ProductCard = ({
   );
 };
 
-export default function TopSelling() {
+export default function NewArrivals() {
   const products: Product[] = [
     {
       id: 1,
@@ -102,14 +102,14 @@ export default function TopSelling() {
   ];
 
   return (
-    <div className="relative w-full flex justify-center items-center bg-white">
-      <div className="w-full flex justify-center items-center px-4 lg:px-24">
-        <div className="container mx-auto lg:mx-0">
-          <div className="font-['Integral CF'] text-center font-bold text-[32px] leading-[38px] lg:text-[64px] lg:leading-[76px] tracking-normal text-black px-4 py-12">
+    <div className="w-full bg-white">
+      <div className="px-8 py-7">
+        <div className="max-w-screen-xl mx-auto">
+          <div className="font-['Integral CF'] font-bold text-4xl md:text-5xl text-black mb-8">
             New Arrival
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-[36px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
             {products.map((product) => (
               <ProductCard
                 key={product.id}
@@ -124,8 +124,7 @@ export default function TopSelling() {
             </button>
           </div>
         </div>
-      
-        </div>
       </div>
-   );
+    </div>
+  );
 }

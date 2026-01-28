@@ -56,8 +56,18 @@ export default function Navbar() {
 
            <div className="flex items-center gap-4 md:gap-6">
             {isMobile && (
-              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="focus:outline-none">
-               </button>
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="focus:outline-none p-2">
+                {isMenuOpen ? (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M6 6L18 18" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                ) : (
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 12h18M3 6h18M3 18h18" stroke="black" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                )}
+              </button>
             )}
             <Link href="/cart" className="relative">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

@@ -98,14 +98,14 @@ export default function TopSelling() {
   ];
 
   return (
-    <div className="relative w-full flex justify-center items-center bg-white py-8 sm:py-12">
-      <div className="w-full flex justify-center items-center px-4 lg:px-24">
-        <div className="container mx-auto lg:mx-0">
-           <div className="font-['Integral CF'] text-center font-bold text-[28px] sm:text-[36px] lg:text-[64px] leading-[38px] lg:leading-[76px] tracking-normal text-black px-4 py-8 sm:py-12">
+    <div className="w-full bg-white">
+      <div className="px-8 py-7">
+        <div className="max-w-screen-xl mx-auto">
+          <div className="font-['Integral CF'] font-bold text-4xl md:text-5xl text-black mb-8">
             Top Selling
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-[36px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
             {products.map((product) => (
               <ProductCard
                 key={product.id}
@@ -114,13 +114,13 @@ export default function TopSelling() {
             ))}
           </div>
 
-          <div className="flex justify-center mt-8 sm:mt-12">
+          <div className="flex justify-center mt-8">
             <button className="w-[132px] h-[48px] lg:w-[218px] lg:h-[52px] rounded-full py-4 px-8 border border-black/10 font-sans font-medium text-sm sm:text-base leading-none tracking-normal text-black hover:bg-gray-50 transition-colors">
               View All
             </button>
           </div>
         </div>
-        </div>
       </div>
+    </div>
   );
 }

@@ -48,11 +48,11 @@ const StarRating = ({ rating }: { rating: number }) => {
 
 const Reviews: React.FC = () => {
   return (
-    <div className="relative w-full flex justify-center items-center bg-white py-8 sm:py-12 lg:pb-20">
-      <div className="w-full flex justify-center items-center px-4 lg:px-24">
-        <div className="container mx-auto lg:mx-0">
+    <div className="w-full bg-white">
+      <div className="px-8 py-7">
+        <div className="max-w-screen-xl mx-auto">
           <div className="mb-6 sm:mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-            <h2 className="font-['Integral CF'] font-bold text-[28px] sm:text-[36px] lg:text-[64px] leading-[38px] lg:leading-[76px] tracking-normal text-black">
+            <h2 className="font-['Integral CF'] font-bold text-4xl md:text-5xl text-black">
               OUR HAPPY CUSTOMERS
             </h2>
             <div className="flex gap-4">
@@ -73,9 +73,9 @@ const Reviews: React.FC = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-[36px]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
             {testimonials.map((testimonial) => (
-              <div key={testimonial.id} className="pb-6 sm:pb-8 lg:pb-20">
+              <div key={testimonial.id} className="pb-6 sm:pb-8">
                 <div className="bg-white rounded-[20px] p-4 sm:p-6 lg:p-[20px_32px] w-full max-w-[400px] h-auto min-h-[200px] lg:h-[240px] border border-[#0000001A]">
                   <StarRating rating={testimonial.stars} />
                   <div className="flex items-center mt-3 sm:mt-4 mb-2">

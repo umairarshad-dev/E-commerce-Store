@@ -98,313 +98,315 @@ const ShopPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Breadcrumb and Sort */}
-      <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between">
-        <div className="flex items-center gap-2 mb-2 md:mb-0">
-          <span className="text-sm text-black">Home</span>
-          <img src="/drop-right.png" alt="Shop" className="w-[8.5px] h-[6.5px] mt-[2px] text-black" />
-          <span className="text-sm text-black flex items-center gap-1">Casual</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <span className="text-sm text-black hidden sm:inline">Showing 1-10 of 100 Products</span>
-          <span className="text-sm text-black flex items-center gap-1">Sort by: <span className="font-semibold">Most Popular</span> <ChevronDownIcon className="w-4 h-4 text-black" /></span>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row gap-8">
-          {/* Mobile filter toggle */}
-          <button 
-            className="md:hidden flex items-center justify-center gap-2 bg-black text-white py-2 px-4 rounded-full mb-4"
-            onClick={() => setShowMobileFilters(!showMobileFilters)}
-          >
-            <FunnelIcon className="w-4 h-4" />
-            Filters
-          </button>
-
-          {/* Filters - Hidden on mobile unless toggled */}
-          <div className={`${showMobileFilters ? 'block' : 'hidden'} md:block w-full md:w-64 flex-shrink-0`}>
-            <div className="shadow-sm p-6 space-y-8 pb-20 rounded-[20px] px-[24px] py-[20px] gap-[24px] bg-white">
-              <div className="flex items-center justify-between mb-2 w-full h-[27px]">
-                <span className="font-[Satoshi] font-bold text-[20px] leading-[100%] tracking-[0%] align-middle text-[#000000]">
-                  Filters
-                </span>
-                <FunnelIcon className="w-5 h-5 text-black" />
-              </div>
-
-              <div className="w-full border-b border-[#0000001A] border-[1px]"></div>
-
-              <div>
-                <button
-                  className="flex items-center justify-between w-full mb-2 select-none"
-                  onClick={() => setOpenCategories((v) => !v)}
-                  type="button"
-                >
-                  <span className="font-semibold text-black">Categories</span>
-                  {openCategories ? (
-                    <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
-                  ) : (
-                    <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
-                  )}
-                </button>
-                {openCategories && (
-                  <div className="space-y-1 w-full h-auto gap-[20px]">
-                    {categories.map((cat) => (
-                      <button
-                        key={cat}
-                        onClick={() => setSelectedCategory(cat)}
-                        className={`flex items-center justify-between font-[Satoshi] font-normal text-[16px] leading-[100%] tracking-[0%] text-[#00000099] w-full px-2 py-1 rounded-md hover:bg-gray-100 ${selectedCategory === cat ? 'font-bold' : ''}`}
-                      >
-                        <span>{cat}</span>
-                        <ChevronRightIcon className="w-4 h-4 text-black" />
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <button
-                  className="flex items-center justify-between w-full mb-2 select-none"
-                  onClick={() => setOpenPrice((v) => !v)}
-                  type="button"
-                >
-                  <span className="font-semibold text-black">Price</span>
-                  {openPrice ? (
-                    <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
-                  ) : (
-                    <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
-                  )}
-                </button>
-                {openPrice && (
-                  <div className="py-2">
-                    <div className="relative h-8 flex items-center">
-                      <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-2 bg-gray-100 rounded-full" />
-                      <div
-                        className="absolute top-1/2 -translate-y-1/2 h-2 bg-black rounded-full"
-                        style={{
-                          left: `${((price[0] - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
-                          right: `${100 - ((price[1] - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
-                        }}
-                      />
-                      <input
-                        type="range"
-                        min={MIN_PRICE}
-                        max={MAX_PRICE}
-                        value={price[0]}
-                        onChange={handleMinChange}
-                        className="absolute w-full h-8 bg-transparent appearance-none pointer-events-auto z-10"
-                        style={{ pointerEvents: 'auto' }}
-                      />
-                      <input
-                        type="range"
-                        min={MIN_PRICE}
-                        max={MAX_PRICE}
-                        value={price[1]}
-                        onChange={handleMaxChange}
-                        className="absolute w-full h-8 bg-transparent appearance-none pointer-events-auto z-10"
-                        style={{ pointerEvents: 'auto' }}
-                      />
-                      <style>{`
-                        input[type='range']::-webkit-slider-thumb {
-                          -webkit-appearance: none;
-                          appearance: none;
-                          width: 24px;
-                          height: 24px;
-                          border-radius: 9999px;
-                          background: #000;
-                          cursor: pointer;
-                          border: 2px solid #fff;
-                          box-shadow: 0 1px 4px rgba(0,0,0,0.12);
-                          margin-top: -6px;
-                        }
-                        input[type='range']::-moz-range-thumb {
-                          width: 24px;
-                          height: 24px;
-                          border-radius: 9999px;
-                          background: #000;
-                          cursor: pointer;
-                          border: 2px solid #fff;
-                          box-shadow: 0 1px 4px rgba(0,0,0,0.12);
-                        }
-                        input[type='range']::-ms-thumb {
-                          width: 24px;
-                          height: 24px;
-                          border-radius: 9999px;
-                          background: #000;
-                          cursor: pointer;
-                          border: 2px solid #fff;
-                          box-shadow: 0 1px 4px rgba(0,0,0,0.12);
-                        }
-                        input[type='range'] {
-                          outline: none;
-                        }
-                        input[type='range']::-webkit-slider-runnable-track {
-                          height: 2px;
-                          background: transparent;
-                        }
-                        input[type='range']::-ms-fill-lower {
-                          background: transparent;
-                        }
-                        input[type='range']::-ms-fill-upper {
-                          background: transparent;
-                        }
-                      `}</style>
-                    </div>
-                    <div className="flex justify-between text-sm text-black mt-2">
-                      <span>${price[0]}</span>
-                      <span>${price[1]}</span>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <button
-                  className="flex items-center justify-between w-full mb-2 select-none"
-                  onClick={() => setOpenColors((v) => !v)}
-                  type="button"
-                >
-                  <span className="font-semibold text-black">Colors</span>
-                  {openColors ? (
-                    <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
-                  ) : (
-                    <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
-                  )}
-                </button>
-                {openColors && (
-                  <div className="flex flex-wrap gap-2">
-                    {colors.map((color) => (
-                      <button
-                        key={color.name}
-                        onClick={() => setSelectedColor(color.name)}
-                        className={`w-7 h-7 rounded-full border-2 flex items-center justify-center ${selectedColor === color.name ? 'border-black' : 'border-gray-200'}`}
-                        style={{ backgroundColor: color.code }}
-                      >
-                        {selectedColor === color.name && color.name !== 'white' && (
-                          <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                        )}
-                        {selectedColor === color.name && color.name === 'white' && (
-                          <span className="w-3 h-3 rounded-full bg-black block"></span>
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <button
-                  className="flex items-center justify-between w-full mb-2 select-none"
-                  onClick={() => setOpenSizes((v) => !v)}
-                  type="button"
-                >
-                  <span className="font-semibold text-black">Size</span>
-                  {openSizes ? (
-                    <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
-                  ) : (
-                    <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
-                  )}
-                </button>
-                {openSizes && (
-                  <div className="flex flex-wrap gap-2">
-                    {sizes.map((size) => (
-                      <button
-                        key={size}
-                        onClick={() => setSelectedSize(size)}
-                        className={`px-3 py-1 rounded-full text-sm border transition-all ${
-                          selectedSize === size
-                            ? 'bg-black text-white border-black'
-                            : 'bg-[#F0F0F0] text-[#00000099] border-gray-200'
-                        }`}
-                      >
-                        {size}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <button
-                  className="flex items-center justify-between w-full mb-2 select-none"
-                  onClick={() => setOpenDressStyle((v) => !v)}
-                  type="button"
-                >
-                  <span className="font-semibold text-black">Dress Style</span>
-                  {openDressStyle ? (
-                    <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
-                  ) : (
-                    <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
-                  )}
-                </button>
-                {openDressStyle && (
-                  <div className="space-y-1 w-full h-auto gap-[20px]">
-                    {dressStyles.map((style) => (
-                      <button
-                        key={style}
-                        onClick={() => setSelectedDressStyle(style)}
-                        className={`flex items-center justify-between font-[Satoshi] font-normal text-[16px] leading-[100%] tracking-[0%] text-[#00000099] w-full px-2 py-1 rounded-md hover:bg-gray-100 ${selectedDressStyle === style ? 'font-bold' : ''}`}
-                      >
-                        <span>{style}</span>
-                        <ChevronRightIcon className="w-4 h-4 text-black" />
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <button className="w-full bg-black text-white py-2 px-4 rounded-full mt-4 font-semibold">
-                Apply Filter
-              </button>
+    <div className="w-full bg-white">
+      <div className="px-8 py-7">
+        <div className="max-w-screen-xl mx-auto">
+          {/* Breadcrumb and Sort */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+            <div className="flex items-center gap-2 mb-2 md:mb-0">
+              <span className="text-sm text-black">Home</span>
+              <img src="/drop-right.png" alt="Shop" className="w-[8.5px] h-[6.5px] mt-[2px] text-black" />
+              <span className="text-sm text-black flex items-center gap-1">Casual</span>
+            </div>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-black hidden sm:inline">Showing 1-10 of 100 Products</span>
+              <span className="text-sm text-black flex items-center gap-1">Sort by: <span className="font-semibold">Most Popular</span> <ChevronDownIcon className="w-4 h-4 text-black" /></span>
             </div>
           </div>
 
-          {/* Products */}
-          <div className="flex-1">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.map((product) => (
-                <ProductCard key={product.id} {...product} />
-              ))}
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Mobile filter toggle */}
+            <button 
+              className="md:hidden flex items-center justify-center gap-2 bg-black text-white py-2 px-4 rounded-full mb-4"
+              onClick={() => setShowMobileFilters(!showMobileFilters)}
+            >
+              <FunnelIcon className="w-4 h-4" />
+              Filters
+            </button>
+
+            {/* Filters - Hidden on mobile unless toggled */}
+            <div className={`${showMobileFilters ? 'block' : 'hidden'} md:block w-full md:w-64 flex-shrink-0`}>
+              <div className="shadow-sm p-6 space-y-8 pb-20 rounded-[20px] px-[24px] py-[20px] gap-[24px] bg-white">
+                <div className="flex items-center justify-between mb-2 w-full h-[27px]">
+                  <span className="font-[Satoshi] font-bold text-[20px] leading-[100%] tracking-[0%] align-middle text-[#000000]">
+                    Filters
+                  </span>
+                  <FunnelIcon className="w-5 h-5 text-black" />
+                </div>
+
+                <div className="w-full border-b border-[#0000001A] border-[1px]"></div>
+
+                <div>
+                  <button
+                    className="flex items-center justify-between w-full mb-2 select-none"
+                    onClick={() => setOpenCategories((v) => !v)}
+                    type="button"
+                  >
+                    <span className="font-semibold text-black">Categories</span>
+                    {openCategories ? (
+                      <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
+                    ) : (
+                      <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
+                    )}
+                  </button>
+                  {openCategories && (
+                    <div className="space-y-1 w-full h-auto gap-[20px]">
+                      {categories.map((cat) => (
+                        <button
+                          key={cat}
+                          onClick={() => setSelectedCategory(cat)}
+                          className={`flex items-center justify-between font-[Satoshi] font-normal text-[16px] leading-[100%] tracking-[0%] text-[#00000099] w-full px-2 py-1 rounded-md hover:bg-gray-100 ${selectedCategory === cat ? 'font-bold' : ''}`}
+                        >
+                          <span>{cat}</span>
+                          <ChevronRightIcon className="w-4 h-4 text-black" />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <button
+                    className="flex items-center justify-between w-full mb-2 select-none"
+                    onClick={() => setOpenPrice((v) => !v)}
+                    type="button"
+                  >
+                    <span className="font-semibold text-black">Price</span>
+                    {openPrice ? (
+                      <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
+                    ) : (
+                      <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
+                    )}
+                  </button>
+                  {openPrice && (
+                    <div className="py-2">
+                      <div className="relative h-8 flex items-center">
+                        <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-2 bg-gray-100 rounded-full" />
+                        <div
+                          className="absolute top-1/2 -translate-y-1/2 h-2 bg-black rounded-full"
+                          style={{
+                            left: `${((price[0] - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
+                            right: `${100 - ((price[1] - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
+                          }}
+                        />
+                        <input
+                          type="range"
+                          min={MIN_PRICE}
+                          max={MAX_PRICE}
+                          value={price[0]}
+                          onChange={handleMinChange}
+                          className="absolute w-full h-8 bg-transparent appearance-none pointer-events-auto z-10"
+                          style={{ pointerEvents: 'auto' }}
+                        />
+                        <input
+                          type="range"
+                          min={MIN_PRICE}
+                          max={MAX_PRICE}
+                          value={price[1]}
+                          onChange={handleMaxChange}
+                          className="absolute w-full h-8 bg-transparent appearance-none pointer-events-auto z-10"
+                          style={{ pointerEvents: 'auto' }}
+                        />
+                        <style>{`
+                          input[type='range']::-webkit-slider-thumb {
+                            -webkit-appearance: none;
+                            appearance: none;
+                            width: 24px;
+                            height: 24px;
+                            border-radius: 9999px;
+                            background: #000;
+                            cursor: pointer;
+                            border: 2px solid #fff;
+                            box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+                            margin-top: -6px;
+                          }
+                          input[type='range']::-moz-range-thumb {
+                            width: 24px;
+                            height: 24px;
+                            border-radius: 9999px;
+                            background: #000;
+                            cursor: pointer;
+                            border: 2px solid #fff;
+                            box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+                          }
+                          input[type='range']::-ms-thumb {
+                            width: 24px;
+                            height: 24px;
+                            border-radius: 9999px;
+                            background: #000;
+                            cursor: pointer;
+                            border: 2px solid #fff;
+                            box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+                          }
+                          input[type='range'] {
+                            outline: none;
+                          }
+                          input[type='range']::-webkit-slider-runnable-track {
+                            height: 2px;
+                            background: transparent;
+                          }
+                          input[type='range']::-ms-fill-lower {
+                            background: transparent;
+                          }
+                          input[type='range']::-ms-fill-upper {
+                            background: transparent;
+                          }
+                        `}</style>
+                      </div>
+                      <div className="flex justify-between text-sm text-black mt-2">
+                        <span>${price[0]}</span>
+                        <span>${price[1]}</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <button
+                    className="flex items-center justify-between w-full mb-2 select-none"
+                    onClick={() => setOpenColors((v) => !v)}
+                    type="button"
+                  >
+                    <span className="font-semibold text-black">Colors</span>
+                    {openColors ? (
+                      <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
+                    ) : (
+                      <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
+                    )}
+                  </button>
+                  {openColors && (
+                    <div className="flex flex-wrap gap-2">
+                      {colors.map((color) => (
+                        <button
+                          key={color.name}
+                          onClick={() => setSelectedColor(color.name)}
+                          className={`w-7 h-7 rounded-full border-2 flex items-center justify-center ${selectedColor === color.name ? 'border-black' : 'border-gray-200'}`}
+                          style={{ backgroundColor: color.code }}
+                        >
+                          {selectedColor === color.name && color.name !== 'white' && (
+                            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                          )}
+                          {selectedColor === color.name && color.name === 'white' && (
+                            <span className="w-3 h-3 rounded-full bg-black block"></span>
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <button
+                    className="flex items-center justify-between w-full mb-2 select-none"
+                    onClick={() => setOpenSizes((v) => !v)}
+                    type="button"
+                  >
+                    <span className="font-semibold text-black">Size</span>
+                    {openSizes ? (
+                      <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
+                    ) : (
+                      <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
+                    )}
+                  </button>
+                  {openSizes && (
+                    <div className="flex flex-wrap gap-2">
+                      {sizes.map((size) => (
+                        <button
+                          key={size}
+                          onClick={() => setSelectedSize(size)}
+                          className={`px-3 py-1 rounded-full text-sm border transition-all ${
+                            selectedSize === size
+                              ? 'bg-black text-white border-black'
+                              : 'bg-[#F0F0F0] text-[#00000099] border-gray-200'
+                          }`}
+                        >
+                          {size}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div>
+                  <button
+                    className="flex items-center justify-between w-full mb-2 select-none"
+                    onClick={() => setOpenDressStyle((v) => !v)}
+                    type="button"
+                  >
+                    <span className="font-semibold text-black">Dress Style</span>
+                    {openDressStyle ? (
+                      <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
+                    ) : (
+                      <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
+                    )}
+                  </button>
+                  {openDressStyle && (
+                    <div className="space-y-1 w-full h-auto gap-[20px]">
+                      {dressStyles.map((style) => (
+                        <button
+                          key={style}
+                          onClick={() => setSelectedDressStyle(style)}
+                          className={`flex items-center justify-between font-[Satoshi] font-normal text-[16px] leading-[100%] tracking-[0%] text-[#00000099] w-full px-2 py-1 rounded-md hover:bg-gray-100 ${selectedDressStyle === style ? 'font-bold' : ''}`}
+                        >
+                          <span>{style}</span>
+                          <ChevronRightIcon className="w-4 h-4 text-black" />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <button className="w-full bg-black text-white py-2 px-4 rounded-full mt-4 font-semibold">
+                  Apply Filter
+                </button>
+              </div>
             </div>
 
-            {/* Pagination */}
-            <div className="mt-10 flex justify-center">
-              <nav className="flex items-center gap-2 flex-wrap justify-center">
-                <button
-                  className="px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black disabled:opacity-50 text-sm sm:text-base"
-                  disabled={page === 1}
-                  onClick={() => setPage(page - 1)}
-                >
-                  Previous
-                </button>
-                {[1, 2, 3, 4, 5].map((p) => (
-                  <button
-                    key={p}
-                    className={`px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black text-sm sm:text-base ${
-                      page === p ? 'bg-black text-white' : ''
-                    }`}
-                    onClick={() => setPage(p)}
-                  >
-                    {p}
-                  </button>
+            {/* Products */}
+            <div className="flex-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                {products.map((product) => (
+                  <ProductCard key={product.id} {...product} />
                 ))}
-                <span className="px-2 text-black">...</span>
-                <button
-                  className="px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black text-sm sm:text-base"
-                  onClick={() => setPage(10)}
-                >
-                  10
-                </button>
-                <button
-                  className="px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black disabled:opacity-50 text-sm sm:text-base"
-                  disabled={page === 10}
-                  onClick={() => setPage(page + 1)}
-                >
-                  Next
-                </button>
-              </nav>
+              </div>
+
+              {/* Pagination */}
+              <div className="mt-10 flex justify-center">
+                <nav className="flex items-center gap-2 flex-wrap justify-center">
+                  <button
+                    className="px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black disabled:opacity-50 text-sm sm:text-base"
+                    disabled={page === 1}
+                    onClick={() => setPage(page - 1)}
+                  >
+                    Previous
+                  </button>
+                  {[1, 2, 3, 4, 5].map((p) => (
+                    <button
+                      key={p}
+                      className={`px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black text-sm sm:text-base ${
+                        page === p ? 'bg-black text-white' : ''
+                      }`}
+                      onClick={() => setPage(p)}
+                    >
+                      {p}
+                    </button>
+                  ))}
+                  <span className="px-2 text-black">...</span>
+                  <button
+                    className="px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black text-sm sm:text-base"
+                    onClick={() => setPage(10)}
+                  >
+                    10
+                  </button>
+                  <button
+                    className="px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black disabled:opacity-50 text-sm sm:text-base"
+                    disabled={page === 10}
+                    onClick={() => setPage(page + 1)}
+                  >
+                    Next
+                  </button>
+                </nav>
+              </div>
             </div>
           </div>
         </div>

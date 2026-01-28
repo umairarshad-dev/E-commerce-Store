@@ -1,8 +1,9 @@
 export default function Footer() {
   return (
     <div className="relative">
-      <div className="absolute -top-1/5 left-0 right-0 flex justify-center">
-        <div className="bg-black text-white py-6 sm:py-8 px-4 w-full max-w-[1260px] h-auto sm:h-[180px] rounded-[20px] mx-4">
+      {/* Newsletter Section */}
+      <div className="bg-black text-white py-6 sm:py-8 px-4">
+        <div className="max-w-[1260px] mx-auto">
           <div className="flex flex-col sm:flex-row justify-between items-center h-full px-4 sm:px-8 gap-6 sm:gap-0">
             <div className="text-center sm:text-left">
               <h2 className="font-bold text-xl sm:text-2xl md:text-[40px] leading-tight tracking-normal text-white">
@@ -34,7 +35,8 @@ export default function Footer() {
         </div>
       </div>
 
-      <footer className="bg-[#F0F0F0] text-[#000000] border-t border-[#EAEAEA] pt-[100px]">
+      {/* Main Footer */}
+      <footer className="bg-[#F0F0F0] text-[#000000] border-t border-[#EAEAEA] pt-0">
         <div className="px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex justify-center">
             <div className="w-full max-w-7xl flex flex-col">

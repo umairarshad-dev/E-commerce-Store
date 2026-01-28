@@ -117,8 +117,10 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
   const allThumbnails = product.images || [product.image];
 
   return (
-    <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 bg-white">
-      <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 xl:gap-12">
+    <div className="w-full bg-white">
+      <div className="px-8 py-7">
+        <div className="max-w-screen-xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 xl:gap-12">
         {/* Product Images */}
         <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-1/2 xl:w-2/5">
           <div className="flex sm:flex-col gap-3 order-2 sm:order-1">
@@ -434,6 +436,8 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
       {/* Related Products */}
       <div className="mt-12 lg:mt-20">
         <RelatedProducts products={relatedProducts} />
+      </div>
+        </div>
       </div>
     </div>
   );
