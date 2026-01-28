@@ -19,12 +19,12 @@ export default function HeroSection() {
         
         {/* Decorative stars */}
         <img
-          src="/black-star.png"
+          src="/images/ui/black-star.png"
           alt="star"
           className="absolute top-6 right-6 w-6 h-6 sm:w-8 sm:h-8 lg:top-10 lg:right-24 lg:w-[104px] lg:h-[104px]"
         />
         <img
-          src="/black-star.png"
+          src="/images/ui/black-star.png"
           alt="black-star"
           className="absolute hidden lg:block top-1/2 left-[45%] w-14 h-14"
         />
@@ -70,27 +70,27 @@ export default function HeroSection() {
         <div className="absolute bottom-0 left-0 right-0 bg-black w-full h-[100px] sm:h-[122px] flex justify-center items-center px-4">
           <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 lg:gap-12 flex-wrap">
             <img
-              src="/versace-collection.png"
+              src="/images/brands/versace-collection.png"
               alt="Versace"
               className="h-[16px] sm:h-[20px] lg:h-[24px] w-auto object-contain filter brightness-0 invert"
             />
             <img
-              src="/zara-collection.png"
+              src="/images/brands/zara-collection.png"
               alt="Zara"
               className="h-[16px] sm:h-[20px] lg:h-[26px] w-auto object-contain filter brightness-0 invert"
             />
             <img
-              src="/gucci-collection.png"
+              src="/images/brands/gucci-collection.png"
               alt="Gucci"
               className="h-[16px] sm:h-[20px] lg:h-[25px] w-auto object-contain filter brightness-0 invert"
             />
             <img
-              src="/prada-collection.png"
+              src="/images/brands/prada-collection.png"
               alt="Prada"
               className="h-[14px] sm:h-[18px] lg:h-[22px] w-auto object-contain filter brightness-0 invert"
             />
             <img
-              src="/calvin-collection.png"
+              src="/images/brands/calvin-collection.png"
               alt="Calvin Klein"
               className="h-[16px] sm:h-[20px] lg:h-[24px] w-auto object-contain filter brightness-0 invert"
             />

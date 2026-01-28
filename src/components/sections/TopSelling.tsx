@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 interface Product {
   id: number;
   name: string;
@@ -21,9 +23,10 @@ const ProductCard = ({
   return (
     <div className="flex flex-col items-center">
       <div className="relative w-full aspect-[3/4]">
-        <img
+        <Image
           src={image}
           alt={name}
+          fill
           className="w-full h-full rounded-3xl bg-[#F0EEED] object-cover"
         />
         {discount && (
@@ -33,24 +36,24 @@ const ProductCard = ({
         )}
       </div>
 
-      <div className="pt-4 w-full">
-        <h3 className="text-black font-bold text-lg sm:text-xl leading-none tracking-normal align-middle">{name}</h3>
+      <div className="pt-4 ">
+        <h3 className="text-black font-bold text-xl leading-none tracking-normal align-middle">{name}</h3>
 
-        <div className="flex items-center mt-2">
+        <div className="flex items-center">
           <div className="flex text-yellow-400 mr-2">
             {[...Array(5)].map((_, i) => (
-              <span key={i} className="text-sm sm:text-base">
+              <span key={i}>
                 {i < Math.floor(rating) ? '★' : '☆'}
               </span>
             ))}
           </div>
-          <span className="text-gray-500 text-xs sm:text-sm">({reviews})</span>
+          <span className="text-gray-500 text-sm">({reviews})</span>
         </div>
 
-        <div className="mt-2">
-          <span className="pr-2 text-black font-sans font-bold text-xl sm:text-2xl leading-none tracking-normal align-middle">${currentPrice}</span>
+        <div className="flex items-center justify-center">
+          <span className="text-black font-bold text-xl md:text-2xl leading-none tracking-normal">${currentPrice}</span>
           {originalPrice && (
-            <span className="text-black/40 font-bold text-xl sm:text-2xl leading-none tracking-normal align-middle line-through">
+            <span className="text-black/40 font-bold text-xl md:text-2xl leading-none tracking-normal line-through ml-2">
               ${originalPrice}
             </span>
           )}
@@ -69,7 +72,7 @@ export default function TopSelling() {
       reviews: 4,
       currentPrice: 212,
       originalPrice: 232,
-      image: '/shirt04.png',
+      image: '/images/products/shirt04.png',
     },
     {
       id: 2,
@@ -77,7 +80,7 @@ export default function TopSelling() {
       rating: 3.5,
       reviews: 3,
       currentPrice: 145,
-      image: '/shirt05.png',
+      image: '/images/products/shirt05.png',
     },
     {
       id: 3,
@@ -85,7 +88,7 @@ export default function TopSelling() {
       rating: 4.5,
       reviews: 4,
       currentPrice: 80,
-      image: '/pent02.png',
+      image: '/images/products/pent02.png',
     },
     {
       id: 4,
@@ -93,7 +96,7 @@ export default function TopSelling() {
       rating: 4.5,
       reviews: 4.5,
       currentPrice: 210,
-      image: '/shirt02.png',
+      image: '/images/products/shirt02.png',
     },
   ];
 

@@ -73,7 +73,7 @@ export default function NewArrivals() {
       currentPrice: 49.99,
       originalPrice: 69.99,
       discount: 29,
-      image: 'https://images.unsplash.com/photo-1621077526566-bdc5e784bc1c?w=800&h=1000&fit=crop&crop=top',
+      image: '/images/products/shirt01.png',
     },
     {
       id: 2,
@@ -83,7 +83,7 @@ export default function NewArrivals() {
       currentPrice: 29.99,
       originalPrice: 39.99,
       discount: 25,
-      image: 'https://images.unsplash.com/photo-1523381294911-8d3cead13475?w=800&h=1000&fit=crop&crop=top',
+      image: '/images/products/T-shirt03.png',
     },
     {
       id: 3,
@@ -93,7 +93,7 @@ export default function NewArrivals() {
       currentPrice: 34.99,
       originalPrice: 49.99,
       discount: 30,
-      image: 'https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=800&h=1000&fit=crop&crop=top',
+      image: '/images/products/pent01.png',
     },
     {
       id: 4,
@@ -103,7 +103,7 @@ export default function NewArrivals() {
       currentPrice: 59.99,
       originalPrice: 84.99,
       discount: 29,
-      image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&h=1000&fit=crop&crop=top',
+      image: '/images/products/pent02.png',
     },
   ];
 
@@ -111,7 +111,7 @@ export default function NewArrivals() {
     <div className="w-full bg-white">
       <div className="px-8 py-7">
         <div className="max-w-screen-xl mx-auto">
-          <div className="font-['Integral CF'] font-bold text-4xl md:text-5xl text-black mb-8">
+          <div className="font-['Integral CF'] font-bold text-4xl md:text-5xl text-black mb-8 text-center">
             New Arrival
           </div>
           

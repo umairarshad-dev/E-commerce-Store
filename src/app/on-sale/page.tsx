@@ -36,9 +36,10 @@ const OnSaleProductCard = ({
         )}
       </div>
 
-      <div className="pt-4 w-full">
-        <h3 className="text-black font-bold text-lg md:text-xl leading-none tracking-normal line-clamp-2">{name}</h3>
-        <div className="flex items-center mt-1">
+      <div className="pt-4 ">
+        <h3 className="text-black font-bold text-xl leading-none tracking-normal align-middle">{name}</h3>
+
+        <div className="flex items-center">
           <div className="flex text-yellow-400 mr-2">
             {[...Array(5)].map((_, i) => (
               <span key={i}>
@@ -48,10 +49,11 @@ const OnSaleProductCard = ({
           </div>
           <span className="text-gray-500 text-sm">({reviews})</span>
         </div>
-        <div className="mt-2">
-          <span className="pr-2 text-black font-bold text-xl md:text-2xl leading-none">${currentPrice}</span>
+
+        <div className="flex items-center justify-center">
+          <span className="text-black font-bold text-xl md:text-2xl leading-none tracking-normal">${currentPrice}</span>
           {originalPrice && (
-            <span className="text-black/40 font-bold text-xl md:text-2xl leading-none line-through">
+            <span className="text-black/40 font-bold text-xl md:text-2xl leading-none tracking-normal line-through ml-2">
               ${originalPrice}
             </span>
           )}
@@ -71,7 +73,7 @@ export default function OnSalePage() {
       currentPrice: 29.99,
       originalPrice: 49.99,
       discount: 40,
-      image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&h=1000&fit=crop&crop=top',
+      image: '/images/products/T-shirt03.png',
     },
     {
       id: 2,
@@ -81,7 +83,7 @@ export default function OnSalePage() {
       currentPrice: 59.99,
       originalPrice: 89.99,
       discount: 33,
-      image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=800&h=1000&fit=crop&crop=top',
+      image: '/images/products/pent01.png',
     },
     {
       id: 3,
@@ -91,7 +93,7 @@ export default function OnSalePage() {
       currentPrice: 44.99,
       originalPrice: 69.99,
       discount: 36,
-      image: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&h=1000&fit=crop&crop=top',
+      image: '/images/products/shirt06.png',
     },
     {
       id: 4,
@@ -101,7 +103,7 @@ export default function OnSalePage() {
       currentPrice: 79.99,
       originalPrice: 119.99,
       discount: 33,
-      image: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=1000&fit=crop&crop=top',
+      image: '/images/products/shirt07.png',
     },
     {
       id: 5,
@@ -111,7 +113,7 @@ export default function OnSalePage() {
       currentPrice: 39.99,
       originalPrice: 64.99,
       discount: 38,
-      image: 'https://images.unsplash.com/photo-1556821840-3a5f6d5c4b1c?w=800&h=1000&fit=crop&crop=top',
+      image: '/images/products/T-shirt02.png',
     },
     {
       id: 6,
@@ -121,7 +123,7 @@ export default function OnSalePage() {
       currentPrice: 99.99,
       originalPrice: 159.99,
       discount: 38,
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1000&fit=crop&crop=top',
+      image: '/images/products/shirt08.png',
     },
     {
       id: 7,
@@ -131,7 +133,7 @@ export default function OnSalePage() {
       currentPrice: 34.99,
       originalPrice: 54.99,
       discount: 36,
-      image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=800&h=1000&fit=crop&crop=top',
+      image: '/images/products/pent03.png',
     },
     {
       id: 8,
@@ -141,7 +143,7 @@ export default function OnSalePage() {
       currentPrice: 54.99,
       originalPrice: 84.99,
       discount: 35,
-      image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=800&h=1000&fit=crop&crop=top',
+      image: '/images/products/pent02.png',
     },
   ];
 

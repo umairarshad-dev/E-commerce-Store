@@ -6,64 +6,64 @@ export default function BrandsPage() {
       name: "Nike", 
       description: "Just Do It", 
       productCount: 245,
-      logo: "/versace-collection.png",
-      featuredImage: "/shirt01.png",
+      logo: "/images/brands/versace-collection.png",
+      featuredImage: "/images/products/shirt01.png",
       bgClass: "bg-gray-900"
     },
     { 
       name: "Adidas", 
       description: "Impossible is Nothing", 
       productCount: 189,
-      logo: "/gucci-collection.png",
-      featuredImage: "/pent02.png",
+      logo: "/images/brands/gucci-collection.png",
+      featuredImage: "/images/products/pent02.png",
       bgClass: "bg-gray-800"
     },
     { 
       name: "Puma", 
       description: "Forever Faster", 
       productCount: 156,
-      logo: "/prada-collection.png",
-      featuredImage: "/shirt02.png",
+      logo: "/images/brands/prada-collection.png",
+      featuredImage: "/images/products/shirt02.png",
       bgClass: "bg-gray-700"
     },
     { 
       name: "Reebok", 
       description: "Be More Human", 
       productCount: 134,
-      logo: "/calvin-collection.png",
-      featuredImage: "/pent01.png",
+      logo: "/images/brands/calvin-collection.png",
+      featuredImage: "/images/products/pent01.png",
       bgClass: "bg-gray-600"
     },
     { 
       name: "Under Armour", 
       description: "Protect This House", 
       productCount: 98,
-      logo: "/zara-collection.png",
-      featuredImage: "/T-shirt02.png",
+      logo: "/images/brands/zara-collection.png",
+      featuredImage: "/images/products/T-shirt02.png",
       bgClass: "bg-gray-500"
     },
     { 
       name: "New Balance", 
       description: "Endeavor to Persevere", 
       productCount: 87,
-      logo: "/versace-collection.png",
-      featuredImage: "/T-shirt03.png",
+      logo: "/images/brands/versace-collection.png",
+      featuredImage: "/images/products/T-shirt03.png",
       bgClass: "bg-gray-400"
     },
     { 
       name: "Converse", 
       description: "Shoes Are Boring", 
       productCount: 76,
-      logo: "/gucci-collection.png",
-      featuredImage: "/shirt04.png",
+      logo: "/images/brands/gucci-collection.png",
+      featuredImage: "/images/products/shirt04.png",
       bgClass: "bg-gray-300"
     },
     { 
       name: "Vans", 
       description: "Off the Wall", 
       productCount: 65,
-      logo: "/prada-collection.png",
-      featuredImage: "/shirt05.png",
+      logo: "/images/brands/prada-collection.png",
+      featuredImage: "/images/products/shirt05.png",
       bgClass: "bg-gray-200"
     }
   ];
@@ -140,10 +140,10 @@ export default function BrandsPage() {
             <h2 className="font-['Integral_CF'] font-bold text-2xl md:text-3xl text-black mb-6">Shop by Category</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { name: 'Athletic', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&crop=top', color: 'from-blue-500 to-blue-600' },
-                { name: 'Casual', image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=300&fit=crop&crop=top', color: 'from-green-500 to-green-600' },
-                { name: 'Formal', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=top', color: 'from-gray-700 to-gray-800' },
-                { name: 'Streetwear', image: 'https://images.unsplash.com/photo-1556821840-3a5f6d5c4b1c?w=400&h=300&fit=crop&crop=top', color: 'from-purple-500 to-purple-600' }
+                { name: 'Athletic', image: '/images/categories/gym-dress.png', color: 'from-blue-500 to-blue-600' },
+                { name: 'Casual', image: '/images/categories/casual-dress.png', color: 'from-green-500 to-green-600' },
+                { name: 'Formal', image: '/images/categories/formal-dress.png', color: 'from-gray-700 to-gray-800' },
+                { name: 'Party', image: '/images/categories/party-dress.png', color: 'from-purple-500 to-purple-600' }
               ].map((category) => (
                 <div key={category.name} className="relative group cursor-pointer rounded-xl overflow-hidden">
                   <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200">
