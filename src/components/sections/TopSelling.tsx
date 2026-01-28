@@ -51,10 +51,10 @@ const ProductCard = ({
         </div>
 
         <div className="flex items-center justify-center">
-          <span className="text-black font-bold text-xl md:text-2xl leading-none tracking-normal">${currentPrice}</span>
+          <span className="text-black font-bold text-xl md:text-2xl leading-none tracking-normal">PKR {currentPrice}</span>
           {originalPrice && (
             <span className="text-black/40 font-bold text-xl md:text-2xl leading-none tracking-normal line-through ml-2">
-              ${originalPrice}
+              PKR {originalPrice}
             </span>
           )}
         </div>
@@ -70,8 +70,8 @@ export default function TopSelling() {
       name: 'VERTICAL STRIPED SHIRT',
       rating: 4.5,
       reviews: 4,
-      currentPrice: 212,
-      originalPrice: 232,
+      currentPrice: 7999,
+      originalPrice: 8999,
       image: '/images/products/shirt04.png',
     },
     {
@@ -79,7 +79,7 @@ export default function TopSelling() {
       name: 'COURAGE GRAPHIC T-SHIRT',
       rating: 3.5,
       reviews: 3,
-      currentPrice: 145,
+      currentPrice: 5999,
       image: '/images/products/shirt05.png',
     },
     {
@@ -87,7 +87,7 @@ export default function TopSelling() {
       name: 'FIT BERMUDA SHORTS',
       rating: 4.5,
       reviews: 4,
-      currentPrice: 80,
+      currentPrice: 3999,
       image: '/images/products/pent02.png',
     },
     {
@@ -95,7 +95,7 @@ export default function TopSelling() {
       name: 'FADED SKINNY JEANS',
       rating: 4.5,
       reviews: 4.5,
-      currentPrice: 210,
+      currentPrice: 6999,
       image: '/images/products/shirt02.png',
     },
   ];
@@ -104,7 +104,7 @@ export default function TopSelling() {
     <div className="w-full bg-white">
       <div className="px-8 py-7">
         <div className="max-w-screen-xl mx-auto">
-          <div className="font-['Integral CF'] font-bold text-4xl md:text-5xl text-black mb-8">
+          <div className="font-['Integral CF'] font-bold text-4xl md:text-5xl text-black mb-8 text-center">
             Top Selling
           </div>
           

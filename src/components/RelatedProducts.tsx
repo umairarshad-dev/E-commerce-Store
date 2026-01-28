@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { type Product } from '@/data/products';
+import { type Product } from '@/components/lib/data/products';
 
 interface RelatedProductsProps {
   products: Product[];
@@ -42,7 +42,7 @@ export default function RelatedProducts({ products }: RelatedProductsProps) {
               />
             </div>
             <h3 className="text-sm font-medium text-gray-900">{product.name}</h3>
-            <p className="text-sm text-gray-600">${product.currentPrice}</p>
+            <p className="text-sm text-gray-600">PKR {product.currentPrice}</p>
           </Link>
         ))}
       </div>

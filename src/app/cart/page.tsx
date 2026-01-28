@@ -1,6 +1,6 @@
 'use client';
 
-import { useCart } from '@/context/CartContext';
+import { useCart } from '@/components/lib/context/CartContext';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -104,7 +104,7 @@ export default function CartPage() {
                             +
                           </button>
                         </div>
-                        <p className="font-medium text-black">${item.price * item.quantity}</p>
+                        <p className="font-medium text-black">PKR {item.price * item.quantity}</p>
                       </div>
 
 

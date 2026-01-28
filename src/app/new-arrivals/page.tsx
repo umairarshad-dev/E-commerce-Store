@@ -1,4 +1,4 @@
-import NewArrivals from '../components/NewArrivals';
+import NewArrivals from '@/components/sections/NewArrivals';
 
 export default function NewArrivalsPage() {
   return (

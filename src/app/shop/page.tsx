@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { StarIcon } from '@heroicons/react/24/solid';
 import { ChevronRightIcon, ChevronDownIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { products, type Product } from '@/data/products';
+import { products, type Product } from '@/components/lib/data/products';
 
 const categories = ['T-shirts', 'Shorts', 'Shirts', 'Hoodie', 'Jeans'];
 const colors = [
@@ -58,10 +58,10 @@ const ProductCard = ({
           <span className="text-gray-500 text-sm">({reviews})</span>
         </div>
         <div className="mt-2">
-          <span className="pr-2 text-black font-sans font-bold text-lg sm:text-xl md:text-2xl leading-none tracking-normal align-middle">${currentPrice}</span>
+          <span className="pr-2 text-black font-sans font-bold text-lg sm:text-xl md:text-2xl leading-none tracking-normal align-middle">PKR {currentPrice}</span>
           {originalPrice && (
             <span className="text-black/40 font-bold text-lg sm:text-xl md:text-2xl leading-none tracking-normal align-middle line-through">
-              ${originalPrice}
+              PKR {originalPrice}
             </span>
           )}
         </div>
@@ -70,8 +70,8 @@ const ProductCard = ({
   );
 };
 
-const MIN_PRICE = 0;
-const MAX_PRICE = 200;
+const MIN_PRICE = 1000;
+const MAX_PRICE = 10000;
 
 const ShopPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -270,8 +270,8 @@ const ShopPage = () => {
                         `}</style>
                       </div>
                       <div className="flex justify-between text-sm text-black mt-2">
-                        <span>${price[0]}</span>
-                        <span>${price[1]}</span>
+                        <span>PKR {price[0]}</span>
+                        <span>PKR {price[1]}</span>
                       </div>
                     </div>
                   )}

@@ -1,7 +1,7 @@
-import NewArrivals from './components/NewArrivals';
-import TopSelling from './components/TopSelling';
-import DressStyle from './components/DressStyle';
-import Reviews from './components/Reviews';
+import NewArrivals from '@/components/sections/NewArrivals';
+import TopSelling from '@/components/sections/TopSelling';
+import DressStyle from '@/components/DressStyle';
+import Reviews from '@/components/Reviews';
 
 export default function HeroSection() {
   return (

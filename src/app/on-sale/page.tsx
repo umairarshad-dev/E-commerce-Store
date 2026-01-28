@@ -51,10 +51,10 @@ const OnSaleProductCard = ({
         </div>
 
         <div className="flex items-center justify-center">
-          <span className="text-black font-bold text-xl md:text-2xl leading-none tracking-normal">${currentPrice}</span>
+          <span className="text-black font-bold text-xl md:text-2xl leading-none tracking-normal">PKR {currentPrice}</span>
           {originalPrice && (
             <span className="text-black/40 font-bold text-xl md:text-2xl leading-none tracking-normal line-through ml-2">
-              ${originalPrice}
+              PKR {originalPrice}
             </span>
           )}
         </div>
@@ -70,8 +70,8 @@ export default function OnSalePage() {
       name: 'Premium Cotton T-Shirt',
       rating: 4.5,
       reviews: 128,
-      currentPrice: 29.99,
-      originalPrice: 49.99,
+      currentPrice: 2999,
+      originalPrice: 4999,
       discount: 40,
       image: '/images/products/T-shirt03.png',
     },
@@ -80,8 +80,8 @@ export default function OnSalePage() {
       name: 'Slim Fit Chinos',
       rating: 4.8,
       reviews: 89,
-      currentPrice: 59.99,
-      originalPrice: 89.99,
+      currentPrice: 5999,
+      originalPrice: 8999,
       discount: 33,
       image: '/images/products/pent01.png',
     },
@@ -90,8 +90,8 @@ export default function OnSalePage() {
       name: 'Classic Oxford Shirt',
       rating: 4.6,
       reviews: 156,
-      currentPrice: 44.99,
-      originalPrice: 69.99,
+      currentPrice: 4499,
+      originalPrice: 6999,
       discount: 36,
       image: '/images/products/shirt06.png',
     },
@@ -100,8 +100,8 @@ export default function OnSalePage() {
       name: 'Denim Jacket',
       rating: 4.7,
       reviews: 203,
-      currentPrice: 79.99,
-      originalPrice: 119.99,
+      currentPrice: 7999,
+      originalPrice: 11999,
       discount: 33,
       image: '/images/products/shirt07.png',
     },
@@ -110,8 +110,8 @@ export default function OnSalePage() {
       name: 'Casual Hoodie',
       rating: 4.9,
       reviews: 267,
-      currentPrice: 39.99,
-      originalPrice: 64.99,
+      currentPrice: 3999,
+      originalPrice: 6499,
       discount: 38,
       image: '/images/products/T-shirt02.png',
     },
@@ -120,8 +120,8 @@ export default function OnSalePage() {
       name: 'Tailored Blazer',
       rating: 4.8,
       reviews: 94,
-      currentPrice: 99.99,
-      originalPrice: 159.99,
+      currentPrice: 9999,
+      originalPrice: 15999,
       discount: 38,
       image: '/images/products/shirt08.png',
     },
@@ -130,8 +130,8 @@ export default function OnSalePage() {
       name: 'Polo Shirt',
       rating: 4.4,
       reviews: 178,
-      currentPrice: 34.99,
-      originalPrice: 54.99,
+      currentPrice: 3499,
+      originalPrice: 5499,
       discount: 36,
       image: '/images/products/pent03.png',
     },
@@ -140,8 +140,8 @@ export default function OnSalePage() {
       name: 'Slim Fit Jeans',
       rating: 4.6,
       reviews: 234,
-      currentPrice: 54.99,
-      originalPrice: 84.99,
+      currentPrice: 5499,
+      originalPrice: 8499,
       discount: 35,
       image: '/images/products/pent02.png',
     },

@@ -6,8 +6,8 @@ import { StarIcon, HeartIcon, ShareIcon } from '@heroicons/react/24/outline';
 import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
 import RelatedProducts from '@/components/RelatedProducts';
 import ProductReviews from '@/components/ProductReviews';
-import { useCart } from '@/context/CartContext';
-import { getProductById, getRelatedProducts, type Product } from '@/data/products';
+import { useCart } from '@/components/lib/context/CartContext';
+import { getProductById, getRelatedProducts, type Product } from '@/components/lib/data/products';
 import toast from 'react-hot-toast';
 import { notFound } from 'next/navigation';
 
@@ -173,9 +173,9 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
             </h1>
           
             <div className="flex items-center gap-3 mt-2">
-              <span className="text-xl sm:text-2xl font-bold text-black">${product.salePrice || product.currentPrice}</span>
+              <span className="text-xl sm:text-2xl font-bold text-black">PKR {product.salePrice || product.currentPrice}</span>
               {(product.price || product.originalPrice) && (
-                <span className="text-lg sm:text-xl text-gray-400 line-through">${product.price || product.originalPrice}</span>
+                <span className="text-lg sm:text-xl text-gray-400 line-through">PKR {product.price || product.originalPrice}</span>
               )}
               {product.discount && (
                 <span className="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-full">{product.discount}% OFF</span>

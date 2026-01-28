@@ -51,10 +51,10 @@ const ProductCard = ({
         </div>
 
         <div className="flex items-center justify-center">
-          <span className="text-black font-bold text-xl md:text-2xl leading-none tracking-normal">${currentPrice}</span>
+          <span className="text-black font-bold text-xl md:text-2xl leading-none tracking-normal">PKR {currentPrice}</span>
           {originalPrice && (
             <span className="text-black/40 font-bold text-xl md:text-2xl leading-none tracking-normal line-through ml-2">
-              ${originalPrice}
+              PKR {originalPrice}
             </span>
           )}
         </div>
@@ -70,8 +70,8 @@ export default function NewArrivals() {
       name: 'Modern Striped Shirt',
       rating: 4.5,
       reviews: 124,
-      currentPrice: 49.99,
-      originalPrice: 69.99,
+      currentPrice: 4999,
+      originalPrice: 6999,
       discount: 29,
       image: '/images/products/shirt01.png',
     },
@@ -80,8 +80,8 @@ export default function NewArrivals() {
       name: 'Graphic Print T-Shirt',
       rating: 4.2,
       reviews: 89,
-      currentPrice: 29.99,
-      originalPrice: 39.99,
+      currentPrice: 2999,
+      originalPrice: 3999,
       discount: 25,
       image: '/images/products/T-shirt03.png',
     },
@@ -90,8 +90,8 @@ export default function NewArrivals() {
       name: 'Premium Shorts',
       rating: 4.7,
       reviews: 156,
-      currentPrice: 34.99,
-      originalPrice: 49.99,
+      currentPrice: 3499,
+      originalPrice: 4999,
       discount: 30,
       image: '/images/products/pent01.png',
     },
@@ -100,8 +100,8 @@ export default function NewArrivals() {
       name: 'Slim Fit Denim',
       rating: 4.6,
       reviews: 203,
-      currentPrice: 59.99,
-      originalPrice: 84.99,
+      currentPrice: 5999,
+      originalPrice: 8499,
       discount: 29,
       image: '/images/products/pent02.png',
     },
