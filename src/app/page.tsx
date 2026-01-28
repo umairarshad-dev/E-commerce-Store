@@ -6,8 +6,13 @@ import Reviews from './components/Reviews';
 export default function HeroSection() {
   return (
     <>
-      <div className="relative w-full flex justify-center items-center min-h-screen bg-[#F2F0F1] bg-cover bg-center"
-        style={{ backgroundImage: `url('/hero img.png')` }}
+      <div className="relative w-full flex justify-center items-center min-h-[600px] sm:min-h-screen bg-[#F2F0F1] bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: `url('/hero img.png')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
       >
         {/* Decorative stars */}
         <img
@@ -67,8 +72,8 @@ export default function HeroSection() {
               className="h-[20px] lg:h-[24px] w-auto object-contain"
             />
             <img
-              src="/zna-collection.png"
-              alt="ZNA"
+              src="/zara-collection.png"
+              alt="Zara"
               className="h-[20px] lg:h-[26px] w-auto object-contain"
             />
             <img

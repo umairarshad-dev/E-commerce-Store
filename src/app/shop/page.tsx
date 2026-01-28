@@ -115,16 +115,18 @@ const ShopPage = () => {
           </div>
 
           <div className="flex flex-col md:flex-row gap-8">
-            {/* Mobile filter toggle */}
-            <button 
-              className="md:hidden flex items-center justify-center gap-2 bg-black text-white py-2 px-4 rounded-full mb-4"
-              onClick={() => setShowMobileFilters(!showMobileFilters)}
-            >
-              <FunnelIcon className="w-4 h-4" />
-              Filters
-            </button>
+            {/* Mobile filter toggle - Only visible on mobile */}
+            <div className="md:hidden">
+              <button 
+                className="flex items-center justify-center gap-2 bg-black text-white py-2 px-4 rounded-full w-full"
+                onClick={() => setShowMobileFilters(!showMobileFilters)}
+              >
+                <FunnelIcon className="w-4 h-4" />
+                Filters
+              </button>
+            </div>
 
-            {/* Filters - Hidden on mobile unless toggled */}
+            {/* Filters - Always visible on desktop, toggle on mobile */}
             <div className={`${showMobileFilters ? 'block' : 'hidden'} md:block w-full md:w-64 flex-shrink-0`}>
               <div className="shadow-sm p-6 space-y-8 pb-20 rounded-[20px] px-[24px] py-[20px] gap-[24px] bg-white">
                 <div className="flex items-center justify-between mb-2 w-full h-[27px]">
@@ -374,36 +376,47 @@ const ShopPage = () => {
               <div className="mt-10 flex justify-center">
                 <nav className="flex items-center gap-2 flex-wrap justify-center">
                   <button
-                    className="px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black disabled:opacity-50 text-sm sm:text-base"
+                    className="px-4 py-2 rounded-full border border-gray-300 text-black disabled:opacity-50 text-sm flex items-center gap-2 hover:bg-gray-50 transition-colors"
                     disabled={page === 1}
                     onClick={() => setPage(page - 1)}
                   >
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                     Previous
                   </button>
-                  {[1, 2, 3, 4, 5].map((p) => (
+                  {[1, 2, 3].map((p) => (
                     <button
                       key={p}
-                      className={`px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black text-sm sm:text-base ${
-                        page === p ? 'bg-black text-white' : ''
+                      className={`w-10 h-10 rounded-full border border-gray-300 text-black text-sm flex items-center justify-center transition-colors ${
+                        page === p ? 'bg-gray-200 font-medium' : 'hover:bg-gray-50'
                       }`}
                       onClick={() => setPage(p)}
                     >
                       {p}
                     </button>
                   ))}
-                  <span className="px-2 text-black">...</span>
+                  <span className="text-black">...</span>
+                  {[8, 9, 10].map((p) => (
+                    <button
+                      key={p}
+                      className={`w-10 h-10 rounded-full border border-gray-300 text-black text-sm flex items-center justify-center transition-colors ${
+                        page === p ? 'bg-gray-200 font-medium' : 'hover:bg-gray-50'
+                      }`}
+                      onClick={() => setPage(p)}
+                    >
+                      {p}
+                    </button>
+                  ))}
                   <button
-                    className="px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black text-sm sm:text-base"
-                    onClick={() => setPage(10)}
-                  >
-                    10
-                  </button>
-                  <button
-                    className="px-3 py-1 sm:px-4 sm:py-2 rounded-full border text-black disabled:opacity-50 text-sm sm:text-base"
+                    className="px-4 py-2 rounded-full border border-gray-300 text-black disabled:opacity-50 text-sm flex items-center gap-2 hover:bg-gray-50 transition-colors"
                     disabled={page === 10}
                     onClick={() => setPage(page + 1)}
                   >
                     Next
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </button>
                 </nav>
               </div>

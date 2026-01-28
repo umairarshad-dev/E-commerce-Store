@@ -22,13 +22,12 @@ const ProductCard = ({
 }: Product) => {
   return (
     <div className="flex flex-col items-center">
-      <div className="relative">
+      <div className="relative w-full aspect-[3/4]">
         <Image
           src={image}
           alt={name}
-          width={260}
-          height={320}
-          className="w-full h-64 sm:h-80 rounded-3xl bg-[#F0EEED] object-cover"
+          fill
+          className="w-full h-full rounded-3xl bg-[#F0EEED] object-cover"
         />
         {discount && (
           <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
