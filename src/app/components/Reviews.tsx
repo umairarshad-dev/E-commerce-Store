@@ -1,4 +1,7 @@
+'use client';
+
 import Image from 'next/image';
+import { useState } from 'react';
     
 interface Testimonial {
   id: number;
@@ -47,6 +50,25 @@ const StarRating = ({ rating }: { rating: number }) => {
 };
 
 const Reviews: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handlePrevious = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const getVisibleTestimonials = () => {
+    const items = [];
+    for (let i = 0; i < 3; i++) {
+      const index = (currentIndex + i) % testimonials.length;
+      items.push(testimonials[index]);
+    }
+    return items;
+  };
+
   return (
     <div className="w-full bg-white">
       <div className="px-8 py-7">
@@ -62,6 +84,7 @@ const Reviews: React.FC = () => {
                 width={16} 
                 height={13}
                 className="cursor-pointer hover:opacity-80 transition-opacity" 
+                onClick={handlePrevious}
               />
               <Image 
                 src="/Arrow-right.png" 
@@ -69,12 +92,13 @@ const Reviews: React.FC = () => {
                 width={16} 
                 height={13}
                 className="cursor-pointer hover:opacity-80 transition-opacity" 
+                onClick={handleNext}
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-            {testimonials.map((testimonial) => (
+            {getVisibleTestimonials().map((testimonial) => (
               <div key={testimonial.id} className="pb-6 sm:pb-8">
                 <div className="bg-white rounded-[20px] p-4 sm:p-6 lg:p-[20px_32px] w-full max-w-[400px] h-auto min-h-[200px] lg:h-[240px] border border-[#0000001A]">
                   <StarRating rating={testimonial.stars} />

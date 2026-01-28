@@ -113,13 +113,13 @@ export default function BrandsPage() {
             {brands.map((brand) => (
               <div key={brand.name} className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all duration-300 cursor-pointer group">
                 <div className="flex items-center justify-center h-20 mb-4">
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-gray-200 transition-colors">
+                  <div className="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center group-hover:bg-gray-900 group-hover:scale-105 transition-all duration-300 shadow-lg">
                     <Image
                       src={brand.logo}
                       alt={brand.name}
                       width={60}
                       height={30}
-                      className="w-12 h-auto object-contain"
+                      className="w-12 h-auto object-contain filter brightness-0 invert"
                     />
                   </div>
                 </div>
@@ -139,17 +139,32 @@ export default function BrandsPage() {
           <div className="mt-16">
             <h2 className="font-['Integral_CF'] font-bold text-2xl md:text-3xl text-black mb-6">Shop by Category</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {['Athletic', 'Casual', 'Formal', 'Streetwear'].map((category) => (
-                <div key={category} className="relative group cursor-pointer rounded-xl overflow-hidden">
-                  <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center mb-3 mx-auto group-hover:scale-110 transition-transform">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
-                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          <circle cx="12" cy="7" r="4" stroke="currentColor" strokeWidth="2"/>
-                        </svg>
+              {[
+                { name: 'Athletic', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&crop=top', color: 'from-blue-500 to-blue-600' },
+                { name: 'Casual', image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&h=300&fit=crop&crop=top', color: 'from-green-500 to-green-600' },
+                { name: 'Formal', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop&crop=top', color: 'from-gray-700 to-gray-800' },
+                { name: 'Streetwear', image: 'https://images.unsplash.com/photo-1556821840-3a5f6d5c4b1c?w=400&h=300&fit=crop&crop=top', color: 'from-purple-500 to-purple-600' }
+              ].map((category) => (
+                <div key={category.name} className="relative group cursor-pointer rounded-xl overflow-hidden">
+                  <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200">
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={category.image}
+                        alt={category.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className={`absolute inset-0 bg-gradient-to-t ${category.color} opacity-80`}></div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center">
+                          <h3 className="font-bold text-white text-lg md:text-xl mb-2">{category.name}</h3>
+                          <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
+                              <path d="M8 12h8m-4-4v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            </svg>
+                          </div>
+                        </div>
                       </div>
-                      <h3 className="font-semibold text-black">{category}</h3>
                     </div>
                   </div>
                 </div>

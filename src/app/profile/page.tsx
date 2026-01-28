@@ -65,7 +65,7 @@ export default function ProfilePage() {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             {/* Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-gray-50 rounded-xl p-6">
+              <div className="bg-white rounded-xl p-6 border border-gray-200">
                 <div className="flex flex-col items-center mb-6">
                   <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center mb-3">
                     <svg width="40" height="40" viewBox="0 0 24 24" fill="none" className="text-white">
@@ -92,7 +92,7 @@ export default function ProfilePage() {
                       className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
                         activeTab === tab.id
                           ? 'bg-black text-white'
-                          : 'hover:bg-gray-200 text-black'
+                          : 'hover:bg-gray-100 text-black'
                       }`}
                     >
                       <span className="mr-3">{tab.icon}</span>

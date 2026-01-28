@@ -33,20 +33,20 @@ const ProductCard = ({
 }: Product) => {
   return (
     <Link href={`/product/${id}`} className="flex flex-col items-center hover:opacity-90 transition-opacity w-full">
-      <div className="relative w-full aspect-square">
+      <div className="relative w-full aspect-[3/4]">
         <img
           src={image}
           alt={name}
-          className="w-65 h-100 rounded-3xl bg-[#F0EEED] object-cover"
+          className="w-full h-full rounded-3xl bg-[#F0EEED] object-cover"
         />
         {discount && (
-          <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
+          <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-lg shadow-md">
             {discount}% OFF
           </div>
         )}
       </div>
       <div className="pt-4 w-full">
-        <h3 className="text-black font-bold text-lg md:text-xl leading-none tracking-normal align-middle line-clamp-2">{name}</h3>
+        <h3 className="text-black font-bold text-base sm:text-lg md:text-xl leading-none tracking-normal align-middle line-clamp-2">{name}</h3>
         <div className="flex items-center mt-1">
           <div className="flex text-yellow-400 mr-2">
             {[...Array(5)].map((_, i) => (
@@ -58,9 +58,9 @@ const ProductCard = ({
           <span className="text-gray-500 text-sm">({reviews})</span>
         </div>
         <div className="mt-2">
-          <span className="pr-2 text-black font-sans font-bold text-xl md:text-2xl leading-none tracking-normal align-middle">${currentPrice}</span>
+          <span className="pr-2 text-black font-sans font-bold text-lg sm:text-xl md:text-2xl leading-none tracking-normal align-middle">${currentPrice}</span>
           {originalPrice && (
-            <span className="text-black/40 font-bold text-xl md:text-2xl leading-none tracking-normal align-middle line-through">
+            <span className="text-black/40 font-bold text-lg sm:text-xl md:text-2xl leading-none tracking-normal align-middle line-through">
               ${originalPrice}
             </span>
           )}
@@ -160,7 +160,6 @@ const ShopPage = () => {
                           className={`flex items-center justify-between font-[Satoshi] font-normal text-[16px] leading-[100%] tracking-[0%] text-[#00000099] w-full px-2 py-1 rounded-md hover:bg-gray-100 ${selectedCategory === cat ? 'font-bold' : ''}`}
                         >
                           <span>{cat}</span>
-                          <ChevronRightIcon className="w-4 h-4 text-black" />
                         </button>
                       ))}
                     </div>
@@ -213,32 +212,47 @@ const ShopPage = () => {
                           input[type='range']::-webkit-slider-thumb {
                             -webkit-appearance: none;
                             appearance: none;
-                            width: 24px;
-                            height: 24px;
-                            border-radius: 9999px;
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 50%;
                             background: #000;
                             cursor: pointer;
-                            border: 2px solid #fff;
-                            box-shadow: 0 1px 4px rgba(0,0,0,0.12);
-                            margin-top: -6px;
+                            border: 3px solid #fff;
+                            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+                            margin-top: -8px;
+                            transition: all 0.2s ease;
+                          }
+                          input[type='range']::-webkit-slider-thumb:hover {
+                            transform: scale(1.1);
+                            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
                           }
                           input[type='range']::-moz-range-thumb {
-                            width: 24px;
-                            height: 24px;
-                            border-radius: 9999px;
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 50%;
                             background: #000;
                             cursor: pointer;
-                            border: 2px solid #fff;
-                            box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+                            border: 3px solid #fff;
+                            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+                            transition: all 0.2s ease;
+                          }
+                          input[type='range']::-moz-range-thumb:hover {
+                            transform: scale(1.1);
+                            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
                           }
                           input[type='range']::-ms-thumb {
-                            width: 24px;
-                            height: 24px;
-                            border-radius: 9999px;
+                            width: 20px;
+                            height: 20px;
+                            border-radius: 50%;
                             background: #000;
                             cursor: pointer;
-                            border: 2px solid #fff;
-                            box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+                            border: 3px solid #fff;
+                            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+                            transition: all 0.2s ease;
+                          }
+                          input[type='range']::-ms-thumb:hover {
+                            transform: scale(1.1);
+                            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
                           }
                           input[type='range'] {
                             outline: none;
@@ -351,7 +365,6 @@ const ShopPage = () => {
                           className={`flex items-center justify-between font-[Satoshi] font-normal text-[16px] leading-[100%] tracking-[0%] text-[#00000099] w-full px-2 py-1 rounded-md hover:bg-gray-100 ${selectedDressStyle === style ? 'font-bold' : ''}`}
                         >
                           <span>{style}</span>
-                          <ChevronRightIcon className="w-4 h-4 text-black" />
                         </button>
                       ))}
                     </div>
