@@ -1,0 +1,272 @@
+export interface Product {
+  id: number;
+  name: string;
+  rating: number;
+  reviews: number;
+  currentPrice: number;
+  originalPrice?: number;
+  discount?: number;
+  image: string;
+  description?: string;
+  brand?: string;
+  colors?: Array<{ name: string; code: string }>;
+  sizes?: string[];
+  images?: string[];
+  materials?: string;
+  care?: string;
+  dimensions?: string;
+  origin?: string;
+  stock?: number;
+  reviewCount?: number;
+  salePrice?: number;
+  price?: number;
+}
+
+export const products: Product[] = [
+  {
+    id: 1,
+    name: 'Gradient Graphic T-shirt',
+    rating: 4.5,
+    reviews: 4,
+    currentPrice: 145,
+    originalPrice: 180,
+    discount: 20,
+    salePrice: 145,
+    price: 180,
+    image: '/shirt06.png',
+    description: 'Eye-catching gradient graphic t-shirt with modern design elements.',
+    brand: 'Urban Style',
+    colors: [
+      { name: 'black', code: '#000' },
+      { name: 'white', code: '#fff' },
+      { name: 'blue', code: '#0066cc' },
+    ],
+    sizes: ['Small', 'Medium', 'Large', 'X-Large'],
+    images: ['/shirt06.png', '/T-shirt02.png', '/T-shirt03.png'],
+    materials: '100% Cotton',
+    care: 'Machine wash cold, tumble dry low',
+    dimensions: 'Length: 28", Chest: 40"',
+    origin: 'Made in USA',
+    stock: 25,
+    reviewCount: 4,
+  },
+  {
+    id: 2,
+    name: 'Polo with Tipping Details',
+    rating: 3.5,
+    reviews: 3,
+    currentPrice: 180,
+    originalPrice: 220,
+    discount: 18,
+    salePrice: 180,
+    price: 220,
+    image: '/shirt07.png',
+    description: 'Classic polo shirt with contrasting tipping details for a sophisticated look.',
+    brand: 'Premium Basics',
+    colors: [
+      { name: 'navy', code: '#000080' },
+      { name: 'white', code: '#fff' },
+      { name: 'red', code: '#ff0000' },
+    ],
+    sizes: ['Small', 'Medium', 'Large', 'X-Large'],
+    images: ['/shirt07.png', '/T-shirt02.png', '/T-shirt03.png'],
+    materials: 'Cotton Blend',
+    care: 'Machine wash cold, tumble dry low',
+    dimensions: 'Length: 29", Chest: 42"',
+    origin: 'Made in Portugal',
+    stock: 15,
+    reviewCount: 3,
+  },
+  {
+    id: 3,
+    name: 'Black Striped T-shirt',
+    rating: 4.5,
+    reviews: 4,
+    currentPrice: 120,
+    salePrice: 120,
+    price: 120,
+    image: '/shirt08.png',
+    description: 'Timeless black striped t-shirt with a modern twist.',
+    brand: 'Classic Wear',
+    colors: [
+      { name: 'black', code: '#000' },
+      { name: 'white', code: '#fff' },
+    ],
+    sizes: ['Small', 'Medium', 'Large', 'X-Large'],
+    images: ['/shirt08.png', '/T-shirt02.png', '/T-shirt03.png'],
+    materials: '100% Organic Cotton',
+    care: 'Machine wash cold, tumble dry low',
+    dimensions: 'Length: 27", Chest: 38"',
+    origin: 'Made in India',
+    stock: 30,
+    reviewCount: 4,
+  },
+  {
+    id: 4,
+    name: 'SKINNY FIT JEANS',
+    rating: 4.5,
+    reviews: 4.5,
+    currentPrice: 210,
+    originalPrice: 260,
+    discount: 19,
+    salePrice: 210,
+    price: 260,
+    image: '/pent01.png',
+    description: 'Modern skinny fit jeans with stretch comfort.',
+    brand: 'Denim Co',
+    colors: [
+      { name: 'blue', code: '#4169e1' },
+      { name: 'black', code: '#000' },
+    ],
+    sizes: ['28', '30', '32', '34', '36'],
+    images: ['/pent01.png', '/pent02.png', '/pent03.png'],
+    materials: '98% Cotton, 2% Elastane',
+    care: 'Machine wash cold, tumble dry low',
+    dimensions: 'Inseam: 32", Leg opening: 14"',
+    origin: 'Made in Turkey',
+    stock: 20,
+    reviewCount: 5,
+  },
+  {
+    id: 5,
+    name: 'CHECKERED SHIRT',
+    rating: 4.5,
+    reviews: 4,
+    currentPrice: 80,
+    originalPrice: 100,
+    discount: 20,
+    salePrice: 80,
+    price: 100,
+    image: '/shirt02.png',
+    description: 'Classic checkered shirt perfect for casual occasions.',
+    brand: 'Retro Style',
+    colors: [
+      { name: 'red-black', code: '#8b0000' },
+      { name: 'blue-black', code: '#000080' },
+    ],
+    sizes: ['Small', 'Medium', 'Large', 'X-Large'],
+    images: ['/shirt02.png', '/shirt03.png', '/shirt04.png'],
+    materials: '100% Cotton Flannel',
+    care: 'Machine wash cold, tumble dry low',
+    dimensions: 'Length: 30", Chest: 44"',
+    origin: 'Made in Pakistan',
+    stock: 18,
+    reviewCount: 4,
+  },
+  {
+    id: 6,
+    name: 'SLEEVE STRIPED T-SHIRT',
+    rating: 4.5,
+    reviews: 4.5,
+    currentPrice: 210,
+    originalPrice: 250,
+    discount: 16,
+    salePrice: 210,
+    price: 250,
+    image: '/shirt03.png',
+    description: 'Sporty t-shirt with contrasting striped sleeves.',
+    brand: 'Athletic Wear',
+    colors: [
+      { name: 'white-navy', code: '#fff' },
+      { name: 'gray-red', code: '#808080' },
+    ],
+    sizes: ['Small', 'Medium', 'Large', 'X-Large'],
+    images: ['/shirt03.png', '/shirt04.png', '/shirt05.png'],
+    materials: 'Performance Polyester Blend',
+    care: 'Machine wash cold, hang dry',
+    dimensions: 'Length: 28", Chest: 40"',
+    origin: 'Made in Vietnam',
+    stock: 22,
+    reviewCount: 5,
+  },
+  {
+    id: 7,
+    name: 'VERTICAL STRIPED SHIRT',
+    rating: 4.5,
+    reviews: 4,
+    currentPrice: 80,
+    originalPrice: 110,
+    discount: 27,
+    salePrice: 80,
+    price: 110,
+    image: '/shirt04.png',
+    description: 'Elegant vertical striped shirt for business casual look.',
+    brand: 'Office Wear',
+    colors: [
+      { name: 'blue-white', code: '#4169e1' },
+      { name: 'gray-white', code: '#808080' },
+    ],
+    sizes: ['Small', 'Medium', 'Large', 'X-Large'],
+    images: ['/shirt04.png', '/shirt05.png', '/shirt01.png'],
+    materials: 'Cotton-Poly Blend',
+    care: 'Machine wash cold, tumble dry low',
+    dimensions: 'Length: 31", Chest: 42"',
+    origin: 'Made in China',
+    stock: 12,
+    reviewCount: 4,
+  },
+  {
+    id: 8,
+    name: 'COURAGE GRAPHIC T-SHIRT',
+    rating: 4.5,
+    reviews: 4.5,
+    currentPrice: 210,
+    originalPrice: 240,
+    discount: 13,
+    salePrice: 210,
+    price: 240,
+    image: '/shirt06.png',
+    description: 'Inspirational graphic t-shirt with courage message.',
+    brand: 'Motivation Wear',
+    colors: [
+      { name: 'black', code: '#000' },
+      { name: 'white', code: '#fff' },
+      { name: 'gray', code: '#808080' },
+    ],
+    sizes: ['Small', 'Medium', 'Large', 'X-Large'],
+    images: ['/shirt06.png', '/T-shirt02.png', '/T-shirt03.png'],
+    materials: '100% Ringspun Cotton',
+    care: 'Machine wash cold, tumble dry low',
+    dimensions: 'Length: 28", Chest: 40"',
+    origin: 'Made in USA',
+    stock: 28,
+    reviewCount: 5,
+  },
+  {
+    id: 9,
+    name: 'LOOSE FIT BERMUDA SHORTS',
+    rating: 4.5,
+    reviews: 4,
+    currentPrice: 80,
+    originalPrice: 95,
+    discount: 16,
+    salePrice: 80,
+    price: 95,
+    image: '/pent01.png',
+    description: 'Comfortable loose fit bermuda shorts for summer.',
+    brand: 'Beach Wear',
+    colors: [
+      { name: 'khaki', code: '#c3b091' },
+      { name: 'navy', code: '#000080' },
+      { name: 'black', code: '#000' },
+    ],
+    sizes: ['30', '32', '34', '36', '38'],
+    images: ['/pent01.png', '/pent02.png', '/pent03.png'],
+    materials: '100% Cotton Twill',
+    care: 'Machine wash cold, tumble dry low',
+    dimensions: 'Inseam: 10", Waist: adjustable',
+    origin: 'Made in Bangladesh',
+    stock: 35,
+    reviewCount: 4,
+  },
+];
+
+export function getProductById(id: number): Product | undefined {
+  return products.find(product => product.id === id);
+}
+
+export function getRelatedProducts(currentProductId: number, limit: number = 4): Product[] {
+  return products
+    .filter(product => product.id !== currentProductId)
+    .slice(0, limit);
+}

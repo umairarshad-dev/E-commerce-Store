@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { StarIcon } from '@heroicons/react/24/solid';
 import { ChevronRightIcon, ChevronDownIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { products, type Product } from '@/data/products';
 
 const categories = ['T-shirts', 'Shorts', 'Shirts', 'Hoodie', 'Jeans'];
 const colors = [
@@ -19,17 +20,6 @@ const sizes = [
   'XX-Small', 'X-Small', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large', '3X-Large', '4X-Large'
 ];
 const dressStyles = ['Casual', 'Formal', 'Party', 'Gym'];
-
-interface Product {
-  id: number;
-  name: string;
-  rating: number;
-  reviews: number;
-  currentPrice: number;
-  originalPrice?: number;
-  discount?: number;
-  image: string;
-}
 
 const ProductCard = ({
   id,
@@ -79,81 +69,6 @@ const ProductCard = ({
     </Link>
   );
 };
-
-const products: Product[] = [
-  {
-    id: 1,
-    name: 'Gradient Graphic T-shirt',
-    rating: 4.5,
-    reviews: 4,
-    currentPrice: 145,
-    image: '/shirt06.png',
-  },
-  {
-    id: 2,
-    name: 'Polo with Tipping Details',
-    rating: 3.5,
-    reviews: 3,
-    currentPrice: 180,
-    image: '/shirt07.png',
-  },
-  {
-    id: 3,
-    name: 'Black Striped T-shirt',
-    rating: 4.5,
-    reviews: 4,
-    currentPrice: 120,
-    image: '/shirt08.png',
-  },
-  {
-    id: 4,
-    name: 'SKINNY FIT JEANS',
-    rating: 4.5,
-    reviews: 4.5,
-    currentPrice: 210,
-    image: '/pent01.png',
-  },
-  {
-    id: 5,
-    name: 'CHECKERED SHIRT',
-    rating: 4.5,
-    reviews: 4,
-    currentPrice: 80,
-    image: '/shirt02.png',
-  },
-  {
-    id: 6,
-    name: 'SLEEVE STRIPED T-SHIRT',
-    rating: 4.5,
-    reviews: 4.5,
-    currentPrice: 210,
-    image: '/shirt03.png',
-  },
-  {
-    id: 7,
-    name: 'VERTICAL STRIPED SHIRT',
-    rating: 4.5,
-    reviews: 4,
-    currentPrice: 80,
-    image: '/shirt04.png',
-  },
-  {
-    id: 8,
-    name: 'COURAGE GRAPHIC T-SHIRT',
-    rating: 4.5,
-    reviews: 4.5,
-    currentPrice: 210,
-    image: '/shirt06.png',
-  },
-  {
-    id: 9,
-    name: 'LOOSE FIT BERMUDA SHORTS',
-    rating: 4.5,
-    reviews: 4,
-    currentPrice: 80,
-    image: '/pent01.png',
-  },
-];
 
 const MIN_PRICE = 0;
 const MAX_PRICE = 200;

@@ -7,15 +7,17 @@ import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
 import RelatedProducts from '@/components/RelatedProducts';
 import ProductReviews from '@/components/ProductReviews';
 import { useCart } from '@/context/CartContext';
+import { getProductById, getRelatedProducts, type Product } from '@/data/products';
 import toast from 'react-hot-toast';
+import { notFound } from 'next/navigation';
 
 interface ProductParams {
   id: string;
 }
 
 export default function ProductDetail({ params }: { params: Promise<ProductParams> }) {
-  const [selectedColor, setSelectedColor] = useState('green');
-  const [selectedSize, setSelectedSize] = useState('Large');
+  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedSize, setSelectedSize] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [isWishlist, setIsWishlist] = useState(false);
   const [mainImage, setMainImage] = useState(0);
@@ -26,80 +28,34 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
   const { addToCart } = useCart();
   
   const resolvedParams = use(params);
-  const product = {
-    id: resolvedParams.id,
-    name: 'ONE LIFE GRAPHIC T-SHIRT',
-    brand: 'Premium Basics',
-    price: 300,
-    salePrice: 260,
-    discount: 40,
-    colors: [
-      { name: 'green', code: '#6B7A3C' },
-      { name: 'black', code: '#000' },
-      { name: 'green', code: '#006400' },
-      { name: 'brown', code: '#7C5E3C' },
-    ],
-    sizes: ['Small', 'Medium', 'Large', 'X-Large'],
-    images: [
-      '/T-shite01.png',
-      '/T-shirt02.png',
-      '/T-shirt03.png',
-    ],
-    description:
-      'Simple basics, made with comfort in mind for the everyday. Crafted from a soft and breathable cotton blend, this tee is perfect for any occasion.',
-    materials: '100% Cotton',
-    care: 'Machine wash cold, tumble dry low',
-    dimensions: 'Length: 28", Chest: 40"',
-    origin: 'Made in Portugal',
-    rating: 4.6,
-    reviewCount: 445,
-    stock: 15,
-  };
+  const productId = parseInt(resolvedParams.id);
+  const product = getProductById(productId);
+
+  if (!product) {
+    notFound();
+  }
+
+  // Set default values for color and size
+  if (!selectedColor && product.colors && product.colors.length > 0) {
+    setSelectedColor(product.colors[0].name);
+  }
+  if (!selectedSize && product.sizes && product.sizes.length > 0) {
+    setSelectedSize(product.sizes[0]);
+  }
 
   const handleAddToCart = () => {
     addToCart({
-      id: product.id,
+      id: product.id.toString(),
       name: product.name,
-      price: product.salePrice,
-      image: product.images[0],
+      price: product.salePrice || product.currentPrice,
+      image: product.images?.[0] || product.image,
       color: selectedColor,
       size: selectedSize
     });
     toast.success('Product added to cart!');
   };
 
-  const relatedProducts = [
-    {
-      id: '2',
-      name: 'Polo with Contrast Trims',
-      price: 232,
-      image: '/shirt07.png',
-      originalPrice: 242,
-      reviews: 3,
-    },
-    {
-      id: '3',
-      name: 'Gradient Graphic T-shirt',
-      price: 145,
-      image: '/shirt06.png',
-      reviews: 4,
-    },
-    {
-      id: '4',
-      name: 'Polo with Tipping Details',
-      price: 180,
-      image: '/shirt08.png',
-      reviews: 2,
-    },
-    {
-      id: '5',
-      name: 'Black Striped T-shirt',
-      price: 120,
-      image: '/shirt09.png',
-      originalPrice: 150,
-      reviews: 5,
-    },
-  ];
+  const relatedProducts = getRelatedProducts(product.id, 4);
 
   const reviews = [
     {
@@ -158,34 +114,34 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
     },
   ];
 
-  const allThumbnails = product.images;
+  const allThumbnails = product.images || [product.image];
 
   return (
-    <div className="w-full mx-auto px-4 sm:px-6 lg:px-28 py-8 bg-white">
-      <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
+    <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 bg-white">
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 xl:gap-12">
         {/* Product Images */}
-        <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+        <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-1/2 xl:w-2/5">
           <div className="flex sm:flex-col gap-3 order-2 sm:order-1">
             {allThumbnails.map((img, idx) => (
               <button
                 key={img}
                 onClick={() => setMainImage(idx)}
-                className={`border-2 rounded-lg overflow-hidden w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-white transition-all duration-150 ${mainImage === idx ? 'border-[#1570EF]' : 'border-gray-200'}`}
+                className={`border-2 rounded-lg overflow-hidden w-12 h-12 sm:w-16 sm:h-20 lg:w-20 lg:h-24 flex items-center justify-center bg-white transition-all duration-150 ${mainImage === idx ? 'border-[#1570EF]' : 'border-gray-200'}`}
                 style={{ boxShadow: mainImage === idx ? '0 0 0 2px #1570EF' : undefined }}
               >
                 <Image 
                   src={img} 
                   alt={`Product view ${idx + 1}`} 
-                  width={64} 
-                  height={64} 
-                  className="object-cover"
+                  width={80} 
+                  height={80} 
+                  className="object-cover w-full h-full"
                   onError={() => setImageError(true)}
                   onLoad={() => setIsLoading(false)}
                 />
               </button>
             ))}
           </div>
-          <div className="relative w-full sm:w-64 sm:h-64 lg:w-80 lg:h-80 xl:w-[350px] xl:h-[350px] rounded-xl overflow-hidden bg-white flex items-center justify-center order-1 sm:order-2">
+          <div className="relative w-full sm:w-64 sm:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-xl overflow-hidden bg-white flex items-center justify-center order-1 sm:order-2">
             {isLoading && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
                 <div className="w-8 h-8 border-4 border-gray-300 border-t-black rounded-full animate-spin"></div>
@@ -215,9 +171,13 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
             </h1>
           
             <div className="flex items-center gap-3 mt-2">
-              <span className="text-xl sm:text-2xl font-bold text-black">${product.salePrice}</span>
-              <span className="text-lg sm:text-xl text-gray-400 line-through">${product.price}</span>
-              <span className="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-full">{product.discount}% OFF</span>
+              <span className="text-xl sm:text-2xl font-bold text-black">${product.salePrice || product.currentPrice}</span>
+              {(product.price || product.originalPrice) && (
+                <span className="text-lg sm:text-xl text-gray-400 line-through">${product.price || product.originalPrice}</span>
+              )}
+              {product.discount && (
+                <span className="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded-full">{product.discount}% OFF</span>
+              )}
             </div>
             <p className="text-gray-600 text-sm mt-2">{product.description}</p>
           </div>
@@ -227,7 +187,7 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
               <span className="text-sm font-semibold text-black">Color:</span>
               <div className="flex gap-2">
-                {product.colors.map((color) => (
+                {product.colors?.map((color) => (
                   <button
                     key={`${color.name}-${color.code}`}
                     onClick={() => setSelectedColor(color.name)}
@@ -249,7 +209,7 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
               <span className="text-sm font-semibold text-black">Choose size:</span>
               <div className="flex flex-wrap gap-2">
-                {product.sizes.map((size) => (
+                {product.sizes?.map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
@@ -386,7 +346,7 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
           <ProductReviews
             reviews={reviews}
             averageRating={product.rating}
-            totalReviews={product.reviewCount}
+            totalReviews={product.reviewCount || product.reviews}
           />
         )}
         {activeTab === 'faq' && (
