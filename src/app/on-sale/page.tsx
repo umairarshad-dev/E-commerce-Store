@@ -73,7 +73,7 @@ export default function OnSalePage() {
       currentPrice: 2999,
       originalPrice: 4999,
       discount: 40,
-      image: '/images/products/clothing-1.jpg',
+      image: '/images/products/hanger-1.jpg',
     },
     {
       id: 2,
@@ -83,7 +83,7 @@ export default function OnSalePage() {
       currentPrice: 5999,
       originalPrice: 8999,
       discount: 33,
-      image: '/images/products/clothing-2.jpg',
+      image: '/images/products/hanger-2.jpg',
     },
     {
       id: 3,
@@ -93,7 +93,7 @@ export default function OnSalePage() {
       currentPrice: 4499,
       originalPrice: 6999,
       discount: 36,
-      image: '/images/products/clothing-3.jpg',
+      image: '/images/products/hanger-3.jpg',
     },
     {
       id: 4,
@@ -103,7 +103,7 @@ export default function OnSalePage() {
       currentPrice: 7999,
       originalPrice: 11999,
       discount: 33,
-      image: '/images/products/clothing-4.jpg',
+      image: '/images/products/hanger-4.jpg',
     },
     {
       id: 5,
@@ -113,7 +113,7 @@ export default function OnSalePage() {
       currentPrice: 3999,
       originalPrice: 6499,
       discount: 38,
-      image: '/images/products/clothing-5.jpg',
+      image: '/images/products/hanger-5.jpg',
     },
     {
       id: 6,
@@ -123,7 +123,7 @@ export default function OnSalePage() {
       currentPrice: 9999,
       originalPrice: 15999,
       discount: 38,
-      image: '/images/products/clothing-6.jpg',
+      image: '/images/products/hanger-6.jpg',
     },
     {
       id: 7,
@@ -133,7 +133,7 @@ export default function OnSalePage() {
       currentPrice: 3499,
       originalPrice: 5499,
       discount: 36,
-      image: '/images/products/clothing-7.jpg',
+      image: '/images/products/hanger-7.jpg',
     },
     {
       id: 8,
@@ -143,7 +143,7 @@ export default function OnSalePage() {
       currentPrice: 5499,
       originalPrice: 8499,
       discount: 35,
-      image: '/images/products/clothing-8.jpg',
+      image: '/images/products/hanger-8.jpg',
     },
   ];
 

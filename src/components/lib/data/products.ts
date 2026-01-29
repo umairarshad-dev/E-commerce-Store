@@ -33,7 +33,7 @@ export const products: Product[] = [
     discount: 20,
     salePrice: 8999,
     price: 10999,
-    image: '/images/products/clothing-1.jpg',
+    image: '/images/ecommerce-assets/product-09.jpg',
     description: 'Eye-catching gradient graphic t-shirt with modern design elements.',
     brand: 'Urban Style',
     colors: [
@@ -60,7 +60,7 @@ export const products: Product[] = [
     discount: 18,
     salePrice: 10999,
     price: 12999,
-    image: '/images/products/clothing-2.jpg',
+    image: '/images/ecommerce-assets/product-10.jpg',
     description: 'Classic polo shirt with contrasting tipping details for a sophisticated look.',
     brand: 'Premium Basics',
     colors: [
@@ -85,7 +85,7 @@ export const products: Product[] = [
     currentPrice: 7999,
     salePrice: 7999,
     price: 7999,
-    image: '/images/products/clothing-3.jpg',
+    image: '/images/ecommerce-assets/product-11.jpg',
     description: 'Timeless black striped t-shirt with a modern twist.',
     brand: 'Classic Wear',
     colors: [
@@ -111,7 +111,7 @@ export const products: Product[] = [
     discount: 19,
     salePrice: 9999,
     price: 11999,
-    image: '/images/products/clothing-4.jpg',
+    image: '/images/ecommerce-assets/product-12.jpg',
     description: 'Modern skinny fit jeans with stretch comfort.',
     brand: 'Denim Co',
     colors: [
@@ -137,7 +137,7 @@ export const products: Product[] = [
     discount: 20,
     salePrice: 3999,
     price: 4999,
-    image: '/images/products/clothing-5.jpg',
+    image: '/images/ecommerce-assets/product-13.jpg',
     description: 'Classic checkered shirt perfect for casual occasions.',
     brand: 'Retro Style',
     colors: [
@@ -163,7 +163,7 @@ export const products: Product[] = [
     discount: 16,
     salePrice: 9999,
     price: 10999,
-    image: '/images/products/clothing-6.jpg',
+    image: '/images/ecommerce-assets/product-14.jpg',
     description: 'Sporty t-shirt with contrasting striped sleeves.',
     brand: 'Athletic Wear',
     colors: [
@@ -189,7 +189,7 @@ export const products: Product[] = [
     discount: 27,
     salePrice: 3999,
     price: 4999,
-    image: '/images/products/clothing-7.jpg',
+    image: '/images/ecommerce-assets/product-15.jpg',
     description: 'Elegant vertical striped shirt for business casual look.',
     brand: 'Office Wear',
     colors: [
@@ -215,7 +215,7 @@ export const products: Product[] = [
     discount: 13,
     salePrice: 9999,
     price: 11999,
-    image: '/images/products/clothing-8.jpg',
+    image: '/images/ecommerce-assets/product-16.jpg',
     description: 'Inspirational graphic t-shirt with courage message.',
     brand: 'Motivation Wear',
     colors: [
