@@ -51,7 +51,7 @@ export default function Footer() {
                   <div className="flex items-center gap-3">
                     <div className="w-[28px] h-[28px] flex items-center justify-center rounded-full border border-[#00000033] bg-white hover:bg-black transition-colors duration-200 group">
                       <img
-                        src="/twitter.png"
+                        src="/images/ui/twitter.png"
                         alt="Twitter"
                         className="w-[11px] h-[9px] filter brightness-0 group-hover:brightness-0 group-hover:invert transition-all duration-200"
                       />
@@ -59,7 +59,7 @@ export default function Footer() {
 
                     <div className="w-[28px] h-[28px] flex items-center justify-center rounded-full border border-[#00000033] bg-black hover:bg-white transition-colors duration-200 group">
                       <img
-                        src="/facebook.png"
+                        src="/images/ui/facebook.png"
                         alt="Facebook"
                         className="w-[6.32px] h-[12.17px] filter brightness-0 invert group-hover:filter-none transition-all duration-200"
                       />
@@ -67,7 +67,7 @@ export default function Footer() {
 
                     <div className="w-[28px] h-[28px] flex items-center justify-center rounded-full border border-[#00000033] bg-white hover:bg-black transition-colors duration-200 group">
                       <img
-                        src="/instagram.png"
+                        src="/images/ui/instagram.png"
                         alt="Instagram"
                         className="w-[13.55px] h-[9px] filter brightness-0 group-hover:brightness-0 group-hover:invert transition-all duration-200"
                       />
@@ -75,7 +75,7 @@ export default function Footer() {
 
                     <div className="w-[28px] h-[28px] flex items-center justify-center rounded-full border border-[#00000033] bg-white hover:bg-black transition-colors duration-200 group">
                       <img
-                        src="/github.png"
+                        src="/images/ui/github.png"
                         alt="GitHub"
                         className="w-[12.96px] h-[12.65px] filter brightness-0 group-hover:brightness-0 group-hover:invert transition-all duration-200"
                       />
@@ -139,11 +139,11 @@ export default function Footer() {
 
                 <div className="flex flex-wrap justify-center sm:justify-end gap-2 sm:gap-4">
                   {[
-                    { name: 'visa-card', src: '/visa-card.png' },
-                    { name: 'master-card', src: '/master-card.png' },
-                    { name: 'paypal-card', src: '/paypal-card.png' },
-                    { name: 'apple-pay', src: '/apple-pay.png' },
-                    { name: 'googlepay-card', src: '/googlepay-card.png' }
+                    { name: 'visa-card', src: '/images/ui/visa-card.png' },
+                    { name: 'master-card', src: '/images/ui/master-card.png' },
+                    { name: 'paypal-card', src: '/images/ui/paypal-card.png' },
+                    { name: 'apple-pay', src: '/images/ui/apple-pay.png' },
+                    { name: 'googlepay-card', src: '/images/ui/googlepay-card.png' }
                   ].map((brand) => (
                     <div key={brand.name} className="w-[46px] h-[30px] rounded-[5px] border border-[#D6DCE5] bg-white flex items-center justify-center">
                       <img

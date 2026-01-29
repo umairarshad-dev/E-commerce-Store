@@ -72,7 +72,7 @@ export default function TopSelling() {
       reviews: 4,
       currentPrice: 7999,
       originalPrice: 8999,
-      image: '/images/products/shirt04.png',
+      image: '/images/products/clothing-5.jpg',
     },
     {
       id: 2,
@@ -80,7 +80,7 @@ export default function TopSelling() {
       rating: 3.5,
       reviews: 3,
       currentPrice: 5999,
-      image: '/images/products/shirt05.png',
+      image: '/images/products/clothing-6.jpg',
     },
     {
       id: 3,
@@ -88,7 +88,7 @@ export default function TopSelling() {
       rating: 4.5,
       reviews: 4,
       currentPrice: 3999,
-      image: '/images/products/pent02.png',
+      image: '/images/products/clothing-7.jpg',
     },
     {
       id: 4,
@@ -96,7 +96,7 @@ export default function TopSelling() {
       rating: 4.5,
       reviews: 4.5,
       currentPrice: 6999,
-      image: '/images/products/shirt02.png',
+      image: '/images/products/clothing-8.jpg',
     },
   ];
 

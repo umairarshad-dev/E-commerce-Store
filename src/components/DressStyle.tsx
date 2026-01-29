@@ -4,22 +4,22 @@ const DressStyle = () => {
   const dressStyles = [
     { 
       name: '', 
-      image: '/casual-dress.png',
+      image: '/images/categories/casual-dress.png',
       containerClass: 'w-full h-[200px] sm:h-[250px] md:h-[280px] lg:w-[407px] lg:h-[289px] lg:absolute lg:top-[60px] lg:left-[50px]'
     },
     { 
       name: '', 
-      image: '/formal-dress.png',
+      image: '/images/categories/formal-dress.png',
       containerClass: 'w-full h-[200px] sm:h-[250px] md:h-[280px] lg:w-[684px] lg:h-[289px] lg:absolute lg:top-[60px] lg:left-[500px]'
     },
     { 
       name: '', 
-      image: '/party-dress.png',
+      image: '/images/categories/party-dress.png',
       containerClass: 'w-full h-[200px] sm:h-[250px] md:h-[280px] lg:w-[684px] lg:h-[289px] lg:absolute lg:top-[380px] lg:left-[50px]'
     },
     { 
       name: '', 
-      image: '/gym-dress.png',
+      image: '/images/categories/gym-dress.png',
       containerClass: ''
     },
   ];
