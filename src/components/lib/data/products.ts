@@ -33,7 +33,7 @@ export const products: Product[] = [
     discount: 20,
     salePrice: 8999,
     price: 10999,
-    image: '/images/ecommerce-assets/product-09.jpg',
+    image: '/images/ecommerce-assets/product-06.jpg',
     description: 'Eye-catching gradient graphic t-shirt with modern design elements.',
     brand: 'Urban Style',
     colors: [
@@ -60,7 +60,7 @@ export const products: Product[] = [
     discount: 18,
     salePrice: 10999,
     price: 12999,
-    image: '/images/ecommerce-assets/product-10.jpg',
+    image: '/images/ecommerce-assets/product-13.jpg',
     description: 'Classic polo shirt with contrasting tipping details for a sophisticated look.',
     brand: 'Premium Basics',
     colors: [
@@ -85,7 +85,7 @@ export const products: Product[] = [
     currentPrice: 7999,
     salePrice: 7999,
     price: 7999,
-    image: '/images/ecommerce-assets/product-11.jpg',
+    image: '/images/ecommerce-assets/product-14.jpg',
     description: 'Timeless black striped t-shirt with a modern twist.',
     brand: 'Classic Wear',
     colors: [
@@ -111,7 +111,7 @@ export const products: Product[] = [
     discount: 19,
     salePrice: 9999,
     price: 11999,
-    image: '/images/ecommerce-assets/product-12.jpg',
+    image: '/images/ecommerce-assets/product-15.jpg',
     description: 'Modern skinny fit jeans with stretch comfort.',
     brand: 'Denim Co',
     colors: [
