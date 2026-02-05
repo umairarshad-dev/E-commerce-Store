@@ -73,7 +73,7 @@ export default function NewArrivals() {
       currentPrice: 4999,
       originalPrice: 6999,
       discount: 29,
-      image: '/images/ecommerce-assets/product-01.jpg',
+      image: '/images/ecommerce-assets/shirt01.png',
     },
     {
       id: 2,
@@ -83,7 +83,7 @@ export default function NewArrivals() {
       currentPrice: 2999,
       originalPrice: 3999,
       discount: 25,
-      image: '/images/ecommerce-assets/product-02.jpg',
+      image: '/images/ecommerce-assets/shirt02.png',
     },
     {
       id: 3,
@@ -93,7 +93,7 @@ export default function NewArrivals() {
       currentPrice: 3499,
       originalPrice: 4999,
       discount: 30,
-      image: '/images/ecommerce-assets/product-03.jpg',
+      image: '/images/ecommerce-assets/pent01.png',
     },
     {
       id: 4,
@@ -103,7 +103,7 @@ export default function NewArrivals() {
       currentPrice: 5999,
       originalPrice: 8499,
       discount: 29,
-      image: '/images/ecommerce-assets/product-04.jpg',
+      image: '/images/ecommerce-assets/pent02.png',
     },
   ];
 
