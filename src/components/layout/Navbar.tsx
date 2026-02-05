@@ -8,8 +8,10 @@ export default function Navbar() {
   const { cartCount } = useCart();
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 768);  
     };
@@ -55,7 +57,7 @@ export default function Navbar() {
           </div>
 
            <div className="flex items-center gap-4 md:gap-6">
-            {isMobile && (
+            {isMounted && isMobile && (
               <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="focus:outline-none p-2">
                 {isMenuOpen ? (
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +93,7 @@ export default function Navbar() {
         </div>
       </div>
 
-       {isMobile && isMenuOpen && (
+       {isMounted && isMobile && isMenuOpen && (
         <div className="fixed inset-0 bg-white z-50 pt-16">
           <div className="px-6">
             <button
