@@ -210,22 +210,32 @@ export default function ProductCard({
 
         {/* Size Chips */}
         {product.sizes.length > 0 && (
-          <SizeChips
-            sizes={product.sizes}
-            selectedSize={selectedSize}
-            onSelect={setSelectedSize}
-            maxDisplay={4}
-          />
+          <div className="flex items-center gap-2">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted)] whitespace-nowrap">
+              Size:
+            </p>
+            <SizeChips
+              sizes={product.sizes}
+              selectedSize={selectedSize}
+              onSelect={setSelectedSize}
+              maxDisplay={4}
+            />
+          </div>
         )}
 
         {/* Color Swatches */}
         {product.colors.length > 0 && (
-          <ColorSwatches
-            colors={product.colors}
-            selectedColor={selectedColor}
-            onSelect={setSelectedColor}
-            maxDisplay={4}
-          />
+          <div className="flex items-center gap-2">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted)] whitespace-nowrap">
+              Color:
+            </p>
+            <ColorSwatches
+              colors={product.colors}
+              selectedColor={selectedColor}
+              onSelect={setSelectedColor}
+              maxDisplay={4}
+            />
+          </div>
         )}
 
         {/* Footer */}

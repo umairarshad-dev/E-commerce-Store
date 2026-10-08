@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import SizeChips from './SizeChips';
 import ColorSwatches from './ColorSwatches';
@@ -326,6 +327,23 @@ export default function QuickViewModal({
                   </>
                 )}
               </button>
+
+              {/* View Full Details Button */}
+              <Link
+                href={`/product/${product.id}`}
+                className={`
+                  w-full py-3 px-4 rounded-xl font-bold text-base
+                  flex items-center justify-center gap-2
+                  border border-gray-300 text-[var(--ink)]
+                  hover:bg-gray-50 transition-all duration-200
+                  focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
+                `}
+              >
+                View Full Details
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
 
               {/* Trust Row */}
               <div className="flex flex-wrap gap-3 pt-3 border-t border-gray-200">

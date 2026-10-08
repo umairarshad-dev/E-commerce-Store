@@ -2,15 +2,32 @@
 
 import { useCart } from "@/components/lib/context/CartContext";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const { cartCount } = useCart();
+  const pathname = usePathname();
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
-  const navLinkClass = "relative transition-colors duration-300 hover:text-gray-500 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-black after:origin-right after:scale-x-0 after:transition-transform after:duration-300 hover:after:origin-left hover:after:scale-x-100";
+  const navLinkClass = "relative transition-colors duration-300 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-black after:origin-right after:scale-x-0 after:transition-transform after:duration-300 hover:after:origin-left hover:after:scale-x-100";
+
+  const isActive = (path: string) => {
+    if (path === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(path);
+  };
+
+  const getLinkClass = (path: string) => {
+    const baseClass = navLinkClass;
+    if (isActive(path)) {
+      return `${baseClass} text-black font-semibold after:scale-x-100 after:origin-left`;
+    }
+    return `${baseClass} text-gray-600 hover:text-black`;
+  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -31,13 +48,13 @@ export default function Navbar() {
           </Link>
 
            <div className="hidden lg:flex items-center gap-12">
-            <Link href="/" className={navLinkClass}>Home</Link>
-            <Link href="/shop" className={navLinkClass}>Shop</Link>
-            <Link href="/new-arrivals" className={navLinkClass}>New Arrivals</Link>
-            <Link href="/on-sale" className={navLinkClass}>Offers</Link>
-            <Link href="/about" className={navLinkClass}>About</Link>
-            <Link href="/contact" className={navLinkClass}>Contact</Link>
-            <Link href="/track-order" className={navLinkClass}>Track Order</Link>
+            <Link href="/" className={getLinkClass('/')}>Home</Link>
+            <Link href="/shop" className={getLinkClass('/shop')}>Shop</Link>
+            <Link href="/new-arrivals" className={getLinkClass('/new-arrivals')}>New Arrivals</Link>
+            <Link href="/on-sale" className={getLinkClass('/on-sale')}>Offers</Link>
+            <Link href="/about" className={getLinkClass('/about')}>About</Link>
+            <Link href="/contact" className={getLinkClass('/contact')}>Contact</Link>
+            <Link href="/track-order" className={getLinkClass('/track-order')}>Track Order</Link>
           </div>
 
            <div className="flex items-center gap-4 md:gap-6">
@@ -92,49 +109,49 @@ export default function Navbar() {
              <div className="flex flex-col mt-4">
               <Link
                 href="/"
-                className="py-4 border-b border-gray-100 text-lg font-medium"
+                className={`py-4 border-b border-gray-100 text-lg font-medium ${isActive('/') ? 'text-black font-semibold' : 'text-gray-600'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 href="/shop"
-                className="py-4 border-b border-gray-100 text-lg font-medium"
+                className={`py-4 border-b border-gray-100 text-lg font-medium ${isActive('/shop') ? 'text-black font-semibold' : 'text-gray-600'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Shop
               </Link>
               <Link
                 href="/new-arrivals"
-                className="py-4 border-b border-gray-100 text-lg font-medium"
+                className={`py-4 border-b border-gray-100 text-lg font-medium ${isActive('/new-arrivals') ? 'text-black font-semibold' : 'text-gray-600'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 New Arrivals
               </Link>
               <Link
                 href="/on-sale"
-                className="py-4 border-b border-gray-100 text-lg font-medium"
+                className={`py-4 border-b border-gray-100 text-lg font-medium ${isActive('/on-sale') ? 'text-black font-semibold' : 'text-gray-600'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Offers
               </Link>
               <Link
                 href="/about"
-                className="py-4 border-b border-gray-100 text-lg font-medium"
+                className={`py-4 border-b border-gray-100 text-lg font-medium ${isActive('/about') ? 'text-black font-semibold' : 'text-gray-600'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 About
               </Link>
               <Link
                 href="/contact"
-                className="py-4 border-b border-gray-100 text-lg font-medium"
+                className={`py-4 border-b border-gray-100 text-lg font-medium ${isActive('/contact') ? 'text-black font-semibold' : 'text-gray-600'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Link>
               <Link
                 href="/track-order"
-                className="py-4 border-b border-gray-100 text-lg font-medium"
+                className={`py-4 border-b border-gray-100 text-lg font-medium ${isActive('/track-order') ? 'text-black font-semibold' : 'text-gray-600'}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Track Order
