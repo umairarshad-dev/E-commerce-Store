@@ -24,16 +24,16 @@ export default function ColorSwatches({
   const selectedColorObj = colors.find((c) => c.name === selectedColor);
 
   return (
-    <div className={`flex items-center gap-1.5 ${className}`}>
+    <div className={`flex items-center gap-2 ${className}`}>
       {displayColors.map((color) => (
         <button
           key={color.name}
           onClick={() => onSelect(color.name)}
           className={`
-            relative w-[14px] h-[14px] rounded-full border-2 transition-all duration-200 flex-shrink-0
+            relative w-[16px] h-[16px] rounded-full border-2 transition-all duration-300 flex-shrink-0
             ${selectedColor === color.name
-              ? 'border-[var(--accent)] ring-2 ring-[var(--accent)] ring-offset-2'
-              : 'border-gray-300 hover:border-[var(--accent)]'
+              ? 'border-[var(--accent)] ring-2 ring-[var(--accent)] ring-offset-2 scale-110'
+              : 'border-gray-300 hover:border-[var(--accent)] hover:scale-105'
             }
             focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
           `}
@@ -44,7 +44,7 @@ export default function ColorSwatches({
         >
           {selectedColor === color.name && (
             <svg
-              className="absolute inset-0 m-auto w-2 h-2 text-white"
+              className="absolute inset-0 m-auto w-2.5 h-2.5 text-white"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -58,7 +58,7 @@ export default function ColorSwatches({
         </button>
       ))}
       {remainingCount > 0 && (
-        <span className="text-[11px] text-[var(--muted)]">+{remainingCount}</span>
+        <span className="text-[11px] font-semibold text-[var(--muted)]">+{remainingCount}</span>
       )}
       {showSelectedName && selectedColorObj && (
         <span className="text-xs font-medium text-[var(--ink)] ml-1">

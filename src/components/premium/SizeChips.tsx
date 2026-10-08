@@ -21,18 +21,18 @@ export default function SizeChips({
   const remainingCount = sizes.length - maxDisplay;
 
   return (
-    <div className={`flex flex-nowrap gap-1.5 overflow-hidden ${className}`}>
+    <div className={`flex flex-nowrap gap-2 overflow-hidden ${className}`}>
       {displaySizes.map((size) => (
         <button
           key={size.label}
           onClick={() => size.inStock && onSelect(size.label)}
           disabled={!size.inStock}
           className={`
-            relative h-6 min-w-[28px] px-2 text-[11px] font-medium rounded-md border transition-all duration-200 flex-shrink-0
+            relative h-7 min-w-[32px] px-2.5 text-[11px] font-semibold rounded-lg border transition-all duration-300 flex-shrink-0
             ${selectedSize === size.label && size.inStock
-              ? 'border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]'
+              ? 'border-[var(--accent)] bg-[var(--accent)] text-white shadow-md'
               : size.inStock
-              ? 'border-gray-300 text-[var(--ink)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]'
+              ? 'border-gray-200 text-[var(--ink)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]'
               : 'border-gray-200 text-gray-400 cursor-not-allowed opacity-50'
             }
             focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
@@ -49,7 +49,7 @@ export default function SizeChips({
         </button>
       ))}
       {remainingCount > 0 && (
-        <span className="h-6 min-w-[28px] px-2 text-[11px] font-medium text-[var(--muted)] flex items-center flex-shrink-0">
+        <span className="h-7 min-w-[32px] px-2.5 text-[11px] font-semibold text-[var(--muted)] flex items-center flex-shrink-0 border border-gray-200 rounded-lg">
           +{remainingCount}
         </span>
       )}

@@ -32,12 +32,7 @@ export default function Navbar() {
 
            <div className="hidden lg:flex items-center gap-12">
             <Link href="/" className={navLinkClass}>Home</Link>
-            <Link href="/shop" className={`flex items-center gap-1 ${navLinkClass}`}>
-              Shop
-              <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
-                <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            </Link>
+            <Link href="/shop" className={navLinkClass}>Shop</Link>
             <Link href="/new-arrivals" className={navLinkClass}>New Arrivals</Link>
             <Link href="/on-sale" className={navLinkClass}>Offers</Link>
             <Link href="/about" className={navLinkClass}>About</Link>
@@ -104,13 +99,10 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/shop"
-                className="flex items-center justify-between py-4 border-b border-gray-100"
+                className="py-4 border-b border-gray-100 text-lg font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <span className="text-lg font-medium">Shop</span>
-                <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
-                  <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
+                Shop
               </Link>
               <Link
                 href="/new-arrivals"

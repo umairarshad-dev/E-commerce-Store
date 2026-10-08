@@ -20,10 +20,10 @@ const onSaleProducts: PremiumProduct[] = [
       { name: 'navy', hex: '#000080' },
     ],
     sizes: [
-      { label: 'Small', inStock: true },
-      { label: 'Medium', inStock: true },
-      { label: 'Large', inStock: true },
-      { label: 'X-Large', inStock: true },
+      { label: 'S', inStock: true },
+      { label: 'M', inStock: true },
+      { label: 'L', inStock: true },
+      { label: 'XL', inStock: true },
     ],
   },
   {
@@ -65,10 +65,10 @@ const onSaleProducts: PremiumProduct[] = [
       { name: 'pink', hex: '#ffc0cb' },
     ],
     sizes: [
-      { label: 'Small', inStock: true },
-      { label: 'Medium', inStock: true },
-      { label: 'Large', inStock: true },
-      { label: 'X-Large', inStock: true },
+      { label: 'S', inStock: true },
+      { label: 'M', inStock: true },
+      { label: 'L', inStock: true },
+      { label: 'XL', inStock: true },
     ],
   },
   {
@@ -86,10 +86,10 @@ const onSaleProducts: PremiumProduct[] = [
       { name: 'black', hex: '#000' },
     ],
     sizes: [
-      { label: 'Small', inStock: true },
-      { label: 'Medium', inStock: true },
-      { label: 'Large', inStock: true },
-      { label: 'X-Large', inStock: true },
+      { label: 'S', inStock: true },
+      { label: 'M', inStock: true },
+      { label: 'L', inStock: true },
+      { label: 'XL', inStock: true },
     ],
   },
   {
@@ -108,10 +108,10 @@ const onSaleProducts: PremiumProduct[] = [
       { name: 'navy', hex: '#000080' },
     ],
     sizes: [
-      { label: 'Small', inStock: true },
-      { label: 'Medium', inStock: true },
-      { label: 'Large', inStock: true },
-      { label: 'X-Large', inStock: true },
+      { label: 'S', inStock: true },
+      { label: 'M', inStock: true },
+      { label: 'L', inStock: true },
+      { label: 'XL', inStock: true },
     ],
   },
   {
@@ -130,10 +130,10 @@ const onSaleProducts: PremiumProduct[] = [
       { name: 'gray', hex: '#808080' },
     ],
     sizes: [
-      { label: 'Small', inStock: true },
-      { label: 'Medium', inStock: true },
-      { label: 'Large', inStock: true },
-      { label: 'X-Large', inStock: true },
+      { label: 'S', inStock: true },
+      { label: 'M', inStock: true },
+      { label: 'L', inStock: true },
+      { label: 'XL', inStock: true },
     ],
   },
   {
@@ -152,10 +152,10 @@ const onSaleProducts: PremiumProduct[] = [
       { name: 'red', hex: '#ff0000' },
     ],
     sizes: [
-      { label: 'Small', inStock: true },
-      { label: 'Medium', inStock: true },
-      { label: 'Large', inStock: true },
-      { label: 'X-Large', inStock: true },
+      { label: 'S', inStock: true },
+      { label: 'M', inStock: true },
+      { label: 'L', inStock: true },
+      { label: 'XL', inStock: true },
     ],
   },
   {
@@ -254,22 +254,22 @@ export default function OnSalePage() {
           {/* Filter and sort section */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
             <div className="flex items-center gap-4">
-              <button className="flex items-center gap-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors">
+              <button className="flex items-center gap-2 px-4 py-2.5 bg-black text-white rounded-xl hover:bg-gray-800 transition-colors font-medium">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M2 5h16M5 10h10M8 15h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
                 Filters
               </button>
             </div>
-            
+
             <div className="relative">
-              <select className="px-4 py-2 pr-8 border border-gray-800 rounded-lg bg-white text-black font-medium appearance-none cursor-pointer hover:bg-gray-50 transition-colors">
+              <select className="px-4 py-2.5 pr-10 border-2 border-gray-800 rounded-xl bg-white text-black font-medium appearance-none cursor-pointer hover:bg-gray-50 transition-colors">
                 <option>Most Popular</option>
                 <option>Price: Low to High</option>
                 <option>Price: High to Low</option>
                 <option>Newest First</option>
               </select>
-              <div className="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none">
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
@@ -278,7 +278,7 @@ export default function OnSalePage() {
           </div>
           
           {/* Products grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-stretch">
             {paginatedProducts.map((product) => (
               <ProductCard
                 key={product.id}

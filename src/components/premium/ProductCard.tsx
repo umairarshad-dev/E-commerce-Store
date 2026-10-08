@@ -85,7 +85,7 @@ export default function ProductCard({
         shadow-[0_2px_8px_rgba(0,0,0,0.08)]
         hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)]
         hover:-translate-y-1
-        transition-all duration-200 ease-out
+        transition-all duration-300 ease-out
         cursor-pointer
         ${className}
       `}
@@ -114,7 +114,7 @@ export default function ProductCard({
       <div className="relative w-full aspect-square md:aspect-[4/5] rounded-xl overflow-hidden bg-neutral-100 p-3">
         {/* Category Pill */}
         <div className="absolute top-2 left-2 z-10">
-          <span className="inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white bg-black/50 backdrop-blur-sm rounded-full">
+          <span className="inline-block px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white bg-black/60 backdrop-blur-md rounded-full">
             {product.category}
           </span>
         </div>
@@ -124,8 +124,8 @@ export default function ProductCard({
           onClick={handleWishlistToggle}
           className={`
             absolute top-2 right-2 z-10 w-8 h-8 rounded-full
-            bg-white shadow-md flex items-center justify-center
-            transition-all duration-200
+            bg-white shadow-lg flex items-center justify-center
+            transition-all duration-300
             ${isWishlisted ? 'scale-110' : 'hover:scale-110'}
             focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
           `}
@@ -133,7 +133,7 @@ export default function ProductCard({
           aria-pressed={isWishlisted}
         >
           <svg
-            className={`w-4 h-4 transition-colors duration-200 ${
+            className={`w-4 h-4 transition-colors duration-300 ${
               isWishlisted ? 'fill-red-500 text-red-500' : 'text-gray-600'
             }`}
             fill={isWishlisted ? 'currentColor' : 'none'}
@@ -172,8 +172,8 @@ export default function ProductCard({
           onClick={handleQuickView}
           className={`
             absolute bottom-0 left-0 right-0
-            bg-white/80 backdrop-blur-sm
-            py-2 text-center
+            bg-white/90 backdrop-blur-md
+            py-2.5 text-center
             transition-transform duration-300 ease-out
             ${isHovered ? 'translate-y-0' : 'translate-y-full'}
             lg:block hidden
@@ -190,7 +190,7 @@ export default function ProductCard({
         <div className="lg:hidden absolute bottom-2 right-2 z-10">
           <button
             onClick={handleQuickView}
-            className="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm shadow-md flex items-center justify-center"
+            className="w-8 h-8 rounded-full bg-white/95 backdrop-blur-md shadow-lg flex items-center justify-center"
             aria-label="Quick view"
           >
             <svg className="w-4 h-4 text-[var(--ink)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -254,8 +254,8 @@ export default function ProductCard({
             onClick={handleAddToCart}
             className={`
               w-8 h-8 rounded-lg flex items-center justify-center
-              transition-all duration-200
-              bg-[var(--accent-soft)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white
+              transition-all duration-300
+              bg-[var(--accent-soft)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white hover:scale-105
               focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
             `}
             aria-label="Add to cart"

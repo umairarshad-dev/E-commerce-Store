@@ -20,10 +20,10 @@ const products: PremiumProduct[] = [
       { name: 'black-white', hex: '#000' },
     ],
     sizes: [
-      { label: 'Small', inStock: true },
-      { label: 'Medium', inStock: true },
-      { label: 'Large', inStock: true },
-      { label: 'X-Large', inStock: true },
+      { label: 'S', inStock: true },
+      { label: 'M', inStock: true },
+      { label: 'L', inStock: true },
+      { label: 'XL', inStock: true },
     ],
   },
   {
@@ -42,10 +42,10 @@ const products: PremiumProduct[] = [
       { name: 'gray', hex: '#808080' },
     ],
     sizes: [
-      { label: 'Small', inStock: true },
-      { label: 'Medium', inStock: true },
-      { label: 'Large', inStock: true },
-      { label: 'X-Large', inStock: true },
+      { label: 'S', inStock: true },
+      { label: 'M', inStock: true },
+      { label: 'L', inStock: true },
+      { label: 'XL', inStock: true },
     ],
   },
   {
@@ -171,7 +171,7 @@ export default function NewArrivals() {
 
           <div className="flex justify-center mt-8">
             <Link href="/new-arrivals">
-              <button className="w-[132px] h-[48px] lg:w-[218px] lg:h-[52px] rounded-full py-4 px-8 border border-black/10 font-sans font-medium text-base leading-none tracking-normal text-black hover:bg-gray-50 transition-colors">
+              <button className="w-[132px] h-[48px] lg:w-[218px] lg:h-[52px] rounded-full py-4 px-8 border-2 border-black font-sans font-semibold text-base leading-none tracking-normal text-black hover:bg-black hover:text-white transition-all duration-300">
                 View All
               </button>
             </Link>

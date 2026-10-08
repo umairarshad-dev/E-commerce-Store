@@ -17,7 +17,7 @@ const colors = [
   { name: 'black', code: '#000' },
 ];
 const sizes = [
-  'XX-Small', 'X-Small', 'Small', 'Medium', 'Large', 'X-Large', 'XX-Large', '3X-Large', '4X-Large'
+  'XS', 'S', 'M', 'L', 'XL', 'XXL'
 ];
 const dressStyles = ['Casual', 'Formal', 'Party', 'Gym'];
 
@@ -152,37 +152,41 @@ const ShopPage = () => {
             </div>
 
             {/* Filters - Always visible on desktop, toggle on mobile */}
-            <div className={`${showMobileFilters ? 'block' : 'hidden'} md:block w-full md:w-64 flex-shrink-0`}>
-              <div className="shadow-sm p-6 space-y-8 pb-20 rounded-[20px] px-[24px] py-[20px] gap-[24px] bg-white">
-                <div className="flex items-center justify-between mb-2 w-full h-[27px]">
-                  <span className="font-[Satoshi] font-bold text-[20px] leading-[100%] tracking-[0%] align-middle text-[#000000]">
+            <div className={`${showMobileFilters ? 'block' : 'hidden'} md:block w-full md:w-72 flex-shrink-0`}>
+              <div className="shadow-lg p-6 space-y-6 rounded-2xl bg-white border border-gray-100">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="font-bold text-xl text-black">
                     Filters
                   </span>
-                  <FunnelIcon className="w-5 h-5 text-black" />
+                  <FunnelIcon className="w-5 h-5 text-gray-600" />
                 </div>
 
-                <div className="w-full border-b border-[#0000001A] border-[1px]"></div>
+                <div className="h-px bg-gray-200"></div>
 
                 <div>
                   <button
-                    className="flex items-center justify-between w-full mb-2 select-none"
+                    className="flex items-center justify-between w-full mb-3 select-none py-2"
                     onClick={() => setOpenCategories((v) => !v)}
                     type="button"
                   >
-                    <span className="font-semibold text-black">Categories</span>
+                    <span className="font-semibold text-base text-black">Categories</span>
                     {openCategories ? (
-                      <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
+                      <ChevronDownIcon className="w-5 h-5 text-gray-600 transition-transform rotate-180" />
                     ) : (
-                      <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
+                      <ChevronRightIcon className="w-5 h-5 text-gray-600 transition-transform" />
                     )}
                   </button>
                   {openCategories && (
-                    <div className="space-y-1 w-full h-auto gap-[20px]">
+                    <div className="space-y-2 pl-2">
                       {categories.map((cat) => (
                         <button
                           key={cat}
                           onClick={() => setSelectedCategory(cat)}
-                          className={`flex items-center justify-between font-[Satoshi] font-normal text-[16px] leading-[100%] tracking-[0%] text-[#00000099] w-full px-2 py-1 rounded-md hover:bg-gray-100 ${selectedCategory === cat ? 'font-bold' : ''}`}
+                          className={`flex items-center w-full px-3 py-2 rounded-lg text-sm transition-all ${
+                            selectedCategory === cat
+                              ? 'bg-black text-white font-semibold'
+                              : 'text-gray-700 hover:bg-gray-100'
+                          }`}
                         >
                           <span>{cat}</span>
                         </button>
@@ -193,21 +197,21 @@ const ShopPage = () => {
 
                 <div>
                   <button
-                    className="flex items-center justify-between w-full mb-2 select-none"
+                    className="flex items-center justify-between w-full mb-3 select-none py-2"
                     onClick={() => setOpenPrice((v) => !v)}
                     type="button"
                   >
-                    <span className="font-semibold text-black">Price</span>
+                    <span className="font-semibold text-base text-black">Price</span>
                     {openPrice ? (
-                      <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
+                      <ChevronDownIcon className="w-5 h-5 text-gray-600 transition-transform rotate-180" />
                     ) : (
-                      <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
+                      <ChevronRightIcon className="w-5 h-5 text-gray-600 transition-transform" />
                     )}
                   </button>
                   {openPrice && (
-                    <div className="py-2">
+                    <div className="py-3 pl-2">
                       <div className="relative h-8 flex items-center">
-                        <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-2 bg-gray-100 rounded-full" />
+                        <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-2 bg-gray-200 rounded-full" />
                         <div
                           className="absolute top-1/2 -translate-y-1/2 h-2 bg-black rounded-full"
                           style={{
@@ -294,7 +298,7 @@ const ShopPage = () => {
                           }
                         `}</style>
                       </div>
-                      <div className="flex justify-between text-sm text-black mt-2">
+                      <div className="flex justify-between text-sm font-medium text-gray-700 mt-3">
                         <span>PKR {price[0]}</span>
                         <span>PKR {price[1]}</span>
                       </div>
@@ -304,24 +308,26 @@ const ShopPage = () => {
 
                 <div>
                   <button
-                    className="flex items-center justify-between w-full mb-2 select-none"
+                    className="flex items-center justify-between w-full mb-3 select-none py-2"
                     onClick={() => setOpenColors((v) => !v)}
                     type="button"
                   >
-                    <span className="font-semibold text-black">Colors</span>
+                    <span className="font-semibold text-base text-black">Colors</span>
                     {openColors ? (
-                      <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
+                      <ChevronDownIcon className="w-5 h-5 text-gray-600 transition-transform rotate-180" />
                     ) : (
-                      <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
+                      <ChevronRightIcon className="w-5 h-5 text-gray-600 transition-transform" />
                     )}
                   </button>
                   {openColors && (
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 pl-2">
                       {colors.map((color) => (
                         <button
                           key={color.name}
                           onClick={() => setSelectedColor(color.name)}
-                          className={`w-7 h-7 rounded-full border-2 flex items-center justify-center ${selectedColor === color.name ? 'border-black' : 'border-gray-200'}`}
+                          className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all hover:scale-110 ${
+                            selectedColor === color.name ? 'border-black ring-2 ring-black ring-offset-2' : 'border-gray-300'
+                          }`}
                           style={{ backgroundColor: color.code }}
                         >
                           {selectedColor === color.name && color.name !== 'white' && (
@@ -338,27 +344,27 @@ const ShopPage = () => {
 
                 <div>
                   <button
-                    className="flex items-center justify-between w-full mb-2 select-none"
+                    className="flex items-center justify-between w-full mb-3 select-none py-2"
                     onClick={() => setOpenSizes((v) => !v)}
                     type="button"
                   >
-                    <span className="font-semibold text-black">Size</span>
+                    <span className="font-semibold text-base text-black">Size</span>
                     {openSizes ? (
-                      <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
+                      <ChevronDownIcon className="w-5 h-5 text-gray-600 transition-transform rotate-180" />
                     ) : (
-                      <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
+                      <ChevronRightIcon className="w-5 h-5 text-gray-600 transition-transform" />
                     )}
                   </button>
                   {openSizes && (
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 pl-2">
                       {sizes.map((size) => (
                         <button
                           key={size}
                           onClick={() => setSelectedSize(size)}
-                          className={`px-3 py-1 rounded-full text-sm border transition-all ${
+                          className={`px-3 py-1.5 rounded-lg text-sm font-medium border transition-all ${
                             selectedSize === size
                               ? 'bg-black text-white border-black'
-                              : 'bg-[#F0F0F0] text-[#00000099] border-gray-200'
+                              : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-gray-300'
                           }`}
                         >
                           {size}
@@ -370,24 +376,28 @@ const ShopPage = () => {
 
                 <div>
                   <button
-                    className="flex items-center justify-between w-full mb-2 select-none"
+                    className="flex items-center justify-between w-full mb-3 select-none py-2"
                     onClick={() => setOpenDressStyle((v) => !v)}
                     type="button"
                   >
-                    <span className="font-semibold text-black">Dress Style</span>
+                    <span className="font-semibold text-base text-black">Dress Style</span>
                     {openDressStyle ? (
-                      <ChevronDownIcon className="w-4 h-4 text-black transition-transform rotate-90" />
+                      <ChevronDownIcon className="w-5 h-5 text-gray-600 transition-transform rotate-180" />
                     ) : (
-                      <ChevronRightIcon className="w-4 h-4 text-black transition-transform -rotate-90" />
+                      <ChevronRightIcon className="w-5 h-5 text-gray-600 transition-transform" />
                     )}
                   </button>
                   {openDressStyle && (
-                    <div className="space-y-1 w-full h-auto gap-[20px]">
+                    <div className="space-y-2 pl-2">
                       {dressStyles.map((style) => (
                         <button
                           key={style}
                           onClick={() => setSelectedDressStyle(style)}
-                          className={`flex items-center justify-between font-[Satoshi] font-normal text-[16px] leading-[100%] tracking-[0%] text-[#00000099] w-full px-2 py-1 rounded-md hover:bg-gray-100 ${selectedDressStyle === style ? 'font-bold' : ''}`}
+                          className={`flex items-center w-full px-3 py-2 rounded-lg text-sm transition-all ${
+                            selectedDressStyle === style
+                              ? 'bg-black text-white font-semibold'
+                              : 'text-gray-700 hover:bg-gray-100'
+                          }`}
                         >
                           <span>{style}</span>
                         </button>
@@ -396,7 +406,7 @@ const ShopPage = () => {
                   )}
                 </div>
 
-                <button className="w-full bg-black text-white py-2 px-4 rounded-full mt-4 font-semibold">
+                <button className="w-full bg-black text-white py-3 px-6 rounded-xl mt-4 font-semibold hover:bg-gray-800 transition-colors">
                   Apply Filter
                 </button>
               </div>
@@ -404,7 +414,7 @@ const ShopPage = () => {
 
             {/* Products */}
             <div className="flex-1">
-              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 items-stretch">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-stretch">
                 {paginatedProducts.map((product) => (
                   <ProductCard
                     key={product.id}

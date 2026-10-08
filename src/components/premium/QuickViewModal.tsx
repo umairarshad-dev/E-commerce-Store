@@ -265,10 +265,10 @@ export default function QuickViewModal({
                             <tr key={size.label} className="border-b border-gray-100 last:border-0">
                               <td className="py-1.5 font-medium text-[var(--ink)]">{size.label}</td>
                               <td className="py-1.5 text-center text-[var(--muted)]">
-                                {size.label === 'XS' ? '34-36' : size.label === 'S' ? '36-38' : size.label === 'M' ? '38-40' : size.label === 'L' ? '40-42' : size.label === 'XL' ? '42-44' : '44-46'}
+                                {size.label === 'XS' ? '34-36' : size.label === 'S' ? '36-38' : size.label === 'M' ? '38-40' : size.label === 'L' ? '40-42' : size.label === 'XL' ? '42-44' : size.label === 'XXL' ? '44-46' : '44-46'}
                               </td>
                               <td className="py-1.5 text-center text-[var(--muted)]">
-                                {size.label === 'XS' ? '26' : size.label === 'S' ? '27' : size.label === 'M' ? '28' : size.label === 'L' ? '29' : size.label === 'XL' ? '30' : '31'}
+                                {size.label === 'XS' ? '26' : size.label === 'S' ? '27' : size.label === 'M' ? '28' : size.label === 'L' ? '29' : size.label === 'XL' ? '30' : size.label === 'XXL' ? '31' : '31'}
                               </td>
                             </tr>
                           ))}
