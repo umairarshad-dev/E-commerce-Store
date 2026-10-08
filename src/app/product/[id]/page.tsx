@@ -422,7 +422,7 @@ export default function ProductDetail({ params }: { params: Promise<ProductParam
               </details>
               <details className="mb-4 border-b border-gray-200 pb-4">
                 <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">Do you have physical stores?</summary>
-                <p className="mt-2 text-gray-600">Currently, we operate exclusively online, but we host pop-up shops in major cities throughout the year. Sign up for our newsletter to stay informed about upcoming events.</p>
+                <p className="mt-2 text-gray-600">Currently, we operate exclusively online, but we host pop-up shops in major cities throughout the year. Check our website for upcoming event announcements.</p>
               </details>
               <details className="mb-4 border-b border-gray-200 pb-4">
                 <summary className="font-semibold text-gray-700 cursor-pointer hover:text-gray-900 transition-colors">Do you offer wholesale opportunities?</summary>

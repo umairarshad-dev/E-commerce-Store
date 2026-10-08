@@ -168,7 +168,8 @@ export default function ProductCard({
         </div>
 
         {/* Quick View Overlay - Desktop */}
-        <div
+        <button
+          onClick={handleQuickView}
           className={`
             absolute bottom-0 left-0 right-0
             bg-white/80 backdrop-blur-sm
@@ -176,12 +177,14 @@ export default function ProductCard({
             transition-transform duration-300 ease-out
             ${isHovered ? 'translate-y-0' : 'translate-y-full'}
             lg:block hidden
+            focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
           `}
+          aria-label="Quick view"
         >
           <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
             Quick View
           </span>
-        </div>
+        </button>
 
         {/* Quick View Button - Mobile */}
         <div className="lg:hidden absolute bottom-2 right-2 z-10">
