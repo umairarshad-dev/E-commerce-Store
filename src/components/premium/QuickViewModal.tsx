@@ -24,7 +24,7 @@ export default function QuickViewModal({
 }: QuickViewModalProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState('');
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]?.name || '');
+  const [selectedColor, setSelectedColor] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
   const [showSizeGuide, setShowSizeGuide] = useState(false);
@@ -216,7 +216,7 @@ export default function QuickViewModal({
                       Color
                     </p>
                     <span className="text-[10px] font-medium text-[var(--ink)]">
-                      {product.colors.find((c) => c.name === selectedColor)?.name}
+                      {selectedColor ? product.colors.find((c) => c.name === selectedColor)?.name : 'Select'}
                     </span>
                   </div>
                   <ColorSwatches

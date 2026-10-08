@@ -28,7 +28,10 @@ export default function ColorSwatches({
       {displayColors.map((color) => (
         <button
           key={color.name}
-          onClick={() => onSelect(color.name)}
+          onClick={(e) => {
+            e.stopPropagation();
+            onSelect(color.name);
+          }}
           className={`
             relative w-[16px] h-[16px] rounded-full border-2 transition-all duration-300 flex-shrink-0
             ${selectedColor === color.name

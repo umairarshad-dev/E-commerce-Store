@@ -69,6 +69,9 @@ export default function Footer() {
                           <a href="#" className="text-[#666] hover:text-black transition-colors">{item}</a>
                         </li>
                       ))}
+                      <li>
+                        <a href="/faq" className="text-[#666] hover:text-black transition-colors">FAQ</a>
+                      </li>
                     </ul>
                   </div>
 

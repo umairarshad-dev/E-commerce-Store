@@ -40,10 +40,8 @@ export default function ProductCard({
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [selectedSize, setSelectedSize] = useState(
-    product.sizes.find((s) => s.inStock)?.label || ''
-  );
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]?.name || '');
+  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedColor, setSelectedColor] = useState('');
 
   const discountPercentage = product.compareAtPrice
     ? Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)
@@ -210,7 +208,7 @@ export default function ProductCard({
 
         {/* Size Chips */}
         {product.sizes.length > 0 && (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
             <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted)] whitespace-nowrap">
               Size:
             </p>
@@ -225,7 +223,7 @@ export default function ProductCard({
 
         {/* Color Swatches */}
         {product.colors.length > 0 && (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
             <p className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted)] whitespace-nowrap">
               Color:
             </p>

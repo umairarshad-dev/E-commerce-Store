@@ -25,7 +25,10 @@ export default function SizeChips({
       {displaySizes.map((size) => (
         <button
           key={size.label}
-          onClick={() => size.inStock && onSelect(size.label)}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (size.inStock) onSelect(size.label);
+          }}
           disabled={!size.inStock}
           className={`
             relative h-7 min-w-[32px] px-2.5 text-[11px] font-semibold rounded-lg border transition-all duration-300 flex-shrink-0
