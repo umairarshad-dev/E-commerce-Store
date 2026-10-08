@@ -14,14 +14,13 @@ interface OrderTracking {
 
 export default function TrackOrderPage() {
   const [orderNumber, setOrderNumber] = useState('');
-  const [contactInfo, setContactInfo] = useState('');
   const [trackingStatus, setTrackingStatus] = useState<TrackingStatus>('idle');
   const [orderData, setOrderData] = useState<OrderTracking | null>(null);
 
   const handleTrackOrder = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!orderNumber || !contactInfo) {
+    if (!orderNumber) {
       setTrackingStatus('empty');
       return;
     }
@@ -52,7 +51,6 @@ export default function TrackOrderPage() {
 
   const resetForm = () => {
     setOrderNumber('');
-    setContactInfo('');
     setTrackingStatus('idle');
     setOrderData(null);
   };
@@ -65,7 +63,7 @@ export default function TrackOrderPage() {
             Track Your Order
           </h1>
           <p className="text-gray-600 mb-12 text-center max-w-2xl mx-auto">
-            Enter your order number and contact information to track your order status and delivery details.
+            Enter your order number to track your order status and delivery details.
           </p>
 
           <div className="max-w-2xl mx-auto">
@@ -87,21 +85,6 @@ export default function TrackOrderPage() {
                   <p className="text-xs text-gray-500 mt-1">
                     Hint: Use ORD12345 for a demo order
                   </p>
-                </div>
-
-                <div>
-                  <label htmlFor="contactInfo" className="block text-sm font-medium text-black mb-2">
-                    Email or Phone
-                  </label>
-                  <input
-                    type="text"
-                    id="contactInfo"
-                    value={contactInfo}
-                    onChange={(e) => setContactInfo(e.target.value)}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent text-black"
-                    placeholder="your.email@example.com or +92 300 1234567"
-                  />
                 </div>
 
                 <button

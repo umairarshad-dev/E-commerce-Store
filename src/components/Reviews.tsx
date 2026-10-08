@@ -78,20 +78,20 @@ const Reviews: React.FC = () => {
               OUR HAPPY CUSTOMERS
             </h2>
             <div className="flex gap-4">
-              <Image 
-                src="/Arrow-left.png" 
-                alt="Previous" 
-                width={16} 
+              <Image
+                src="/images/ui/Arrow-left.png"
+                alt="Previous"
+                width={16}
                 height={13}
-                className="cursor-pointer hover:opacity-80 transition-opacity" 
+                className="cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={handlePrevious}
               />
-              <Image 
-                src="/Arrow-right.png" 
-                alt="Next" 
-                width={16} 
+              <Image
+                src="/images/ui/Arrow-right.png"
+                alt="Next"
+                width={16}
                 height={13}
-                className="cursor-pointer hover:opacity-80 transition-opacity" 
+                className="cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={handleNext}
               />
             </div>

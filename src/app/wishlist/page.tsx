@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
+import { useState } from 'react';
 import { ProductCard, QuickViewModal, usePremiumCart, type Product as PremiumProduct } from '@/components/premium';
 
-const products: PremiumProduct[] = [
+const wishlistProducts: PremiumProduct[] = [
   {
     id: '1',
     slug: 'modern-striped-shirt',
@@ -48,57 +47,13 @@ const products: PremiumProduct[] = [
       { label: 'X-Large', inStock: true },
     ],
   },
-  {
-    id: '3',
-    slug: 'premium-shorts',
-    title: 'Premium Shorts',
-    category: 'MEN · SHORTS',
-    fabric: 'COTTON',
-    price: 3499,
-    compareAtPrice: 4999,
-    badge: 'NEW',
-    images: ['/images/ecommerce-assets/pent01.png'],
-    colors: [
-      { name: 'khaki', hex: '#c3b091' },
-      { name: 'navy', hex: '#000080' },
-      { name: 'black', hex: '#000' },
-    ],
-    sizes: [
-      { label: '30', inStock: true },
-      { label: '32', inStock: true },
-      { label: '34', inStock: true },
-      { label: '36', inStock: true },
-    ],
-  },
-  {
-    id: '4',
-    slug: 'slim-fit-denim',
-    title: 'Slim Fit Denim',
-    category: 'MEN · JEANS',
-    fabric: 'DENIM',
-    price: 5999,
-    compareAtPrice: 8499,
-    badge: 'NEW',
-    images: ['/images/ecommerce-assets/pent02.png'],
-    colors: [
-      { name: 'blue', hex: '#4169e1' },
-      { name: 'black', hex: '#000' },
-    ],
-    sizes: [
-      { label: '28', inStock: true },
-      { label: '30', inStock: true },
-      { label: '32', inStock: true },
-      { label: '34', inStock: true },
-      { label: '36', inStock: true },
-    ],
-  },
 ];
 
-export default function NewArrivals() {
+export default function WishlistPage() {
   const { addToCart } = usePremiumCart();
   const [selectedProduct, setSelectedProduct] = useState<PremiumProduct | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set());
+  const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set(wishlistProducts.map(p => p.id)));
 
   const handleQuickView = (product: PremiumProduct) => {
     setSelectedProduct(product);
@@ -148,34 +103,40 @@ export default function NewArrivals() {
     });
   };
 
+  const filteredProducts = wishlistProducts.filter(p => wishlistedItems.has(p.id));
+
   return (
-    <div className="w-full bg-white">
-      <div className="px-8 py-7">
+    <div className="w-full bg-white min-h-screen">
+      <div className="px-8 py-12">
         <div className="max-w-screen-xl mx-auto">
-          <div className="font-['Integral CF'] font-bold text-4xl md:text-5xl text-black mb-8 text-center">
-            New Arrival
-          </div>
+          <h1 className="font-['Integral_CF'] font-bold text-4xl md:text-5xl text-black mb-4 text-center">
+            My Wishlist
+          </h1>
+          <p className="text-gray-600 mb-12 text-center max-w-2xl mx-auto">
+            {filteredProducts.length} items saved
+          </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 items-stretch">
-            {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onQuickView={handleQuickView}
-                onAddToCart={handleAddToCart}
-                onWishlistToggle={handleWishlistToggle}
-                isWishlisted={wishlistedItems.has(product.id)}
-              />
-            ))}
-          </div>
-
-          <div className="flex justify-center mt-8">
-            <Link href="/new-arrivals">
-              <button className="w-[132px] h-[48px] lg:w-[218px] lg:h-[52px] rounded-full py-4 px-8 border border-black/10 font-sans font-medium text-base leading-none tracking-normal text-black hover:bg-gray-50 transition-colors">
-                View All
-              </button>
-            </Link>
-          </div>
+          {filteredProducts.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 items-stretch">
+              {filteredProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onQuickView={handleQuickView}
+                  onAddToCart={handleAddToCart}
+                  onWishlistToggle={handleWishlistToggle}
+                  isWishlisted={wishlistedItems.has(product.id)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-gray-600 mb-4">Your wishlist is empty</p>
+              <a href="/shop" className="inline-block bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors">
+                Continue Shopping
+              </a>
+            </div>
+          )}
         </div>
       </div>
 

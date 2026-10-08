@@ -31,18 +31,18 @@ export default function Navbar() {
           </Link>
 
            <div className="hidden lg:flex items-center gap-12">
+            <Link href="/" className={navLinkClass}>Home</Link>
             <Link href="/shop" className={`flex items-center gap-1 ${navLinkClass}`}>
               Shop
               <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
                 <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
             </Link>
-            <Link href="/on-sale" className={navLinkClass}>On Sale</Link>
             <Link href="/new-arrivals" className={navLinkClass}>New Arrivals</Link>
-            <Link href="/brands" className={navLinkClass}>Brands</Link>
+            <Link href="/on-sale" className={navLinkClass}>Offers</Link>
+            <Link href="/about" className={navLinkClass}>About</Link>
             <Link href="/contact" className={navLinkClass}>Contact</Link>
             <Link href="/track-order" className={navLinkClass}>Track Order</Link>
-            <Link href="/premium-demo" className={navLinkClass}>Premium Demo</Link>
           </div>
 
            <div className="flex items-center gap-4 md:gap-6">
@@ -60,6 +60,11 @@ export default function Navbar() {
                 )}
               </button>
             )}
+            <Link href="/wishlist">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </Link>
             <Link href="/cart" className="relative">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="9" cy="21" r="1"></circle>
@@ -71,12 +76,6 @@ export default function Navbar() {
                   {cartCount}
                 </span>
               )}
-            </Link>
-            <Link href="/profile">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
             </Link>
           </div>
         </div>
@@ -97,6 +96,13 @@ export default function Navbar() {
             
              <div className="flex flex-col mt-4">
               <Link
+                href="/"
+                className="py-4 border-b border-gray-100 text-lg font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
                 href="/shop"
                 className="flex items-center justify-between py-4 border-b border-gray-100"
                 onClick={() => setIsMenuOpen(false)}
@@ -107,13 +113,6 @@ export default function Navbar() {
                 </svg>
               </Link>
               <Link
-                href="/on-sale"
-                className="py-4 border-b border-gray-100 text-lg font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                On Sale
-              </Link>
-              <Link
                 href="/new-arrivals"
                 className="py-4 border-b border-gray-100 text-lg font-medium"
                 onClick={() => setIsMenuOpen(false)}
@@ -121,11 +120,18 @@ export default function Navbar() {
                 New Arrivals
               </Link>
               <Link
-                href="/brands"
+                href="/on-sale"
                 className="py-4 border-b border-gray-100 text-lg font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Brands
+                Offers
+              </Link>
+              <Link
+                href="/about"
+                className="py-4 border-b border-gray-100 text-lg font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                About
               </Link>
               <Link
                 href="/contact"
@@ -141,30 +147,12 @@ export default function Navbar() {
               >
                 Track Order
               </Link>
-              <Link
-                href="/premium-demo"
-                className="py-4 border-b border-gray-100 text-lg font-medium"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Premium Demo
-              </Link>
             </div>
-            
+
             {/* Account Options */}
             <div className="mt-6 pt-4 border-t border-gray-200">
-              <Link 
-                href="/profile" 
-                className="flex items-center gap-3 py-3"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                <span className="text-lg">My Account</span>
-              </Link>
-              <Link 
-                href="/cart" 
+              <Link
+                href="/cart"
                 className="flex items-center gap-3 py-3"
                 onClick={() => setIsMenuOpen(false)}
               >

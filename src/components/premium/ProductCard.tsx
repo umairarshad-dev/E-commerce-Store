@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import SizeChips from './SizeChips';
 import ColorSwatches from './ColorSwatches';
 
@@ -36,6 +37,7 @@ export default function ProductCard({
   isWishlisted = false,
   className = '',
 }: ProductCardProps) {
+  const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState(
@@ -59,6 +61,10 @@ export default function ProductCard({
     if (onQuickView) {
       onQuickView(product);
     }
+  };
+
+  const handleCardClick = () => {
+    router.push(`/product/${product.id}`);
   };
 
   const handleWishlistToggle = (e: React.MouseEvent) => {
@@ -93,39 +99,24 @@ export default function ProductCard({
         setIsHovered(false);
         setCurrentImageIndex(0);
       }}
-      onClick={handleQuickView}
+      onClick={handleCardClick}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          handleQuickView(e as any);
+          handleCardClick();
         }
       }}
       aria-label={`View details for ${product.title}`}
     >
       {/* Image Area */}
       <div className="relative w-full aspect-square md:aspect-[4/5] rounded-xl overflow-hidden bg-neutral-100 p-3">
-        {/* Category Pill and Badge Row */}
-        <div className="absolute top-2 left-2 z-10 flex gap-1.5">
+        {/* Category Pill */}
+        <div className="absolute top-2 left-2 z-10">
           <span className="inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white bg-black/50 backdrop-blur-sm rounded-full">
             {product.category}
           </span>
-          {product.badge && (
-            <span
-              className={`
-                inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full
-                ${product.badge === 'SALE'
-                  ? 'bg-red-500 text-white'
-                  : product.badge === 'NEW'
-                  ? 'bg-[var(--accent)] text-white'
-                  : 'bg-amber-500 text-white'
-                }
-              `}
-            >
-              {product.badge === 'SALE' && discountPercentage ? `-${discountPercentage}%` : product.badge}
-            </span>
-          )}
         </div>
 
         {/* Wishlist Button */}
@@ -209,39 +200,29 @@ export default function ProductCard({
 
       {/* Info Area */}
       <div className="flex-1 flex flex-col gap-2 pt-2 mt-auto">
-        {/* Title with badge indicator */}
-        <div className="flex items-center gap-2">
-          {product.badge && (
-            <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">
-              {product.badge === 'NEW' ? 'New' : product.badge === 'BEST SELLER' ? 'Best Seller' : 'Sale'}
-            </span>
-          )}
-          <h3 className="text-sm font-semibold text-[var(--ink)] truncate">
-            {product.title}
-          </h3>
-        </div>
+        {/* Title */}
+        <h3 className="text-sm font-semibold text-[var(--ink)] truncate">
+          {product.title}
+        </h3>
 
-        {/* Sizes and Colors on same row */}
-        {(product.sizes.length > 0 || product.colors.length > 0) && (
-          <div className="flex items-center justify-between gap-2">
-            {product.sizes.length > 0 && (
-              <SizeChips
-                sizes={product.sizes}
-                selectedSize={selectedSize}
-                onSelect={setSelectedSize}
-                maxDisplay={4}
-                className="flex-1"
-              />
-            )}
-            {product.colors.length > 0 && (
-              <ColorSwatches
-                colors={product.colors}
-                selectedColor={selectedColor}
-                onSelect={setSelectedColor}
-                maxDisplay={4}
-              />
-            )}
-          </div>
+        {/* Size Chips */}
+        {product.sizes.length > 0 && (
+          <SizeChips
+            sizes={product.sizes}
+            selectedSize={selectedSize}
+            onSelect={setSelectedSize}
+            maxDisplay={4}
+          />
+        )}
+
+        {/* Color Swatches */}
+        {product.colors.length > 0 && (
+          <ColorSwatches
+            colors={product.colors}
+            selectedColor={selectedColor}
+            onSelect={setSelectedColor}
+            maxDisplay={4}
+          />
         )}
 
         {/* Footer */}
@@ -252,9 +233,16 @@ export default function ProductCard({
               {formatPrice(product.price)}
             </span>
             {product.compareAtPrice && (
-              <span className="text-xs text-[var(--muted)] line-through tabular-nums">
-                {formatPrice(product.compareAtPrice)}
-              </span>
+              <>
+                <span className="text-xs text-[var(--muted)] line-through tabular-nums">
+                  {formatPrice(product.compareAtPrice)}
+                </span>
+                {discountPercentage && (
+                  <span className="text-[10px] font-bold text-red-600">
+                    -{discountPercentage}%
+                  </span>
+                )}
+              </>
             )}
           </div>
 

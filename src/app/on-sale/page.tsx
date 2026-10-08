@@ -187,6 +187,14 @@ export default function OnSalePage() {
   const [selectedProduct, setSelectedProduct] = useState<PremiumProduct | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set());
+  const [page, setPage] = useState(1);
+  const productsPerPage = 8;
+
+  const paginatedProducts = onSaleProducts.slice(
+    (page - 1) * productsPerPage,
+    page * productsPerPage
+  );
+  const totalPages = Math.ceil(onSaleProducts.length / productsPerPage);
 
   const handleQuickView = (product: PremiumProduct) => {
     setSelectedProduct(product);
@@ -271,7 +279,7 @@ export default function OnSalePage() {
           
           {/* Products grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 items-stretch">
-            {onSaleProducts.map((product) => (
+            {paginatedProducts.map((product) => (
               <ProductCard
                 key={product.id}
                 product={product}
@@ -285,38 +293,39 @@ export default function OnSalePage() {
 
           {/* Pagination */}
           <div className="mt-10 flex justify-center">
-            <nav className="flex items-center gap-2 flex-wrap justify-center">
+            <nav className="flex items-center gap-1 sm:gap-2">
               <button
-                className="px-4 py-2 rounded-full border border-gray-300 text-black disabled:opacity-50 text-sm flex items-center gap-2 hover:bg-gray-50 transition-colors"
-                disabled={true}
+                className="px-3 py-2 sm:px-4 sm:py-2 rounded-lg border border-gray-300 text-black disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm flex items-center gap-1 sm:gap-2 hover:bg-gray-50 transition-colors"
+                disabled={page === 1}
+                onClick={() => setPage(page - 1)}
               >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                   <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                Previous
+                <span className="hidden sm:inline">Previous</span>
               </button>
-              {[1, 2, 3].map((p) => (
+
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
                 <button
                   key={p}
-                  className="w-10 h-10 rounded-full border border-gray-300 text-black text-sm flex items-center justify-center bg-gray-200 font-medium"
+                  className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg text-xs sm:text-sm flex items-center justify-center transition-colors font-medium ${
+                    page === p
+                      ? 'bg-black text-white'
+                      : 'border border-gray-300 text-black hover:bg-gray-50'
+                  }`}
+                  onClick={() => setPage(p)}
                 >
                   {p}
                 </button>
               ))}
-              <span className="text-black">...</span>
-              {[8, 9, 10].map((p) => (
-                <button
-                  key={p}
-                  className="w-10 h-10 rounded-full border border-gray-300 text-black text-sm flex items-center justify-center hover:bg-gray-50 transition-colors"
-                >
-                  {p}
-                </button>
-              ))}
+
               <button
-                className="px-4 py-2 rounded-full border border-gray-300 text-black text-sm flex items-center gap-2 hover:bg-gray-50 transition-colors"
+                className="px-3 py-2 sm:px-4 sm:py-2 rounded-lg border border-gray-300 text-black disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm flex items-center gap-1 sm:gap-2 hover:bg-gray-50 transition-colors"
+                disabled={page === totalPages}
+                onClick={() => setPage(page + 1)}
               >
-                Next
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <span className="hidden sm:inline">Next</span>
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                   <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
