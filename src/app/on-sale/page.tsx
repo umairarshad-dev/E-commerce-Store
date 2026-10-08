@@ -1,151 +1,240 @@
-import Image from 'next/image';
+'use client';
 
-interface Product {
-  id: number;
-  name: string;
-  rating: number;
-  reviews: number;
-  currentPrice: number;
-  originalPrice?: number;
-  discount?: number;
-  image: string;
-}
+import React, { useState } from 'react';
+import { ProductCard, QuickViewModal, usePremiumCart, type Product as PremiumProduct } from '@/components/premium';
 
-const OnSaleProductCard = ({
-  name,
-  rating,
-  reviews,
-  currentPrice,
-  originalPrice,
-  discount,
-  image,
-}: Product) => {
-  return (
-    <div className="flex flex-col items-center">
-      <div className="relative w-full aspect-[3/4]">
-        <Image
-          src={image}
-          alt={name}
-          fill
-          className="w-full h-full rounded-3xl bg-[#F0EEED] object-cover"
-        />
-        {discount && (
-          <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-            {discount}% OFF
-          </div>
-        )}
-      </div>
-
-      <div className="pt-4 ">
-        <h3 className="text-black font-bold text-xl leading-none tracking-normal align-middle">{name}</h3>
-
-        <div className="flex items-center">
-          <div className="flex text-yellow-400 mr-2">
-            {[...Array(5)].map((_, i) => (
-              <span key={i}>
-                {i < Math.floor(rating) ? '★' : '☆'}
-              </span>
-            ))}
-          </div>
-          <span className="text-gray-500 text-sm">({reviews})</span>
-        </div>
-
-        <div className="flex items-center justify-center">
-          <span className="text-black font-bold text-xl md:text-2xl leading-none tracking-normal">PKR {currentPrice}</span>
-          {originalPrice && (
-            <span className="text-black/40 font-bold text-xl md:text-2xl leading-none tracking-normal line-through ml-2">
-              PKR {originalPrice}
-            </span>
-          )}
-        </div>
-      </div>  
-    </div>
-  );
-};
+const onSaleProducts: PremiumProduct[] = [
+  {
+    id: '1',
+    slug: 'premium-cotton-tshirt',
+    title: 'Premium Cotton T-Shirt',
+    category: 'MEN · T-SHIRTS',
+    fabric: 'COTTON',
+    price: 2999,
+    compareAtPrice: 4999,
+    badge: 'SALE',
+    images: ['/images/ecommerce-assets/shirt05.png'],
+    colors: [
+      { name: 'white', hex: '#fff' },
+      { name: 'black', hex: '#000' },
+      { name: 'navy', hex: '#000080' },
+    ],
+    sizes: [
+      { label: 'Small', inStock: true },
+      { label: 'Medium', inStock: true },
+      { label: 'Large', inStock: true },
+      { label: 'X-Large', inStock: true },
+    ],
+  },
+  {
+    id: '2',
+    slug: 'slim-fit-chinos',
+    title: 'Slim Fit Chinos',
+    category: 'MEN · PANTS',
+    fabric: 'COTTON',
+    price: 5999,
+    compareAtPrice: 8999,
+    badge: 'SALE',
+    images: ['/images/ecommerce-assets/shirt06.png'],
+    colors: [
+      { name: 'khaki', hex: '#c3b091' },
+      { name: 'black', hex: '#000' },
+      { name: 'navy', hex: '#000080' },
+    ],
+    sizes: [
+      { label: '28', inStock: true },
+      { label: '30', inStock: true },
+      { label: '32', inStock: true },
+      { label: '34', inStock: true },
+      { label: '36', inStock: true },
+    ],
+  },
+  {
+    id: '3',
+    slug: 'classic-oxford-shirt',
+    title: 'Classic Oxford Shirt',
+    category: 'MEN · SHIRTS',
+    fabric: 'COTTON',
+    price: 4499,
+    compareAtPrice: 6999,
+    badge: 'SALE',
+    images: ['/images/ecommerce-assets/shirt07.png'],
+    colors: [
+      { name: 'white', hex: '#fff' },
+      { name: 'blue', hex: '#0066cc' },
+      { name: 'pink', hex: '#ffc0cb' },
+    ],
+    sizes: [
+      { label: 'Small', inStock: true },
+      { label: 'Medium', inStock: true },
+      { label: 'Large', inStock: true },
+      { label: 'X-Large', inStock: true },
+    ],
+  },
+  {
+    id: '4',
+    slug: 'denim-jacket',
+    title: 'Denim Jacket',
+    category: 'MEN · JACKETS',
+    fabric: 'DENIM',
+    price: 7999,
+    compareAtPrice: 11999,
+    badge: 'SALE',
+    images: ['/images/ecommerce-assets/shirt08.png'],
+    colors: [
+      { name: 'blue', hex: '#4169e1' },
+      { name: 'black', hex: '#000' },
+    ],
+    sizes: [
+      { label: 'Small', inStock: true },
+      { label: 'Medium', inStock: true },
+      { label: 'Large', inStock: true },
+      { label: 'X-Large', inStock: true },
+    ],
+  },
+  {
+    id: '5',
+    slug: 'casual-hoodie',
+    title: 'Casual Hoodie',
+    category: 'MEN · HOODIES',
+    fabric: 'COTTON BLEND',
+    price: 3999,
+    compareAtPrice: 6499,
+    badge: 'SALE',
+    images: ['/images/ecommerce-assets/product-13.jpg'],
+    colors: [
+      { name: 'gray', hex: '#808080' },
+      { name: 'black', hex: '#000' },
+      { name: 'navy', hex: '#000080' },
+    ],
+    sizes: [
+      { label: 'Small', inStock: true },
+      { label: 'Medium', inStock: true },
+      { label: 'Large', inStock: true },
+      { label: 'X-Large', inStock: true },
+    ],
+  },
+  {
+    id: '6',
+    slug: 'tailored-blazer',
+    title: 'Tailored Blazer',
+    category: 'MEN · JACKETS',
+    fabric: 'WOOL',
+    price: 9999,
+    compareAtPrice: 15999,
+    badge: 'SALE',
+    images: ['/images/ecommerce-assets/product-14.jpg'],
+    colors: [
+      { name: 'black', hex: '#000' },
+      { name: 'navy', hex: '#000080' },
+      { name: 'gray', hex: '#808080' },
+    ],
+    sizes: [
+      { label: 'Small', inStock: true },
+      { label: 'Medium', inStock: true },
+      { label: 'Large', inStock: true },
+      { label: 'X-Large', inStock: true },
+    ],
+  },
+  {
+    id: '7',
+    slug: 'polo-shirt',
+    title: 'Polo Shirt',
+    category: 'MEN · POLOS',
+    fabric: 'COTTON',
+    price: 3499,
+    compareAtPrice: 5499,
+    badge: 'SALE',
+    images: ['/images/ecommerce-assets/product-15.jpg'],
+    colors: [
+      { name: 'white', hex: '#fff' },
+      { name: 'black', hex: '#000' },
+      { name: 'red', hex: '#ff0000' },
+    ],
+    sizes: [
+      { label: 'Small', inStock: true },
+      { label: 'Medium', inStock: true },
+      { label: 'Large', inStock: true },
+      { label: 'X-Large', inStock: true },
+    ],
+  },
+  {
+    id: '8',
+    slug: 'slim-fit-jeans',
+    title: 'Slim Fit Jeans',
+    category: 'MEN · JEANS',
+    fabric: 'DENIM',
+    price: 5499,
+    compareAtPrice: 8499,
+    badge: 'SALE',
+    images: ['/images/ecommerce-assets/product-16.jpg'],
+    colors: [
+      { name: 'blue', hex: '#4169e1' },
+      { name: 'black', hex: '#000' },
+    ],
+    sizes: [
+      { label: '28', inStock: true },
+      { label: '30', inStock: true },
+      { label: '32', inStock: true },
+      { label: '34', inStock: true },
+      { label: '36', inStock: true },
+    ],
+  },
+];
 
 export default function OnSalePage() {
-  const onSaleProducts: Product[] = [
-    {
-      id: 1,
-      name: 'Premium Cotton T-Shirt',
-      rating: 4.5,
-      reviews: 128,
-      currentPrice: 2999,
-      originalPrice: 4999,
-      discount: 40,
-      image: '/images/ecommerce-assets/shirt05.png',
-    },
-    {
-      id: 2,
-      name: 'Slim Fit Chinos',
-      rating: 4.8,
-      reviews: 89,
-      currentPrice: 5999,
-      originalPrice: 8999,
-      discount: 33,
-      image: '/images/ecommerce-assets/shirt06.png',
-    },
-    {
-      id: 3,
-      name: 'Classic Oxford Shirt',
-      rating: 4.6,
-      reviews: 156,
-      currentPrice: 4499,
-      originalPrice: 6999,
-      discount: 36,
-      image: '/images/ecommerce-assets/shirt07.png',
-    },
-    {
-      id: 4,
-      name: 'Denim Jacket',
-      rating: 4.7,
-      reviews: 203,
-      currentPrice: 7999,
-      originalPrice: 11999,
-      discount: 33,
-      image: '/images/ecommerce-assets/shirt08.png',
-    },
-    {
-      id: 5,
-      name: 'Casual Hoodie',
-      rating: 4.9,
-      reviews: 267,
-      currentPrice: 3999,
-      originalPrice: 6499,
-      discount: 38,
-      image: '/images/ecommerce-assets/product-13.jpg',
-    },
-    {
-      id: 6,
-      name: 'Tailored Blazer',
-      rating: 4.8,
-      reviews: 94,
-      currentPrice: 9999,
-      originalPrice: 15999,
-      discount: 38,
-      image: '/images/ecommerce-assets/product-14.jpg',
-    },
-    {
-      id: 7,
-      name: 'Polo Shirt',
-      rating: 4.4,
-      reviews: 178,
-      currentPrice: 3499,
-      originalPrice: 5499,
-      discount: 36,
-      image: '/images/ecommerce-assets/product-15.jpg',
-    },
-    {
-      id: 8,
-      name: 'Slim Fit Jeans',
-      rating: 4.6,
-      reviews: 234,
-      currentPrice: 5499,
-      originalPrice: 8499,
-      discount: 35,
-      image: '/images/ecommerce-assets/product-16.jpg',
-    },
-  ];
+  const { addToCart } = usePremiumCart();
+  const [selectedProduct, setSelectedProduct] = useState<PremiumProduct | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set());
+
+  const handleQuickView = (product: PremiumProduct) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleAddToCart = (product: PremiumProduct, size?: string, color?: string) => {
+    const colorObj = product.colors.find((c) => c.name === color);
+    addToCart({
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: product.images[0],
+      color: colorObj?.name || color || 'Default',
+      size: size || 'Default',
+    });
+  };
+
+  const handleModalAddToCart = (
+    product: PremiumProduct,
+    size: string,
+    color: string,
+    quantity: number
+  ) => {
+    const colorObj = product.colors.find((c) => c.name === color);
+    for (let i = 0; i < quantity; i++) {
+      addToCart({
+        id: product.id,
+        name: product.title,
+        price: product.price,
+        image: product.images[0],
+        color: colorObj?.name || color,
+        size,
+      });
+    }
+  };
+
+  const handleWishlistToggle = (productId: string) => {
+    setWishlistedItems((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(productId)) {
+        newSet.delete(productId);
+      } else {
+        newSet.add(productId);
+      }
+      return newSet;
+    });
+  };
 
   return (
     <div className="w-full bg-white">
@@ -181,9 +270,16 @@ export default function OnSalePage() {
           </div>
           
           {/* Products grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 items-stretch">
             {onSaleProducts.map((product) => (
-              <OnSaleProductCard key={product.id} {...product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                onQuickView={handleQuickView}
+                onAddToCart={handleAddToCart}
+                onWishlistToggle={handleWishlistToggle}
+                isWishlisted={wishlistedItems.has(product.id)}
+              />
             ))}
           </div>
 
@@ -228,6 +324,15 @@ export default function OnSalePage() {
           </div>
         </div>
       </div>
+
+      {selectedProduct && (
+        <QuickViewModal
+          product={selectedProduct}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onAddToCart={handleModalAddToCart}
+        />
+      )}
     </div>
   );
 }

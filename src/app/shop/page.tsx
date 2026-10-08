@@ -1,9 +1,9 @@
 'use client';
 import React, { useState } from 'react';
-import { StarIcon } from '@heroicons/react/24/solid';
 import { ChevronRightIcon, ChevronDownIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { products, type Product } from '@/components/lib/data/products';
+import { products } from '@/components/lib/data/products';
+import { ProductCard, QuickViewModal, usePremiumCart, type Product as PremiumProduct } from '@/components/premium';
 
 const categories = ['T-shirts', 'Shorts', 'Shirts', 'Hoodie', 'Jeans'];
 const colors = [
@@ -21,59 +21,29 @@ const sizes = [
 ];
 const dressStyles = ['Casual', 'Formal', 'Party', 'Gym'];
 
-const ProductCard = ({
-  id,
-  name,
-  rating,
-  reviews,
-  currentPrice,
-  originalPrice,
-  discount,
-  image,
-}: Product) => {
-  return (
-    <Link href={`/product/${id}`} className="flex flex-col items-center hover:opacity-90 transition-opacity w-full">
-      <div className="relative w-full aspect-[3/4]">
-        <img
-          src={image}
-          alt={name}
-          className="w-full h-full rounded-3xl bg-[#F0EEED] object-cover"
-        />
-        {discount && (
-          <div className="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-lg shadow-md">
-            {discount}% OFF
-          </div>
-        )}
-      </div>
-      <div className="pt-4 w-full">
-        <h3 className="text-black font-bold text-base sm:text-lg md:text-xl leading-none tracking-normal align-middle line-clamp-2">{name}</h3>
-        <div className="flex items-center mt-1">
-          <div className="flex text-yellow-400 mr-2">
-            {[...Array(5)].map((_, i) => (
-              <span key={i}>
-                {i < Math.floor(rating) ? '★' : '☆'}
-              </span>
-            ))}
-          </div>
-          <span className="text-gray-500 text-sm">({reviews})</span>
-        </div>
-        <div className="mt-2">
-          <span className="pr-2 text-black font-sans font-bold text-lg sm:text-xl md:text-2xl leading-none tracking-normal align-middle">PKR {currentPrice}</span>
-          {originalPrice && (
-            <span className="text-black/40 font-bold text-lg sm:text-xl md:text-2xl leading-none tracking-normal align-middle line-through">
-              PKR {originalPrice}
-            </span>
-          )}
-        </div>
-      </div>
-    </Link>
-  );
-};
+// Convert products to premium format
+const premiumProducts: PremiumProduct[] = products.map((product) => ({
+  id: product.id.toString(),
+  slug: product.name.toLowerCase().replace(/\s+/g, '-'),
+  title: product.name,
+  category: 'MEN · CLOTHING',
+  fabric: 'COTTON',
+  price: product.currentPrice,
+  compareAtPrice: product.originalPrice,
+  badge: product.discount ? 'SALE' : undefined,
+  images: product.images || [product.image],
+  colors: product.colors?.map((c) => ({ name: c.name, hex: c.code })) || [],
+  sizes: product.sizes?.map((s) => ({ label: s, inStock: true })) || [],
+}));
 
 const MIN_PRICE = 1000;
 const MAX_PRICE = 10000;
 
 const ShopPage = () => {
+  const { addToCart } = usePremiumCart();
+  const [selectedProduct, setSelectedProduct] = useState<PremiumProduct | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set());
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedColor, setSelectedColor] = useState('green');
   const [selectedSize, setSelectedSize] = useState('Large');
@@ -87,6 +57,54 @@ const ShopPage = () => {
   const [openDressStyle, setOpenDressStyle] = useState(false);
   const [openPrice, setOpenPrice] = useState(false);
   const [showMobileFilters, setShowMobileFilters] = useState(false);
+
+  const handleQuickView = (product: PremiumProduct) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const handleAddToCart = (product: PremiumProduct, size?: string, color?: string) => {
+    const colorObj = product.colors.find((c) => c.name === color);
+    addToCart({
+      id: product.id,
+      name: product.title,
+      price: product.price,
+      image: product.images[0],
+      color: colorObj?.name || color || 'Default',
+      size: size || 'Default',
+    });
+  };
+
+  const handleModalAddToCart = (
+    product: PremiumProduct,
+    size: string,
+    color: string,
+    quantity: number
+  ) => {
+    const colorObj = product.colors.find((c) => c.name === color);
+    for (let i = 0; i < quantity; i++) {
+      addToCart({
+        id: product.id,
+        name: product.title,
+        price: product.price,
+        image: product.images[0],
+        color: colorObj?.name || color,
+        size,
+      });
+    }
+  };
+
+  const handleWishlistToggle = (productId: string) => {
+    setWishlistedItems((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(productId)) {
+        newSet.delete(productId);
+      } else {
+        newSet.add(productId);
+      }
+      return newSet;
+    });
+  };
 
   const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newMin = Math.min(Number(e.target.value), price[1] - 1);
@@ -379,9 +397,16 @@ const ShopPage = () => {
 
             {/* Products */}
             <div className="flex-1">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-                {products.map((product) => (
-                  <ProductCard key={product.id} {...product} />
+              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 items-stretch">
+                {premiumProducts.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    onQuickView={handleQuickView}
+                    onAddToCart={handleAddToCart}
+                    onWishlistToggle={handleWishlistToggle}
+                    isWishlisted={wishlistedItems.has(product.id)}
+                  />
                 ))}
               </div>
 
@@ -437,8 +462,17 @@ const ShopPage = () => {
           </div>
         </div>
       </div>
+
+      {selectedProduct && (
+        <QuickViewModal
+          product={selectedProduct}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onAddToCart={handleModalAddToCart}
+        />
+      )}
     </div>
   );
-};
+}
 
 export default ShopPage;

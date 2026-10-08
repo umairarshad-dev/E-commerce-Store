@@ -10,6 +10,8 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
+  const navLinkClass = "relative transition-colors duration-300 hover:text-gray-500 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-full after:bg-black after:origin-right after:scale-x-0 after:transition-transform after:duration-300 hover:after:origin-left hover:after:scale-x-100";
+
   useEffect(() => {
     setIsMounted(true);
     const checkScreenSize = () => {
@@ -29,31 +31,18 @@ export default function Navbar() {
           </Link>
 
            <div className="hidden lg:flex items-center gap-12">
-            <Link href="/shop" className="flex items-center gap-1 hover:text-gray-600">
+            <Link href="/shop" className={`flex items-center gap-1 ${navLinkClass}`}>
               Shop
               <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
                 <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               </svg>
             </Link>
-            <Link href="/on-sale" className="hover:text-gray-600">On Sale</Link>
-            <Link href="/new-arrivals" className="hover:text-gray-600">New Arrivals</Link>
-            <Link href="/brands" className="hover:text-gray-600">Brands</Link>
-          </div>
-
-          {/* Search Bar - Desktop Only */}
-          <div className="hidden lg:block flex-1 max-w-md mx-8">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search for products..."
-                className="w-full bg-gray-100 rounded-full py-2 pl-10 pr-4"
-              />
-              <img
-                src="/images/ui/search.png"
-                alt="Search"
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 opacity-40"
-              />
-            </div>
+            <Link href="/on-sale" className={navLinkClass}>On Sale</Link>
+            <Link href="/new-arrivals" className={navLinkClass}>New Arrivals</Link>
+            <Link href="/brands" className={navLinkClass}>Brands</Link>
+            <Link href="/contact" className={navLinkClass}>Contact</Link>
+            <Link href="/track-order" className={navLinkClass}>Track Order</Link>
+            <Link href="/premium-demo" className={navLinkClass}>Premium Demo</Link>
           </div>
 
            <div className="flex items-center gap-4 md:gap-6">
@@ -106,24 +95,9 @@ export default function Navbar() {
               </svg>
             </button>
             
-             <div className="pb-4 pt-2">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search for products..."
-                  className="w-full bg-gray-100 rounded-full py-2 pl-10 pr-4"
-                />
-                <img
-                  src="/images/ui/search.png"
-                  alt="Search"
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 opacity-40"
-                />
-              </div>
-            </div>
-            
              <div className="flex flex-col mt-4">
-              <Link 
-                href="/shop" 
+              <Link
+                href="/shop"
                 className="flex items-center justify-between py-4 border-b border-gray-100"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -132,26 +106,47 @@ export default function Navbar() {
                   <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
               </Link>
-              <Link 
-                href="/on-sale" 
+              <Link
+                href="/on-sale"
                 className="py-4 border-b border-gray-100 text-lg font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 On Sale
               </Link>
-              <Link 
-                href="/new-arrivals" 
+              <Link
+                href="/new-arrivals"
                 className="py-4 border-b border-gray-100 text-lg font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 New Arrivals
               </Link>
-              <Link 
-                href="/brands" 
+              <Link
+                href="/brands"
                 className="py-4 border-b border-gray-100 text-lg font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Brands
+              </Link>
+              <Link
+                href="/contact"
+                className="py-4 border-b border-gray-100 text-lg font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Contact
+              </Link>
+              <Link
+                href="/track-order"
+                className="py-4 border-b border-gray-100 text-lg font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Track Order
+              </Link>
+              <Link
+                href="/premium-demo"
+                className="py-4 border-b border-gray-100 text-lg font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Premium Demo
               </Link>
             </div>
             

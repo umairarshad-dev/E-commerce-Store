@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { CartProvider } from "@/components/lib/context/CartContext";
+import { PremiumCartProvider } from "@/components/premium";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,9 +33,11 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <CartProvider>
-          <Navbar/>
-          {children}
-          <Footer/>
+          <PremiumCartProvider>
+            <Navbar/>
+            {children}
+            <Footer/>
+          </PremiumCartProvider>
         </CartProvider>
       </body>
     </html>

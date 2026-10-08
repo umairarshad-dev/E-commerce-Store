@@ -1,9 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Integral+CF:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Design tokens for premium product cards */
+  --accent: #2e7d32;
+  --accent-soft: rgba(46, 125, 50, 0.1);
+  --ink: #111827;
+  --muted: #6b7280;
+  --surface: #ffffff;
+  --page: #faf9f6;
 }
 
 @theme inline {
@@ -23,7 +32,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
 .container {
