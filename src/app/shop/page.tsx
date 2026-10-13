@@ -1,76 +1,133 @@
 'use client';
-import React, { useState } from 'react';
-import { ChevronRightIcon, ChevronDownIcon, FunnelIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
-import { products } from '@/components/lib/data/products';
-import { ProductCard, QuickViewModal, usePremiumCart, type Product as PremiumProduct } from '@/components/premium';
 
-const categories = ['T-shirts', 'Shorts', 'Shirts', 'Hoodie', 'Jeans'];
-const colors = [
-  { name: 'green', code: '#22c55e' },
-  { name: 'red', code: '#ef4444' },
-  { name: 'yellow', code: '#facc15' },
-  { name: 'orange', code: '#fb923c' },
-  { name: 'blue', code: '#0ea5e9' },
-  { name: 'cyan', code: '#06b6d4' },
-  { name: 'pink', code: '#ec4899' },
-  { name: 'black', code: '#000' },
-];
-const sizes = [
-  'XS', 'S', 'M', 'L', 'XL', 'XXL'
-];
-const dressStyles = ['Casual', 'Formal', 'Party', 'Gym'];
+import React, { Suspense, useEffect, useMemo, useState } from 'react';
+import {
+  FunnelIcon,
+  MagnifyingGlassIcon,
+} from '@heroicons/react/24/outline';
+import {
+  ProductCard,
+  ProductCardSkeleton,
+  QuickViewModal,
+  usePremiumCart,
+  type Product as PremiumProduct,
+} from '@/components/premium';
+import {
+  applyFilters,
+  createDefaultFilters,
+  shopCatalog,
+  SORT_OPTIONS,
+  type FilterState,
+} from '@/components/shop/catalog';
+import { useProductFilters } from '@/components/shop/useProductFilters';
+import FiltersSidebar, {
+  FiltersSidebarSkeleton,
+} from '@/components/shop/FiltersSidebar';
+import MobileFiltersDrawer from '@/components/shop/MobileFiltersDrawer';
+import ActiveFilterChips from '@/components/shop/ActiveFilterChips';
+import ShopToolbar from '@/components/shop/ShopToolbar';
 
-// Convert products to premium format
-const premiumProducts: PremiumProduct[] = products.map((product) => ({
-  id: product.id.toString(),
-  slug: product.name.toLowerCase().replace(/\s+/g, '-'),
-  title: product.name,
-  category: 'MEN · CLOTHING',
-  fabric: 'COTTON',
-  price: product.currentPrice,
-  compareAtPrice: product.originalPrice,
-  badge: product.discount ? 'SALE' : undefined,
-  images: product.images || [product.image],
-  colors: product.colors?.map((c) => ({ name: c.name, hex: c.code })) || [],
-  sizes: product.sizes?.map((s) => ({ label: s, inStock: true })) || [],
-}));
+const PRODUCTS_PER_PAGE = 8;
 
-const MIN_PRICE = 1000;
-const MAX_PRICE = 10000;
+/* ---------------------------------------------------------------------------
+ * Page shell — Suspense wraps everything that touches useSearchParams
+ * ------------------------------------------------------------------------- */
 
-const ShopPage = () => {
+export default function ShopPage() {
+  return (
+    <Suspense fallback={<ShopPageSkeleton />}>
+      <ShopContent />
+    </Suspense>
+  );
+}
+
+function ShopPageSkeleton() {
+  return (
+    <div className="w-full bg-white">
+      <div className="px-4 py-7 sm:px-8">
+        <div className="mx-auto max-w-screen-xl">
+          <div className="mb-4 h-4 w-40 rounded bg-neutral-100 animate-pulse" />
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+            <div className="h-8 w-48 rounded-lg bg-neutral-100 animate-pulse" />
+            <div className="h-11 w-52 rounded-xl bg-neutral-100 animate-pulse" />
+          </div>
+          <div className="flex items-start gap-8">
+            <FiltersSidebarSkeleton />
+            <div className="flex-1">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3">
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <ProductCardSkeleton key={i} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------------------------
+ * Shop content
+ * ------------------------------------------------------------------------- */
+
+function ShopContent() {
   const { addToCart } = usePremiumCart();
+  const catalog = shopCatalog;
+
+  const {
+    filters,
+    priceRange,
+    sort,
+    results,
+    count,
+    total,
+    isPending,
+    activeCount,
+    chips,
+    setFilterList,
+    setPriceRange,
+    setSort,
+    applyDraftFilters,
+    clearAll,
+  } = useProductFilters(catalog, 'popular');
+
   const [selectedProduct, setSelectedProduct] = useState<PremiumProduct | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [wishlistedItems, setWishlistedItems] = useState<Set<string>>(new Set());
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedColor, setSelectedColor] = useState('green');
-  const [selectedSize, setSelectedSize] = useState('Large');
-  const [selectedDressStyle, setSelectedDressStyle] = useState('');
-  const [price, setPrice] = useState([MIN_PRICE, MAX_PRICE]);
   const [page, setPage] = useState(1);
-  const productsPerPage = 8;
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [draft, setDraft] = useState<FilterState | null>(null);
 
-  const paginatedProducts = premiumProducts.slice(
-    (page - 1) * productsPerPage,
-    page * productsPerPage
+  // Reset pagination whenever filters or sort change
+  useEffect(() => {
+    setPage(1);
+  }, [filters, sort]);
+
+  const paginatedProducts = results.slice(
+    (page - 1) * PRODUCTS_PER_PAGE,
+    page * PRODUCTS_PER_PAGE,
   );
-  const totalPages = Math.ceil(premiumProducts.length / productsPerPage);
+  const totalPages = Math.max(1, Math.ceil(results.length / PRODUCTS_PER_PAGE));
 
-  const [openCategories, setOpenCategories] = useState(false);
-  const [openColors, setOpenColors] = useState(false);
-  const [openSizes, setOpenSizes] = useState(false);
-  const [openDressStyle, setOpenDressStyle] = useState(false);
-  const [openPrice, setOpenPrice] = useState(false);
-  const [showMobileFilters, setShowMobileFilters] = useState(false);
+  const draftCount = useMemo(
+    () => (draft ? applyFilters(catalog, draft).length : 0),
+    [catalog, draft],
+  );
+
+  /* ---- product card handlers ---- */
 
   const handleQuickView = (product: PremiumProduct) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
   };
 
-  const handleAddToCart = (product: PremiumProduct, size?: string, color?: string) => {
+  const handleAddToCart = (
+    product: PremiumProduct,
+    size?: string,
+    color?: string,
+  ) => {
     const colorObj = product.colors.find((c) => c.name === color);
     addToCart({
       id: product.id,
@@ -86,7 +143,7 @@ const ShopPage = () => {
     product: PremiumProduct,
     size: string,
     color: string,
-    quantity: number
+    quantity: number,
   ) => {
     const colorObj = product.colors.find((c) => c.name === color);
     for (let i = 0; i < quantity; i++) {
@@ -104,373 +161,224 @@ const ShopPage = () => {
   const handleWishlistToggle = (productId: string) => {
     setWishlistedItems((prev) => {
       const newSet = new Set(prev);
-      if (newSet.has(productId)) {
-        newSet.delete(productId);
-      } else {
-        newSet.add(productId);
-      }
+      if (newSet.has(productId)) newSet.delete(productId);
+      else newSet.add(productId);
       return newSet;
     });
   };
 
-  const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newMin = Math.min(Number(e.target.value), price[1] - 1);
-    setPrice([newMin, price[1]]);
+  /* ---- mobile drawer ---- */
+
+  const openDrawer = () => {
+    setDraft({
+      ...filters,
+      minPrice: priceRange[0],
+      maxPrice: priceRange[1],
+    });
+    setDrawerOpen(true);
   };
-  const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newMax = Math.max(Number(e.target.value), price[0] + 1);
-    setPrice([price[0], newMax]);
+
+  const handleDraftChange = (patch: Partial<FilterState>) => {
+    setDraft((prev) => (prev ? { ...prev, ...patch } : prev));
   };
+
+  const handleApplyDraft = () => {
+    if (draft) applyDraftFilters(draft);
+    setDrawerOpen(false);
+  };
+
+  const handleDrawerClearAll = () => {
+    setDraft(createDefaultFilters(catalog));
+  };
+
+  /* ---- render ---- */
+
+  const countText = `Showing ${count} of ${total} products`;
 
   return (
     <div className="w-full bg-white">
-      <div className="px-8 py-7">
-        <div className="max-w-screen-xl mx-auto">
-          {/* Breadcrumb and Sort */}
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-            <div className="flex items-center gap-2 mb-2 md:mb-0">
-              <span className="text-sm text-black">Home</span>
-              <img src="/drop-right.png" alt="Shop" className="w-[8.5px] h-[6.5px] mt-[2px] text-black" />
-              <span className="text-sm text-black flex items-center gap-1">Casual</span>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-black hidden sm:inline">Showing 1-10 of 100 Products</span>
-              <span className="text-sm text-black flex items-center gap-1">Sort by: <span className="font-semibold">Most Popular</span> <ChevronDownIcon className="w-4 h-4 text-black" /></span>
-            </div>
-          </div>
-
-          <div className="flex flex-col md:flex-row gap-8">
-            {/* Mobile filter toggle - Only visible on mobile */}
-            <div className="md:hidden">
-              <button 
-                className="flex items-center justify-center gap-2 bg-black text-white py-2 px-4 rounded-full w-full"
-                onClick={() => setShowMobileFilters(!showMobileFilters)}
+      <div className="px-4 py-7 sm:px-8">
+        <div className="mx-auto max-w-screen-xl">
+          <ShopToolbar
+            title="Shop"
+            countText={countText}
+            breadcrumbs={[
+              { label: 'Home', href: '/' },
+              { label: 'Shop' },
+            ]}
+            sortValue={sort}
+            sortOptions={SORT_OPTIONS}
+            onSortChange={setSort}
+            sticky
+            leading={
+              <button
+                type="button"
+                onClick={openDrawer}
+                className="flex h-11 items-center gap-2 rounded-xl border border-black/10 bg-white px-4 text-sm font-semibold text-[var(--ink)] transition-colors duration-150 hover:border-black/20 focus:border-[var(--accent)] focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--accent-soft)] lg:hidden"
               >
-                <FunnelIcon className="w-4 h-4" />
+                <FunnelIcon className="h-4 w-4" />
                 Filters
-              </button>
-            </div>
-
-            {/* Filters - Always visible on desktop, toggle on mobile */}
-            <div className={`${showMobileFilters ? 'block' : 'hidden'} md:block w-full md:w-72 flex-shrink-0`}>
-              <div className="shadow-lg p-6 space-y-6 rounded-2xl bg-white border border-gray-100">
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-bold text-xl text-black">
-                    Filters
+                {activeCount > 0 && (
+                  <span className="inline-flex h-5 min-w-[20px] items-center justify-center rounded-full bg-[var(--accent)] px-1.5 text-[11px] font-bold tabular-nums text-white">
+                    {activeCount}
                   </span>
-                  <FunnelIcon className="w-5 h-5 text-gray-600" />
-                </div>
+                )}
+              </button>
+            }
+            chips={
+              <ActiveFilterChips
+                chips={chips}
+                onClearAll={clearAll}
+                countText={countText}
+              />
+            }
+          />
 
-                <div className="h-px bg-gray-200"></div>
+          <div className="mt-4 flex items-start gap-8">
+            {/* Desktop filters */}
+            <FiltersSidebar
+              catalog={catalog}
+              value={filters}
+              onChange={(patch) => {
+                if (patch.minPrice !== undefined || patch.maxPrice !== undefined) {
+                  setPriceRange([
+                    patch.minPrice ?? filters.minPrice,
+                    patch.maxPrice ?? filters.maxPrice,
+                  ]);
+                }
+                if (patch.categories) setFilterList('categories', patch.categories);
+                if (patch.dressStyles) setFilterList('dressStyles', patch.dressStyles);
+                if (patch.colors) setFilterList('colors', patch.colors);
+                if (patch.sizes) setFilterList('sizes', patch.sizes);
+              }}
+              onClearAll={clearAll}
+              hasActiveFilters={activeCount > 0}
+              onCollapse={() => setSidebarCollapsed(true)}
+            />
 
-                <div>
+            {sidebarCollapsed && (
+              <div className="hidden lg:block lg:w-[64px] lg:shrink-0">
+                <div className="flex flex-col items-center gap-2 rounded-3xl border border-black/5 bg-white p-3 shadow-soft lg:sticky lg:top-24">
                   <button
-                    className="flex items-center justify-between w-full mb-3 select-none py-2"
-                    onClick={() => setOpenCategories((v) => !v)}
                     type="button"
+                    onClick={() => setSidebarCollapsed(false)}
+                    aria-label="Expand filters"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-soft)] text-[var(--accent)] transition-colors duration-150 hover:bg-[var(--accent)] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
                   >
-                    <span className="font-semibold text-base text-black">Categories</span>
-                    {openCategories ? (
-                      <ChevronDownIcon className="w-5 h-5 text-gray-600 transition-transform rotate-180" />
-                    ) : (
-                      <ChevronRightIcon className="w-5 h-5 text-gray-600 transition-transform" />
-                    )}
+                    <FunnelIcon className="h-5 w-5" />
                   </button>
-                  {openCategories && (
-                    <div className="space-y-2 pl-2">
-                      {categories.map((cat) => (
-                        <button
-                          key={cat}
-                          onClick={() => setSelectedCategory(cat)}
-                          className={`flex items-center w-full px-3 py-2 rounded-lg text-sm transition-all ${
-                            selectedCategory === cat
-                              ? 'bg-black text-white font-semibold'
-                              : 'text-gray-700 hover:bg-gray-100'
-                          }`}
-                        >
-                          <span>{cat}</span>
-                        </button>
-                      ))}
-                    </div>
+                  {activeCount > 0 && (
+                    <span className="text-[11px] font-bold tabular-nums text-[var(--accent)]">
+                      {activeCount}
+                    </span>
                   )}
                 </div>
-
-                <div>
-                  <button
-                    className="flex items-center justify-between w-full mb-3 select-none py-2"
-                    onClick={() => setOpenPrice((v) => !v)}
-                    type="button"
-                  >
-                    <span className="font-semibold text-base text-black">Price</span>
-                    {openPrice ? (
-                      <ChevronDownIcon className="w-5 h-5 text-gray-600 transition-transform rotate-180" />
-                    ) : (
-                      <ChevronRightIcon className="w-5 h-5 text-gray-600 transition-transform" />
-                    )}
-                  </button>
-                  {openPrice && (
-                    <div className="py-3 pl-2">
-                      <div className="relative h-8 flex items-center">
-                        <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-2 bg-gray-200 rounded-full" />
-                        <div
-                          className="absolute top-1/2 -translate-y-1/2 h-2 bg-black rounded-full"
-                          style={{
-                            left: `${((price[0] - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
-                            right: `${100 - ((price[1] - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
-                          }}
-                        />
-                        <input
-                          type="range"
-                          min={MIN_PRICE}
-                          max={MAX_PRICE}
-                          value={price[0]}
-                          onChange={handleMinChange}
-                          className="absolute w-full h-8 bg-transparent appearance-none pointer-events-auto z-10"
-                          style={{ pointerEvents: 'auto' }}
-                        />
-                        <input
-                          type="range"
-                          min={MIN_PRICE}
-                          max={MAX_PRICE}
-                          value={price[1]}
-                          onChange={handleMaxChange}
-                          className="absolute w-full h-8 bg-transparent appearance-none pointer-events-auto z-10"
-                          style={{ pointerEvents: 'auto' }}
-                        />
-                        <style>{`
-                          input[type='range']::-webkit-slider-thumb {
-                            -webkit-appearance: none;
-                            appearance: none;
-                            width: 20px;
-                            height: 20px;
-                            border-radius: 50%;
-                            background: #000;
-                            cursor: pointer;
-                            border: 3px solid #fff;
-                            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-                            margin-top: -8px;
-                            transition: all 0.2s ease;
-                          }
-                          input[type='range']::-webkit-slider-thumb:hover {
-                            transform: scale(1.1);
-                            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-                          }
-                          input[type='range']::-moz-range-thumb {
-                            width: 20px;
-                            height: 20px;
-                            border-radius: 50%;
-                            background: #000;
-                            cursor: pointer;
-                            border: 3px solid #fff;
-                            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-                            transition: all 0.2s ease;
-                          }
-                          input[type='range']::-moz-range-thumb:hover {
-                            transform: scale(1.1);
-                            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-                          }
-                          input[type='range']::-ms-thumb {
-                            width: 20px;
-                            height: 20px;
-                            border-radius: 50%;
-                            background: #000;
-                            cursor: pointer;
-                            border: 3px solid #fff;
-                            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-                            transition: all 0.2s ease;
-                          }
-                          input[type='range']::-ms-thumb:hover {
-                            transform: scale(1.1);
-                            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-                          }
-                          input[type='range'] {
-                            outline: none;
-                          }
-                          input[type='range']::-webkit-slider-runnable-track {
-                            height: 2px;
-                            background: transparent;
-                          }
-                          input[type='range']::-ms-fill-lower {
-                            background: transparent;
-                          }
-                          input[type='range']::-ms-fill-upper {
-                            background: transparent;
-                          }
-                        `}</style>
-                      </div>
-                      <div className="flex justify-between text-sm font-medium text-gray-700 mt-3">
-                        <span>PKR {price[0]}</span>
-                        <span>PKR {price[1]}</span>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div>
-                  <button
-                    className="flex items-center justify-between w-full mb-3 select-none py-2"
-                    onClick={() => setOpenColors((v) => !v)}
-                    type="button"
-                  >
-                    <span className="font-semibold text-base text-black">Colors</span>
-                    {openColors ? (
-                      <ChevronDownIcon className="w-5 h-5 text-gray-600 transition-transform rotate-180" />
-                    ) : (
-                      <ChevronRightIcon className="w-5 h-5 text-gray-600 transition-transform" />
-                    )}
-                  </button>
-                  {openColors && (
-                    <div className="flex flex-wrap gap-2 pl-2">
-                      {colors.map((color) => (
-                        <button
-                          key={color.name}
-                          onClick={() => setSelectedColor(color.name)}
-                          className={`w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all hover:scale-110 ${
-                            selectedColor === color.name ? 'border-black ring-2 ring-black ring-offset-2' : 'border-gray-300'
-                          }`}
-                          style={{ backgroundColor: color.code }}
-                        >
-                          {selectedColor === color.name && color.name !== 'white' && (
-                            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="3" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
-                          )}
-                          {selectedColor === color.name && color.name === 'white' && (
-                            <span className="w-3 h-3 rounded-full bg-black block"></span>
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                <div>
-                  <button
-                    className="flex items-center justify-between w-full mb-3 select-none py-2"
-                    onClick={() => setOpenSizes((v) => !v)}
-                    type="button"
-                  >
-                    <span className="font-semibold text-base text-black">Size</span>
-                    {openSizes ? (
-                      <ChevronDownIcon className="w-5 h-5 text-gray-600 transition-transform rotate-180" />
-                    ) : (
-                      <ChevronRightIcon className="w-5 h-5 text-gray-600 transition-transform" />
-                    )}
-                  </button>
-                  {openSizes && (
-                    <div className="flex flex-wrap gap-2 pl-2">
-                      {sizes.map((size) => (
-                        <button
-                          key={size}
-                          onClick={() => setSelectedSize(size)}
-                          className={`px-3 py-1.5 rounded-lg text-sm font-medium border transition-all ${
-                            selectedSize === size
-                              ? 'bg-black text-white border-black'
-                              : 'bg-gray-100 text-gray-700 border-gray-200 hover:border-gray-300'
-                          }`}
-                        >
-                          {size}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                <div>
-                  <button
-                    className="flex items-center justify-between w-full mb-3 select-none py-2"
-                    onClick={() => setOpenDressStyle((v) => !v)}
-                    type="button"
-                  >
-                    <span className="font-semibold text-base text-black">Dress Style</span>
-                    {openDressStyle ? (
-                      <ChevronDownIcon className="w-5 h-5 text-gray-600 transition-transform rotate-180" />
-                    ) : (
-                      <ChevronRightIcon className="w-5 h-5 text-gray-600 transition-transform" />
-                    )}
-                  </button>
-                  {openDressStyle && (
-                    <div className="space-y-2 pl-2">
-                      {dressStyles.map((style) => (
-                        <button
-                          key={style}
-                          onClick={() => setSelectedDressStyle(style)}
-                          className={`flex items-center w-full px-3 py-2 rounded-lg text-sm transition-all ${
-                            selectedDressStyle === style
-                              ? 'bg-black text-white font-semibold'
-                              : 'text-gray-700 hover:bg-gray-100'
-                          }`}
-                        >
-                          <span>{style}</span>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                <button className="w-full bg-black text-white py-3 px-6 rounded-xl mt-4 font-semibold hover:bg-gray-800 transition-colors">
-                  Apply Filter
-                </button>
               </div>
-            </div>
+            )}
 
-            {/* Products */}
-            <div className="flex-1">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-stretch">
-                {paginatedProducts.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    onQuickView={handleQuickView}
-                    onAddToCart={handleAddToCart}
-                    onWishlistToggle={handleWishlistToggle}
-                    isWishlisted={wishlistedItems.has(product.id)}
-                  />
-                ))}
-              </div>
-
-              {/* Pagination */}
-              <div className="mt-10 flex justify-center">
-                <nav className="flex items-center gap-1 sm:gap-2">
+            {/* Product grid */}
+            <main className="min-w-0 flex-1">
+              {results.length === 0 && !isPending ? (
+                <div className="rounded-3xl border border-dashed border-black/10 bg-white px-6 py-16 text-center">
+                  <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--accent-soft)]">
+                    <MagnifyingGlassIcon className="h-7 w-7 text-[var(--accent)]" />
+                  </span>
+                  <h2 className="font-heading text-lg font-extrabold text-[var(--ink)]">
+                    No products match your filters
+                  </h2>
+                  <p className="mx-auto mt-1 max-w-sm text-sm text-[var(--muted)]">
+                    Try removing a filter or widening your price range — there are
+                    plenty more styles waiting for you.
+                  </p>
                   <button
-                    className="px-3 py-2 sm:px-4 sm:py-2 rounded-lg border border-gray-300 text-black disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm flex items-center gap-1 sm:gap-2 hover:bg-gray-50 transition-colors"
-                    disabled={page === 1}
-                    onClick={() => setPage(page - 1)}
+                    type="button"
+                    onClick={clearAll}
+                    className="mt-6 h-11 rounded-xl bg-[var(--accent)] px-6 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(46,125,50,0.3)] transition-colors duration-150 hover:brightness-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
                   >
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                      <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span className="hidden sm:inline">Previous</span>
+                    Clear filters
                   </button>
-
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-                    <button
-                      key={p}
-                      className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg text-xs sm:text-sm flex items-center justify-center transition-colors font-medium ${
-                        page === p
-                          ? 'bg-black text-white'
-                          : 'border border-gray-300 text-black hover:bg-gray-50'
-                      }`}
-                      onClick={() => setPage(p)}
-                    >
-                      {p}
-                    </button>
-                  ))}
-
-                  <button
-                    className="px-3 py-2 sm:px-4 sm:py-2 rounded-lg border border-gray-300 text-black disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-sm flex items-center gap-1 sm:gap-2 hover:bg-gray-50 transition-colors"
-                    disabled={page === totalPages}
-                    onClick={() => setPage(page + 1)}
+                </div>
+              ) : (
+                <>
+                  <div
+                    className={`grid grid-cols-1 items-stretch gap-4 transition-opacity duration-200 sm:grid-cols-2 md:gap-6 ${
+                      sidebarCollapsed ? 'lg:grid-cols-4' : 'lg:grid-cols-3'
+                    } ${isPending ? 'pointer-events-none opacity-50' : 'opacity-100'}`}
+                    aria-busy={isPending}
                   >
-                    <span className="hidden sm:inline">Next</span>
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                      <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </button>
-                </nav>
-              </div>
-            </div>
+                    {paginatedProducts.map((product) => (
+                      <ProductCard
+                        key={product.id}
+                        product={product}
+                        onQuickView={handleQuickView}
+                        onAddToCart={handleAddToCart}
+                        onWishlistToggle={handleWishlistToggle}
+                        isWishlisted={wishlistedItems.has(product.id)}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Pagination */}
+                  {totalPages > 1 && (
+                    <div className="mt-10 flex justify-center">
+                      <nav className="flex items-center gap-1 sm:gap-2" aria-label="Pagination">
+                        <button
+                          className="flex items-center gap-1 rounded-lg border border-black/10 px-3 py-2 text-xs text-[var(--ink)] transition-colors duration-150 hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-40 sm:px-4 sm:py-2 sm:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+                          disabled={page === 1}
+                          onClick={() => setPage((p) => p - 1)}
+                        >
+                          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                            <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                          <span className="hidden sm:inline">Previous</span>
+                        </button>
+
+                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                          <button
+                            key={p}
+                            aria-current={page === p ? 'page' : undefined}
+                            className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs transition-colors duration-150 sm:h-10 sm:w-10 sm:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 ${
+                              page === p
+                                ? 'bg-[var(--accent)] font-semibold text-white shadow-[0_4px_12px_rgba(46,125,50,0.3)]'
+                                : 'border border-black/10 text-[var(--ink)] hover:bg-neutral-50'
+                            }`}
+                            onClick={() => setPage(p)}
+                          >
+                            {p}
+                          </button>
+                        ))}
+
+                        <button
+                          className="flex items-center gap-1 rounded-lg border border-black/10 px-3 py-2 text-xs text-[var(--ink)] transition-colors duration-150 hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-40 sm:px-4 sm:py-2 sm:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+                          disabled={page === totalPages}
+                          onClick={() => setPage((p) => p + 1)}
+                        >
+                          <span className="hidden sm:inline">Next</span>
+                          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </button>
+                      </nav>
+                    </div>
+                  )}
+                </>
+              )}
+            </main>
           </div>
         </div>
       </div>
+
+      {/* Mobile filters drawer — draft state, applies on the footer button */}
+      <MobileFiltersDrawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        catalog={catalog}
+        value={draft}
+        onChange={handleDraftChange}
+        onApply={handleApplyDraft}
+        onClearAll={handleDrawerClearAll}
+        resultCount={draftCount}
+      />
 
       {selectedProduct && (
         <QuickViewModal
@@ -483,5 +391,3 @@ const ShopPage = () => {
     </div>
   );
 }
-
-export default ShopPage;
