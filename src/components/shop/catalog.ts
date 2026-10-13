@@ -57,6 +57,8 @@ export interface FilterState {
   sizes: string[];
   minPrice: number;
   maxPrice: number;
+  /** only show discounted products */
+  onSaleOnly: boolean;
 }
 
 /* ---------------------------------------------------------------------------
@@ -438,6 +440,7 @@ export function createDefaultFilters(catalog: CatalogProduct[]): FilterState {
     sizes: [],
     minPrice: bounds.min,
     maxPrice: bounds.max,
+    onSaleOnly: false,
   };
 }
 
@@ -470,6 +473,9 @@ export function applyFilters(
       filters.sizes.length > 0 &&
       !product.sizes.some((s) => filters.sizes.includes(s.label))
     ) {
+      return false;
+    }
+    if (filters.onSaleOnly && discountPercent(product) <= 0) {
       return false;
     }
     if (product.price < filters.minPrice || product.price > filters.maxPrice) {

@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
 import { ProductCard, QuickViewModal, usePremiumCart, type Product as PremiumProduct } from '@/components/premium';
+import Button from '@/components/ui/Button';
 
 const products: PremiumProduct[] = [
   {
@@ -170,11 +170,9 @@ export default function NewArrivals() {
           </div>
 
           <div className="flex justify-center mt-8">
-            <Link href="/new-arrivals">
-              <button className="w-[132px] h-[48px] lg:w-[218px] lg:h-[52px] rounded-full py-4 px-8 border-2 border-black font-sans font-semibold text-base leading-none tracking-normal text-black hover:bg-black hover:text-white transition-all duration-300">
-                View All
-              </button>
-            </Link>
+            <Button variant="outline" href="/new-arrivals" showArrow>
+              View All
+            </Button>
           </div>
         </div>
       </div>

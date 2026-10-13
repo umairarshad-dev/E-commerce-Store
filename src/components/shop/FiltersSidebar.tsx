@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useCallback, useMemo, useState } from 'react';
-import { FunnelIcon } from '@heroicons/react/24/outline';
+import { CheckIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import FilterSection from './FilterSection';
 import CheckboxFilter from './CheckboxFilter';
 import PriceRangeSlider from './PriceRangeSlider';
 import ColorFilter from './ColorFilter';
 import SizeFilter from './SizeFilter';
 import {
+  discountPercent,
   getCategoryOptions,
   getColorOptions,
   getDressStyleOptions,
@@ -27,6 +28,46 @@ const DEFAULT_OPEN: Record<SectionKey, boolean> = {
   size: true,
   style: false,
 };
+
+/** single "On Sale" checkbox shown at the top of the card */
+function OnSaleFilter({
+  count,
+  checked,
+  onToggle,
+}: {
+  count: number;
+  checked: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <div className="mb-1 border-b border-black/5 pb-3 pt-1">
+      <label className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 transition-colors duration-150 hover:bg-neutral-50">
+        <input
+          type="checkbox"
+          className="peer sr-only"
+          checked={checked}
+          onChange={onToggle}
+        />
+        <span
+          aria-hidden="true"
+          className={`flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-md border transition-colors duration-150 peer-focus-visible:ring-2 peer-focus-visible:ring-[var(--accent)] peer-focus-visible:ring-offset-2 ${
+            checked
+              ? 'border-[var(--accent)] bg-[var(--accent)]'
+              : 'border-black/15 bg-white'
+          }`}
+        >
+          {checked && (
+            <CheckIcon className="h-3 w-3 text-white" strokeWidth={3} />
+          )}
+        </span>
+        <span className="text-sm font-semibold text-[var(--ink)]">On Sale</span>
+        <span className="ml-auto text-xs tabular-nums text-[var(--muted)]">
+          ({count})
+        </span>
+      </label>
+    </div>
+  );
+}
 
 export interface FilterSectionsProps {
   catalog: CatalogProduct[];
@@ -61,6 +102,12 @@ export function FilterSections({
 
   return (
     <div className="divide-none">
+      <OnSaleFilter
+        count={catalog.filter((p) => discountPercent(p) > 0).length}
+        checked={value.onSaleOnly}
+        onToggle={() => onChange({ onSaleOnly: !value.onSaleOnly })}
+      />
+
       <FilterSection
         title="Categories"
         open={open.categories}

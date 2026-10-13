@@ -51,7 +51,6 @@ export default function Navbar() {
             <Link href="/" className={getLinkClass('/')}>Home</Link>
             <Link href="/shop" className={getLinkClass('/shop')}>Shop</Link>
             <Link href="/new-arrivals" className={getLinkClass('/new-arrivals')}>New Arrivals</Link>
-            <Link href="/on-sale" className={getLinkClass('/on-sale')}>Offers</Link>
             <Link href="/about" className={getLinkClass('/about')}>About</Link>
             <Link href="/contact" className={getLinkClass('/contact')}>Contact</Link>
             <Link href="/track-order" className={getLinkClass('/track-order')}>Track Order</Link>
@@ -127,13 +126,6 @@ export default function Navbar() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 New Arrivals
-              </Link>
-              <Link
-                href="/on-sale"
-                className={`py-4 border-b border-gray-100 text-lg font-medium ${isActive('/on-sale') ? 'text-black font-semibold' : 'text-gray-600'}`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Offers
               </Link>
               <Link
                 href="/about"

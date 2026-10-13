@@ -36,16 +36,24 @@ export default function PriceRangeSlider({
   const span = Math.max(bounds.max - bounds.min, 1);
   const toPct = (v: number) => ((v - bounds.min) / span) * 100;
 
+  // Commit on every keystroke (clamped, min <= max guaranteed) so the slider
+  // and URL stay in sync even if a blur event never arrives; the text field
+  // normalizes back to the committed value on blur via the sync effects above.
+  const parseRaw = (raw: string): number => {
+    const digits = raw.replace(/[^0-9]/g, '');
+    return digits === '' ? NaN : Number(digits);
+  };
+
   const handleMinChange = (raw: string) => {
-    const parsed = Number(raw.replace(/[^0-9]/g, ''));
-    const next = Number.isFinite(parsed) ? parsed : bounds.min;
-    onChange([Math.min(Math.max(next, bounds.min), value[1]), value[1]]);
+    const parsed = parseRaw(raw);
+    if (Number.isNaN(parsed)) return;
+    onChange([Math.min(Math.max(parsed, bounds.min), value[1]), value[1]]);
   };
 
   const handleMaxChange = (raw: string) => {
-    const parsed = Number(raw.replace(/[^0-9]/g, ''));
-    const next = Number.isFinite(parsed) ? parsed : bounds.max;
-    onChange([value[0], Math.max(Math.min(next, bounds.max), value[0])]);
+    const parsed = parseRaw(raw);
+    if (Number.isNaN(parsed)) return;
+    onChange([value[0], Math.max(Math.min(parsed, bounds.max), value[0])]);
   };
 
   const commitMin = () => {
@@ -109,7 +117,10 @@ export default function PriceRangeSlider({
             type="text"
             inputMode="numeric"
             value={minText}
-            onChange={(e) => setMinText(e.target.value)}
+            onChange={(e) => {
+              setMinText(e.target.value);
+              handleMinChange(e.target.value);
+            }}
             onFocus={() => setMinFocused(true)}
             onBlur={commitMin}
             onKeyDown={(e) => {
@@ -131,7 +142,10 @@ export default function PriceRangeSlider({
             type="text"
             inputMode="numeric"
             value={maxText}
-            onChange={(e) => setMaxText(e.target.value)}
+            onChange={(e) => {
+              setMaxText(e.target.value);
+              handleMaxChange(e.target.value);
+            }}
             onFocus={() => setMaxFocused(true)}
             onBlur={commitMax}
             onKeyDown={(e) => {

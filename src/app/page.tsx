@@ -2,7 +2,8 @@ import Link from 'next/link';
 import NewArrivals from '@/components/sections/NewArrivals';
 import TopSelling from '@/components/sections/TopSelling';
 import DressStyle from '@/components/DressStyle';
-import Reviews from '@/components/Reviews';
+import Testimonials from '@/components/testimonials/Testimonials';
+import Button from '@/components/ui/Button';
 
 export default function HeroSection() {
   return (
@@ -41,11 +42,11 @@ export default function HeroSection() {
               Browse through our diverse range of meticulously crafted garments,<br className="hidden sm:block" /> designed to bring out your individuality and cater to your sense of style.
             </p>
 
-            <Link href="/shop">
-              <button className="font-['Integral_CF'] w-[120px] h-[44px] sm:w-[132px] sm:h-[48px] lg:w-[210px] lg:h-[52px] text-white text-sm sm:text-base lg:text-base rounded-[62px] font-medium bg-black hover:bg-black/90 transition-colors mb-8 lg:mb-16 shadow-lg">
+            <div className="mb-8 lg:mb-16">
+              <Button variant="solid" href="/shop" size="lg" className="rounded-full px-8 lg:px-12 shadow-lg">
                 Shop Now
-              </button>
-            </Link>
+              </Button>
+            </div>
 
             <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-8 w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[520px]">
               <div className="text-left">
@@ -104,7 +105,7 @@ export default function HeroSection() {
       <NewArrivals />
       <TopSelling />
       <DressStyle />
-      <Reviews />
+      <Testimonials />
     </>
   );
 }

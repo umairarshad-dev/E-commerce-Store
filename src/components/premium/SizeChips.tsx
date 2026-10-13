@@ -2,60 +2,62 @@
 
 import React from 'react';
 
+type SizeItem = { label: string; inStock: boolean };
+
 interface SizeChipsProps {
-  sizes: { label: string; inStock: boolean }[];
-  selectedSize: string;
-  onSelect: (size: string) => void;
+  sizes: SizeItem[];
+  selectedSize?: string;
+  onSelect?: (size: string) => void;
   maxDisplay?: number;
   className?: string;
+  ariaLabel?: string;
 }
 
+/**
+ * Size chips matching the shop filters styling:
+ * h-9, min-w-[44px], rounded-lg, border, text-xs font-semibold.
+ * Selected = accent border + accent-soft background + accent text.
+ * Out-of-stock sizes are faded and disabled.
+ */
 export default function SizeChips({
   sizes,
   selectedSize,
   onSelect,
-  maxDisplay = 4,
+  maxDisplay,
   className = '',
+  ariaLabel,
 }: SizeChipsProps) {
-  const displaySizes = sizes.slice(0, maxDisplay);
-  const remainingCount = sizes.length - maxDisplay;
+  if (!sizes || sizes.length === 0) return null;
+
+  const visible = maxDisplay ? sizes.slice(0, maxDisplay) : sizes;
 
   return (
-    <div className={`flex flex-nowrap gap-2 overflow-hidden ${className}`}>
-      {displaySizes.map((size) => (
-        <button
-          key={size.label}
-          onClick={(e) => {
-            e.stopPropagation();
-            if (size.inStock) onSelect(size.label);
-          }}
-          disabled={!size.inStock}
-          className={`
-            relative h-7 min-w-[32px] px-2.5 text-[11px] font-semibold rounded-lg border transition-all duration-300 flex-shrink-0
-            ${selectedSize === size.label && size.inStock
-              ? 'border-[var(--accent)] bg-[var(--accent)] text-white shadow-md'
-              : size.inStock
-              ? 'border-gray-200 text-[var(--ink)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]'
-              : 'border-gray-200 text-gray-400 cursor-not-allowed opacity-50'
-            }
-            focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
-          `}
-          aria-label={`Select size ${size.label}${!size.inStock ? ' (out of stock)' : ''}`}
-          aria-pressed={selectedSize === size.label}
-        >
-          {size.label}
-          {!size.inStock && (
-            <span className="absolute inset-0 flex items-center justify-center">
-              <span className="w-full h-[1px] bg-gray-400 rotate-45" />
-            </span>
-          )}
-        </button>
-      ))}
-      {remainingCount > 0 && (
-        <span className="h-7 min-w-[32px] px-2.5 text-[11px] font-semibold text-[var(--muted)] flex items-center flex-shrink-0 border border-gray-200 rounded-lg">
-          +{remainingCount}
-        </span>
-      )}
+    <div
+      className={`flex flex-wrap gap-2 ${className}`.trim()}
+      role="group"
+      aria-label={ariaLabel ?? 'Select size'}
+    >
+      {visible.map((item) => {
+        const isSelected = selectedSize === item.label;
+        return (
+          <button
+            key={item.label}
+            type="button"
+            aria-pressed={isSelected}
+            disabled={!item.inStock}
+            onClick={() => onSelect?.(item.label)}
+            className={`inline-flex h-9 min-w-[44px] items-center justify-center rounded-lg border px-3 text-xs font-semibold transition-colors duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-soft)] focus-visible:border-[var(--accent)] ${
+              isSelected
+                ? 'border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]'
+                : item.inStock
+                  ? 'border-black/15 bg-white text-[var(--ink)] hover:border-[var(--accent)] hover:text-[var(--accent)]'
+                  : 'cursor-not-allowed border-black/10 bg-neutral-50 text-[var(--muted)] opacity-60'
+            }`}
+          >
+            {item.label}
+          </button>
+        );
+      })}
     </div>
   );
 }

@@ -26,12 +26,9 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Soft layered shadow — Tailwind v4 can't parse multi-layer arbitrary values,
-   so the layered card shadow lives here as a plain utility class. */
-.shadow-soft {
-  box-shadow:
-    0 2px 8px rgba(0, 0, 0, 0.04),
-    0 12px 32px rgba(0, 0, 0, 0.06);
+@theme {
+  /* soft layered shadows (Tailwind v4 cannot parse multi-layer arbitrary values) */
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.06);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -47,170 +44,14 @@ body {
   font-family: 'Inter', Arial, Helvetica, sans-serif;
 }
 
-.container {
-  max-width: 1240px;
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* ---------------------------------------------------------------------------
- * Typography helper: headings use Plus Jakarta Sans, body stays Inter
- * ------------------------------------------------------------------------- */
-.font-heading {
-  font-family: var(--font-heading);
-}
-
-/* ---------------------------------------------------------------------------
- * Thin custom scrollbar (filter sidebar, drawer)
- * ------------------------------------------------------------------------- */
-.thin-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(17, 24, 39, 0.18) transparent;
-}
-
-.thin-scrollbar::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-.thin-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.thin-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(17, 24, 39, 0.18);
-  border-radius: 9999px;
-}
-
-.thin-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(17, 24, 39, 0.3);
-}
-
-/* ---------------------------------------------------------------------------
- * Dual-thumb price range slider
- * ------------------------------------------------------------------------- */
-.price-range-input {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 20px;
-  background: transparent;
-  outline: none;
-  pointer-events: none;
-}
-
-.price-range-input::-webkit-slider-runnable-track {
-  height: 20px;
-  background: transparent;
-  border: none;
-}
-
-.price-range-input::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  pointer-events: auto;
-  width: 20px;
-  height: 20px;
-  border-radius: 9999px;
-  background: #ffffff;
-  border: 2px solid var(--accent);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
-  cursor: grab;
-  transition: box-shadow 150ms ease, transform 150ms ease;
-}
-
-.price-range-input::-webkit-slider-thumb:hover {
-  transform: scale(1.06);
-}
-
-.price-range-input:active::-webkit-slider-thumb {
-  cursor: grabbing;
-}
-
-.price-range-input:focus-visible::-webkit-slider-thumb {
-  box-shadow: 0 0 0 4px var(--accent-soft), 0 2px 6px rgba(0, 0, 0, 0.18);
-}
-
-.price-range-input::-moz-range-track {
-  height: 4px;
-  background: transparent;
-  border: none;
-}
-
-.price-range-input::-moz-range-thumb {
-  pointer-events: auto;
-  width: 20px;
-  height: 20px;
-  border-radius: 9999px;
-  background: #ffffff;
-  border: 2px solid var(--accent);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
-  cursor: grab;
-  transition: box-shadow 150ms ease, transform 150ms ease;
-}
-
-.price-range-input::-moz-range-thumb:hover {
-  transform: scale(1.06);
-}
-
-.price-range-input:focus-visible::-moz-range-thumb {
-  box-shadow: 0 0 0 4px var(--accent-soft), 0 2px 6px rgba(0, 0, 0, 0.18);
-}
-
-/* ---------------------------------------------------------------------------
- * Subtle entrance animations (dropdown popover + bottom sheets)
- * ------------------------------------------------------------------------- */
-@keyframes sf-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes sf-dropdown-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95) translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-@keyframes sf-sheet-in {
-  from { transform: translateY(100%); }
-  to { transform: translateY(0); }
-}
-
-.animate-fade-in {
-  animation: sf-fade-in 200ms ease-out;
-}
-
-.animate-dropdown-in {
-  animation: sf-dropdown-in 150ms ease-out;
-  transform-origin: top right;
-}
-
-.animate-sheet-in {
-  animation: sf-sheet-in 220ms cubic-bezier(0.32, 0.72, 0, 1);
-}
-
-/* ---------------------------------------------------------------------------
- * Respect reduced motion everywhere
- * ------------------------------------------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+/* Ensure the heading font is applied to all headings and the logo globally,
+   regardless of which page or section renders them. */
+h1, h2, h3, h4,
+.font-\[\'Integral_CF\'\],
+.font-\[\'Integral\+CF\'\],
+.font-\[Integral_CF\] {
+  font-family: var(--font-heading) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+  font-style: normal !important;
 }

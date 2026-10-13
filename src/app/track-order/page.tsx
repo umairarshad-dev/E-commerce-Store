@@ -1,204 +1,123 @@
 'use client';
 
-import React, { useState } from 'react';
-
-type TrackingStatus = 'idle' | 'loading' | 'success' | 'error' | 'empty';
-
-interface OrderTracking {
-  orderNumber: string;
-  status: string;
-  estimatedDelivery: string;
-  currentStep: number;
-  steps: Array<{ step: string; completed: boolean; date?: string }>;
-}
+import React, { Suspense, useCallback, useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import {
+  BanknotesIcon,
+  ChevronRightIcon,
+  LockClosedIcon,
+  TruckIcon,
+} from '@heroicons/react/24/outline';
+import TrackOrderForm from '@/components/track-order/TrackOrderForm';
+import TrackOrderResult from '@/components/track-order/TrackOrderResult';
+import { getOrder, type TrackedOrder } from '@/data/orders';
 
 export default function TrackOrderPage() {
-  const [orderNumber, setOrderNumber] = useState('');
-  const [trackingStatus, setTrackingStatus] = useState<TrackingStatus>('idle');
-  const [orderData, setOrderData] = useState<OrderTracking | null>(null);
+  return (
+    <Suspense fallback={<div className="min-h-[60vh]" />}>
+      <TrackOrderContent />
+    </Suspense>
+  );
+}
 
-  const handleTrackOrder = (e: React.FormEvent) => {
-    e.preventDefault();
+function TrackOrderContent() {
+  const searchParams = useSearchParams();
+  const prefill = searchParams.get('order') ?? '';
 
-    if (!orderNumber) {
-      setTrackingStatus('empty');
-      return;
-    }
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [order, setOrder] = useState<TrackedOrder | null>(null);
 
-    setTrackingStatus('loading');
-
-    setTimeout(() => {
-      if (orderNumber.toLowerCase() === 'ord12345') {
-        setOrderData({
-          orderNumber: orderNumber.toUpperCase(),
-          status: 'In Transit',
-          estimatedDelivery: 'October 15, 2026',
-          currentStep: 2,
-          steps: [
-            { step: 'Order Placed', completed: true, date: 'October 5, 2026' },
-            { step: 'Order Confirmed', completed: true, date: 'October 5, 2026' },
-            { step: 'Shipped', completed: true, date: 'October 7, 2026' },
-            { step: 'Out for Delivery', completed: false },
-            { step: 'Delivered', completed: false },
-          ],
-        });
-        setTrackingStatus('success');
-      } else {
-        setTrackingStatus('error');
+  const handleTrack = useCallback(
+    async (orderNumber: string, contact: string) => {
+      setLoading(true);
+      setError(null);
+      setOrder(null);
+      try {
+        const result = await getOrder(orderNumber, contact);
+        setOrder(result);
+      } catch {
+        setError(
+          "We couldn't find an order matching those details. Check your order number and email or phone, then try again.",
+        );
+      } finally {
+        setLoading(false);
       }
-    }, 1500);
-  };
+    },
+    [],
+  );
 
-  const resetForm = () => {
-    setOrderNumber('');
-    setTrackingStatus('idle');
-    setOrderData(null);
-  };
+  // Support ?order=ORD12345 deep links
+  useEffect(() => {
+    if (prefill && !order && !loading) {
+      handleTrack(prefill, 'prefilled');
+    }
+    // only on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [prefill]);
 
   return (
-    <div className="w-full bg-white min-h-screen">
-      <div className="px-8 py-12">
-        <div className="max-w-screen-xl mx-auto">
-          <h1 className="font-['Integral_CF'] font-bold text-4xl md:text-5xl text-black mb-4 text-center">
-            Track Your Order
-          </h1>
-          <p className="text-gray-600 mb-12 text-center max-w-2xl mx-auto">
-            Enter your order number to track your order status and delivery details.
-          </p>
+    <div className="min-h-screen w-full" style={{ background: 'var(--page)' }}>
+      <div className="px-4 py-12 sm:px-8 md:py-20">
+        <div className="mx-auto max-w-3xl">
+          {/* Breadcrumbs */}
+          <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-1.5 text-sm">
+            <Link
+              href="/"
+              className="text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
+            >
+              Home
+            </Link>
+            <ChevronRightIcon className="h-3 w-3 text-[var(--muted)]" />
+            <span className="text-[var(--ink)]">Track Order</span>
+          </nav>
 
-          <div className="max-w-2xl mx-auto">
-            {trackingStatus === 'idle' && (
-              <form onSubmit={handleTrackOrder} className="space-y-6">
-                <div>
-                  <label htmlFor="orderNumber" className="block text-sm font-medium text-black mb-2">
-                    Order Number
-                  </label>
-                  <input
-                    type="text"
-                    id="orderNumber"
-                    value={orderNumber}
-                    onChange={(e) => setOrderNumber(e.target.value)}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent text-black"
-                    placeholder="e.g., ORD12345"
-                  />
-                  <p className="text-xs text-gray-500 mt-1">
-                    Hint: Use ORD12345 for a demo order
-                  </p>
-                </div>
+          {/* Header */}
+          <div className="mb-8 flex items-start gap-4">
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)]">
+              <TruckIcon className="h-7 w-7 text-[var(--accent)]" aria-hidden="true" />
+            </span>
+            <div>
+              <h1 className="font-heading text-3xl font-extrabold tracking-tight text-[var(--ink)] md:text-4xl">
+                Track Your Order
+              </h1>
+              <p className="mt-1 text-sm text-[var(--muted)]">
+                Enter your order number to see live status and delivery updates.
+              </p>
+            </div>
+          </div>
 
-                <button
-                  type="submit"
-                  className="w-full bg-black text-white py-3 px-6 rounded-full font-medium hover:bg-black/90 transition-colors"
+          <TrackOrderForm
+            initialOrder={prefill}
+            loading={loading}
+            error={error}
+            onSubmit={handleTrack}
+          />
+
+          {/* Trust items before searching */}
+          {!order && !loading && (
+            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              {[
+                { icon: TruckIcon, label: 'Free delivery over Rs 5,000' },
+                { icon: BanknotesIcon, label: '7-day easy returns' },
+                { icon: LockClosedIcon, label: 'Cash on delivery' },
+              ].map(({ icon: Icon, label }) => (
+                <div
+                  key={label}
+                  className="flex items-center gap-3 rounded-2xl border border-black/5 bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
                 >
-                  Track Order
-                </button>
-              </form>
-            )}
-
-            {trackingStatus === 'loading' && (
-              <div className="text-center py-12">
-                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-black mb-4"></div>
-                <p className="text-gray-600">Tracking your order...</p>
-              </div>
-            )}
-
-            {trackingStatus === 'empty' && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-                <p className="text-red-600 font-medium mb-4">Please fill in all required fields</p>
-                <button
-                  onClick={resetForm}
-                  className="text-black underline hover:text-gray-700"
-                >
-                  Try Again
-                </button>
-              </div>
-            )}
-
-            {trackingStatus === 'error' && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center">
-                <p className="text-red-600 font-medium mb-2">Order Not Found</p>
-                <p className="text-gray-600 mb-4">
-                  We couldn't find an order matching the provided information. Please check your order number and contact details.
-                </p>
-                <button
-                  onClick={resetForm}
-                  className="bg-black text-white py-2 px-6 rounded-full font-medium hover:bg-black/90 transition-colors"
-                >
-                  Try Again
-                </button>
-              </div>
-            )}
-
-            {trackingStatus === 'success' && orderData && (
-              <div className="space-y-6">
-                <div className="bg-gray-50 rounded-3xl p-6">
-                  <div className="flex justify-between items-start mb-6">
-                    <div>
-                      <h2 className="font-['Integral_CF'] font-bold text-2xl text-black mb-2">
-                        Order #{orderData.orderNumber}
-                      </h2>
-                      <p className="text-gray-600">Status: <span className="font-semibold text-black">{orderData.status}</span></p>
-                    </div>
-                    <button
-                      onClick={resetForm}
-                      className="text-sm text-gray-600 hover:text-black underline"
-                    >
-                      Track Another Order
-                    </button>
-                  </div>
-
-                  <div className="mb-6">
-                    <p className="text-sm text-gray-600">
-                      Estimated Delivery: <span className="font-semibold text-black">{orderData.estimatedDelivery}</span>
-                    </p>
-                  </div>
-
-                  <div className="space-y-4">
-                    {orderData.steps.map((step, index) => (
-                      <div key={step.step} className="flex items-start gap-4">
-                        <div className="flex flex-col items-center">
-                          <div
-                            className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                              step.completed ? 'bg-black text-white' : 'bg-gray-200 text-gray-400'
-                            }`}
-                          >
-                            {step.completed ? (
-                              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                              </svg>
-                            ) : (
-                              <span className="text-sm">{index + 1}</span>
-                            )}
-                          </div>
-                          {index < orderData.steps.length - 1 && (
-                            <div
-                              className={`w-0.5 h-12 my-1 ${
-                                step.completed ? 'bg-black' : 'bg-gray-200'
-                              }`}
-                            />
-                          )}
-                        </div>
-                        <div className="flex-1 pt-1">
-                          <p className={`font-medium ${step.completed ? 'text-black' : 'text-gray-400'}`}>
-                            {step.step}
-                          </p>
-                          {step.date && (
-                            <p className="text-sm text-gray-500">{step.date}</p>
-                          )}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)]">
+                    <Icon className="h-4.5 w-4.5 text-[var(--accent)]" aria-hidden="true" />
+                  </span>
+                  <span className="text-sm font-semibold text-[var(--ink)]">{label}</span>
                 </div>
+              ))}
+            </div>
+          )}
 
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <p className="text-sm text-blue-800">
-                    <strong>Need help?</strong> If you have any questions about your order, please contact our customer support at support@pakipreneurs.com
-                  </p>
-                </div>
-              </div>
-            )}
+          <div className="mt-8" aria-live="polite">
+            {order && <TrackOrderResult order={order} />}
           </div>
         </div>
       </div>

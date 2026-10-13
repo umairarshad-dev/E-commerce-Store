@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { ProductCard, QuickViewModal, usePremiumCart, type Product as PremiumProduct } from '@/components/premium';
+import Button from '@/components/ui/Button';
 
 const wishlistProducts: PremiumProduct[] = [
   {
@@ -132,9 +133,9 @@ export default function WishlistPage() {
           ) : (
             <div className="text-center py-12">
               <p className="text-gray-600 mb-4">Your wishlist is empty</p>
-              <a href="/shop" className="inline-block bg-black text-white px-6 py-3 rounded-full font-medium hover:bg-gray-800 transition-colors">
+              <Button variant="solid" href="/shop">
                 Continue Shopping
-              </a>
+              </Button>
             </div>
           )}
         </div>

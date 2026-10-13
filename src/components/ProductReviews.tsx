@@ -58,7 +58,7 @@ export default function ProductReviews({
             <option value="latest">Latest</option>
             <option value="helpful">Most Helpful</option>
           </select>
-          <button className="ml-2 px-6 py-3 rounded-full bg-black text-white text-base hover:bg-gray-900 transition font-satoshi font-medium text-[16px] leading-[100%] tracking-[0]">Write a Review</button>
+          <button className="ml-2 rounded-xl bg-[var(--accent)] px-6 py-3 text-base font-semibold text-white shadow-[0_4px_14px_rgba(46,125,50,0.3)] transition hover:brightness-95 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--accent-soft)]">Write a Review</button>
         </div>
       </div>
 

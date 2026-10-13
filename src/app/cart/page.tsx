@@ -3,6 +3,7 @@
 import { useCart } from '@/components/lib/context/CartContext';
 import Image from 'next/image';
 import Link from 'next/link';
+import Button from '@/components/ui/Button';
 
 export default function CartPage() {
   const { cartItems, removeFromCart, updateQuantity, cartTotal } = useCart();
@@ -31,12 +32,11 @@ export default function CartPage() {
             {cartItems.length === 0 ? (
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <p className="text-gray-600">Your cart is empty</p>
-                <Link
-                  href="/"
-                  className="mt-4 inline-block bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition"
-                >
-                  Continue Shopping
-                </Link>
+                <div className="mt-4">
+                  <Button variant="solid" href="/">
+                    Continue Shopping
+                  </Button>
+                </div>
               </div>
             ) : (
               <div className="space-y-4">
@@ -150,7 +150,7 @@ export default function CartPage() {
                         className="flex-1 bg-transparent outline-none text-black placeholder:text-gray-400"
                       />
                     </div>
-                    <button className="bg-black text-white px-6 py-2 rounded-full hover:bg-gray-300 hover:text-black transition">
+                    <button className="rounded-full bg-[var(--accent)] px-6 py-2 text-sm font-semibold text-white transition hover:brightness-95 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--accent-soft)]">
                       Apply
                     </button>
                   </div>
@@ -158,12 +158,9 @@ export default function CartPage() {
 
 
 
-                <Link
-                  href="/checkout"
-                  className="block w-full bg-black text-white text-center py-3 rounded-full hover:bg-gray-800 transition font-medium"
-                >
-                  Go to Checkout    →
-                </Link>
+                <Button variant="solid" href="/checkout" size="lg" className="w-full rounded-full">
+                  Go to Checkout →
+                </Button>
 
               </div>
             </div>

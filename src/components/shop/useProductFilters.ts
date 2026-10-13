@@ -44,6 +44,7 @@ export interface ProductFilters {
   ) => void;
   setPriceRange: (range: [number, number]) => void;
   setSort: (sort: SortValue) => void;
+  setOnSaleOnly: (value: boolean) => void;
   applyDraftFilters: (draft: FilterState) => void;
   clearAll: () => void;
 }
@@ -93,6 +94,7 @@ export function useProductFilters(
       sizes: readCsv(searchParams, 'size'),
       minPrice,
       maxPrice,
+      onSaleOnly: searchParams.get('sale') === '1',
     };
   }, [searchParams, defaults, bounds]);
 
@@ -234,6 +236,13 @@ export function useProductFilters(
     [defaultSort, updateParams],
   );
 
+  const setOnSaleOnly = useCallback(
+    (value: boolean) => {
+      updateParams({ sale: value ? '1' : undefined });
+    },
+    [updateParams],
+  );
+
   const applyDraftFilters = useCallback(
     (draft: FilterState) => {
       committedRef.current = [draft.minPrice, draft.maxPrice];
@@ -245,6 +254,7 @@ export function useProductFilters(
         size: csv(draft.sizes),
         min: draft.minPrice === bounds.min ? undefined : String(draft.minPrice),
         max: draft.maxPrice === bounds.max ? undefined : String(draft.maxPrice),
+        sale: draft.onSaleOnly ? '1' : undefined,
       });
     },
     [bounds, updateParams],
@@ -325,6 +335,13 @@ export function useProductFilters(
         onRemove: () => toggleSize(value),
       }),
     );
+    if (filters.onSaleOnly) {
+      list.push({
+        id: 'sale',
+        label: 'On Sale',
+        onRemove: () => setOnSaleOnly(false),
+      });
+    }
     if (priceChipActive) {
       list.push({
         id: 'price',
@@ -346,6 +363,7 @@ export function useProductFilters(
     toggleDressStyle,
     toggleColor,
     toggleSize,
+    setOnSaleOnly,
     updateParams,
   ]);
 
@@ -354,6 +372,7 @@ export function useProductFilters(
     filters.dressStyles.length +
     filters.colors.length +
     filters.sizes.length +
+    (filters.onSaleOnly ? 1 : 0) +
     (priceChipActive ? 1 : 0);
 
   return {
@@ -373,6 +392,7 @@ export function useProductFilters(
     setFilterList,
     setPriceRange,
     setSort,
+    setOnSaleOnly,
     applyDraftFilters,
     clearAll,
   };

@@ -88,6 +88,7 @@ function ShopContent() {
     setFilterList,
     setPriceRange,
     setSort,
+    setOnSaleOnly,
     applyDraftFilters,
     clearAll,
   } = useProductFilters(catalog, 'popular');
@@ -238,18 +239,19 @@ function ShopContent() {
             {/* Desktop filters */}
             <FiltersSidebar
               catalog={catalog}
-              value={filters}
+              value={{ ...filters, minPrice: priceRange[0], maxPrice: priceRange[1] }}
               onChange={(patch) => {
                 if (patch.minPrice !== undefined || patch.maxPrice !== undefined) {
                   setPriceRange([
-                    patch.minPrice ?? filters.minPrice,
-                    patch.maxPrice ?? filters.maxPrice,
+                    patch.minPrice ?? priceRange[0],
+                    patch.maxPrice ?? priceRange[1],
                   ]);
                 }
                 if (patch.categories) setFilterList('categories', patch.categories);
                 if (patch.dressStyles) setFilterList('dressStyles', patch.dressStyles);
                 if (patch.colors) setFilterList('colors', patch.colors);
                 if (patch.sizes) setFilterList('sizes', patch.sizes);
+                if (patch.onSaleOnly !== undefined) setOnSaleOnly(patch.onSaleOnly);
               }}
               onClearAll={clearAll}
               hasActiveFilters={activeCount > 0}
