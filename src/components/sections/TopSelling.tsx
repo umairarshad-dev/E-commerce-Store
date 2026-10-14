@@ -146,13 +146,13 @@ export default function TopSelling() {
 
   return (
     <div className="w-full bg-white">
-      <div className="px-8 py-7">
+      <div className="px-4 py-7 sm:px-8">
         <div className="max-w-screen-xl mx-auto">
           <div className="font-['Integral CF'] font-bold text-4xl md:text-5xl text-black mb-8 text-center">
             Top Selling
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-4 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 items-stretch">
             {products.map((product) => (
               <ProductCard
                 key={product.id}
