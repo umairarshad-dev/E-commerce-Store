@@ -70,36 +70,6 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
-
-        <div className="absolute bottom-0 left-0 right-0 bg-black w-full h-[100px] sm:h-[122px] flex justify-center items-center px-4">
-          <div className="flex flex-row items-center justify-center gap-2 sm:gap-4 lg:gap-12 flex-wrap">
-            <img
-              src="/images/brands/versace-collection.png"
-              alt="Versace"
-              className="h-[16px] sm:h-[20px] lg:h-[24px] w-auto object-contain filter brightness-0 invert"
-            />
-            <img
-              src="/images/brands/zara-collection.png"
-              alt="Zara"
-              className="h-[16px] sm:h-[20px] lg:h-[26px] w-auto object-contain filter brightness-0 invert"
-            />
-            <img
-              src="/images/brands/gucci-collection.png"
-              alt="Gucci"
-              className="h-[16px] sm:h-[20px] lg:h-[25px] w-auto object-contain filter brightness-0 invert"
-            />
-            <img
-              src="/images/brands/prada-collection.png"
-              alt="Prada"
-              className="h-[14px] sm:h-[18px] lg:h-[22px] w-auto object-contain filter brightness-0 invert"
-            />
-            <img
-              src="/images/brands/calvin-collection.png"
-              alt="Calvin Klein"
-              className="h-[16px] sm:h-[20px] lg:h-[24px] w-auto object-contain filter brightness-0 invert"
-            />
-          </div>
-        </div>
       </div>
 
       <NewArrivals />
