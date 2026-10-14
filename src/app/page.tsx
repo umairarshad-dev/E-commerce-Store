@@ -32,7 +32,7 @@ export default function HeroSection() {
         />
 
         {/* Main content */}
-        <div className="w-full flex justify-center items-center px-4 sm:px-8 lg:px-24 pt-16 lg:pt-32 pb-40 lg:pb-48 relative z-10">
+        <div className="w-full flex justify-center lg:justify-start items-center px-4 sm:px-8 lg:px-24 pt-16 lg:pt-32 pb-40 lg:pb-48 relative z-10">
           <div className="container mx-auto lg:mx-0 max-w-[588px]">
             <h1 className="font-['Integral_CF'] font-bold text-[24px] sm:text-[32px] leading-[28px] sm:leading-[38px] lg:text-[64px] lg:leading-[76px] tracking-normal text-left text-white sm:text-black mb-4 lg:mb-6 drop-shadow-lg sm:drop-shadow-none">
               FIND CLOTHES<br />THAT MATCHES<br />YOUR STYLE
