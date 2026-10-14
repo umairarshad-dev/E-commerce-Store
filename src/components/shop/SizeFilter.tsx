@@ -31,11 +31,11 @@ export default function SizeFilter({
             onClick={() => onToggle(size.label)}
             aria-pressed={checked}
             aria-label={`Size ${size.label}${size.inStock ? '' : ' (out of stock)'}`}
-            className={`flex h-9 min-w-[44px] items-center justify-center rounded-lg border text-xs font-semibold transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 ${
+            className={`flex h-9 min-w-[44px] items-center justify-center rounded-lg border text-xs font-semibold transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 ${
               checked
-                ? 'border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]'
+                ? 'border-black bg-black text-white'
                 : size.inStock
-                  ? 'border-black/10 bg-white text-[var(--ink)] hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]'
+                  ? 'border-black/10 bg-white text-[var(--ink)] hover:border-black hover:bg-neutral-100'
                   : 'cursor-not-allowed border-black/5 bg-white text-[var(--ink)] opacity-40 line-through'
             }`}
           >

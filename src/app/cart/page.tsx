@@ -150,7 +150,7 @@ export default function CartPage() {
                         className="flex-1 bg-transparent outline-none text-black placeholder:text-gray-400"
                       />
                     </div>
-                    <button className="rounded-full bg-[var(--accent)] px-6 py-2 text-sm font-semibold text-white transition hover:brightness-95 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--accent-soft)]">
+                    <button className="rounded-full bg-black px-6 py-2 text-sm font-semibold text-white transition hover:bg-neutral-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2">
                       Apply
                     </button>
                   </div>

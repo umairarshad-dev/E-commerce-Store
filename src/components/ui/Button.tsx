@@ -35,18 +35,18 @@ const sizeClasses: Record<ButtonSize, string> = {
 };
 
 const variantClasses: Record<ButtonVariant, string> = {
-  // Solid accent button - used for primary CTAs (search, checkout, etc.)
+  // Solid button - used for primary CTAs (search, checkout, etc.)
   solid:
-    'bg-[var(--accent)] text-white border border-transparent hover:brightness-95 active:scale-[0.98] ' +
-    'focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--accent-soft)] ' +
-    'focus-visible:border-[var(--accent)] disabled:opacity-50 disabled:pointer-events-none ' +
+    'bg-black text-white border border-transparent hover:bg-neutral-800 active:scale-[0.98] ' +
+    'focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-black/10 ' +
+    'focus-visible:border-black disabled:opacity-50 disabled:pointer-events-none ' +
     'transition-[background-color,border-color,color,transform,filter] duration-150 ease-out',
-  // Outline button - white bg, accent on hover (replaces old black hover)
+  // Outline button - white bg, black hover
   outline:
-    'bg-white text-[var(--ink)] border border-black/15 hover:border-[var(--accent)] hover:bg-[var(--accent)] ' +
+    'bg-white text-[var(--ink)] border border-black/15 hover:border-black hover:bg-black ' +
     'hover:text-white active:scale-[0.98] ' +
-    'focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--accent-soft)] ' +
-    'focus-visible:border-[var(--accent)] ' +
+    'focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-black/10 ' +
+    'focus-visible:border-black ' +
     'transition-[background-color,border-color,color,transform] duration-150 ease-out',
 };
 

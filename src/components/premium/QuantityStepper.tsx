@@ -44,10 +44,10 @@ export default function QuantityStepper({
         className={`
           w-10 h-10 rounded-full bg-white border border-gray-300
           flex items-center justify-center text-[var(--ink)]
-          hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]
+          hover:border-black hover:bg-neutral-100
           disabled:opacity-50 disabled:cursor-not-allowed
           transition-all duration-200
-          focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
+          focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
         `}
         aria-label="Decrease quantity"
       >
@@ -74,8 +74,8 @@ export default function QuantityStepper({
         max={max}
         className={`
           w-16 h-10 text-center font-semibold text-[var(--ink)]
-          bg-[var(--accent-soft)] rounded-full
-          focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
+          bg-neutral-100 rounded-full
+          focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
           tabular-nums
         `}
         aria-label="Quantity"
@@ -87,10 +87,10 @@ export default function QuantityStepper({
         className={`
           w-10 h-10 rounded-full bg-white border border-gray-300
           flex items-center justify-center text-[var(--ink)]
-          hover:border-[var(--accent)] hover:bg-[var(--accent-soft)]
+          hover:border-black hover:bg-neutral-100
           disabled:opacity-50 disabled:cursor-not-allowed
           transition-all duration-200
-          focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
+          focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
         `}
         aria-label="Increase quantity"
       >

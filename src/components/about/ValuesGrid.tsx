@@ -46,8 +46,8 @@ export default function ValuesGrid() {
             {VALUES.map((value, i) => (
               <Reveal key={value.title} delay={i * 60}>
                 <div className="h-full rounded-2xl border border-black/5 bg-white p-6 shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)]">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-[var(--accent-soft)]">
-                    <value.icon className="h-6 w-6 text-[var(--accent)]" aria-hidden="true" />
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-neutral-100">
+                    <value.icon className="h-6 w-6 text-black" aria-hidden="true" />
                   </span>
                   <h3 className="mt-4 font-heading text-base font-bold text-[var(--ink)]">
                     {value.title}

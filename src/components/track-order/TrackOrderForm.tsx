@@ -17,8 +17,8 @@ interface TrackOrderFormProps {
 
 const inputClasses =
   'h-12 w-full rounded-xl border border-black/10 bg-neutral-50 pl-11 pr-4 text-sm text-[var(--ink)] ' +
-  'transition-colors duration-150 placeholder:text-neutral-400 focus:border-[var(--accent)] focus:bg-white ' +
-  'focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)]';
+  'transition-colors duration-150 placeholder:text-neutral-400 focus:border-black focus:bg-white ' +
+  'focus:outline-none focus:ring-2 focus:ring-black/10';
 
 export default function TrackOrderForm({
   initialOrder = '',
@@ -102,7 +102,7 @@ export default function TrackOrderForm({
       <button
         type="submit"
         disabled={!canSubmit}
-        className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[var(--accent)] text-sm font-bold text-white shadow-[0_4px_14px_rgba(46,125,50,0.3)] transition duration-200 hover:brightness-95 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--accent-soft)] disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
+        className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-black text-sm font-bold text-white shadow-sm transition duration-200 hover:bg-neutral-800 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-black/10 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
       >
         {loading ? (
           <>
@@ -124,7 +124,7 @@ export default function TrackOrderForm({
         <button
           type="button"
           onClick={fillDemo}
-          className="rounded-full border border-black/10 bg-neutral-50 px-3 py-1.5 text-xs font-semibold text-[var(--muted)] transition-colors duration-150 hover:border-[var(--accent)] hover:text-[var(--accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+          className="rounded-full border border-black/10 bg-neutral-50 px-3 py-1.5 text-xs font-semibold text-[var(--muted)] transition-colors duration-150 hover:border-black hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
         >
           Try demo: <span className="tabular-nums">ORD12345</span>
         </button>

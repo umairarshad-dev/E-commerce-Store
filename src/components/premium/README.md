@@ -160,8 +160,8 @@ Customize the theme by modifying CSS variables in `globals.css`:
 
 ```css
 :root {
-  --accent: #2e7d32;          /* Primary accent color */
-  --accent-soft: rgba(46, 125, 50, 0.1);  /* Accent at 10% opacity */
+  --accent: #000000;          /* Primary accent color */
+  --accent-soft: rgba(0, 0, 0, 0.05);  /* Accent at 5% opacity */
   --ink: #111827;             /* Primary text color */
   --muted: #6b7280;           /* Secondary text color */
   --surface: #ffffff;         /* Card background */

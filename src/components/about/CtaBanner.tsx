@@ -9,7 +9,7 @@ export default function CtaBanner() {
     <section className="w-full bg-white">
       <div className="px-4 pb-16 sm:px-8">
         <Reveal>
-          <div className="mx-auto max-w-screen-xl rounded-3xl bg-[var(--accent)] px-6 py-12 text-center shadow-[0_12px_40px_rgba(46,125,50,0.25)] md:px-12">
+          <div className="mx-auto max-w-screen-xl rounded-3xl bg-black px-6 py-12 text-center shadow-lg md:px-12">
             <h2 className="font-heading text-2xl font-extrabold tracking-tight text-white md:text-3xl">
               Ready to find your style?
             </h2>
@@ -22,7 +22,7 @@ export default function CtaBanner() {
                 href="/shop"
                 size="lg"
                 showArrow
-                className="bg-white text-[var(--accent)] shadow-none hover:bg-white/90 hover:text-[var(--accent)]"
+                className="bg-white text-black shadow-none hover:bg-white/90 hover:text-black"
               >
                 Shop Now
               </Button>
@@ -30,7 +30,7 @@ export default function CtaBanner() {
                 variant="outline"
                 href="/contact"
                 size="lg"
-                className="border-white/40 bg-transparent text-white hover:border-white hover:bg-white hover:text-[var(--accent)]"
+                className="border-white/40 bg-transparent text-white hover:border-white hover:bg-white hover:text-black"
               >
                 Contact Us
               </Button>

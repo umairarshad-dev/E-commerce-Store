@@ -59,7 +59,7 @@ export default function Testimonials() {
           <Reveal>
             <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.12em] text-[var(--accent)]">
+                <p className="text-xs font-bold uppercase tracking-[0.12em] text-[var(--muted)]">
                   Testimonials
                 </p>
                 <h2 className="mt-1 text-2xl font-extrabold tracking-tight text-[var(--ink)] md:text-3xl">
@@ -84,7 +84,7 @@ export default function Testimonials() {
                   onClick={() => scrollToIndex(index - 1)}
                   disabled={index === 0}
                   aria-label="Previous reviews"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-[var(--ink)] transition-colors duration-150 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-black/10 disabled:hover:bg-white disabled:hover:text-[var(--ink)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-[var(--ink)] transition-colors duration-150 hover:border-black hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-black/10 disabled:hover:bg-white disabled:hover:text-[var(--ink)] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
                 >
                   <ChevronLeftIcon className="h-5 w-5" />
                 </button>
@@ -93,7 +93,7 @@ export default function Testimonials() {
                   onClick={() => scrollToIndex(index + 1)}
                   disabled={index >= maxIndex}
                   aria-label="Next reviews"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-[var(--ink)] transition-colors duration-150 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-black/10 disabled:hover:bg-white disabled:hover:text-[var(--ink)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white text-[var(--ink)] transition-colors duration-150 hover:border-black hover:bg-black hover:text-white disabled:cursor-not-allowed disabled:opacity-35 disabled:hover:border-black/10 disabled:hover:bg-white disabled:hover:text-[var(--ink)] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
                 >
                   <ChevronRightIcon className="h-5 w-5" />
                 </button>
@@ -107,7 +107,7 @@ export default function Testimonials() {
             aria-label="Customer reviews carousel"
             tabIndex={0}
             onKeyDown={onKeyDown}
-            className="thin-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 [-ms-overflow-style:none] [scrollbar-width:none]"
+            className="thin-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 [-ms-overflow-style:none] [scrollbar-width:none]"
             style={{
               // 1 card + a peek on mobile, 2 on sm, 3 on lg
               maskImage: undefined,
@@ -134,7 +134,7 @@ export default function Testimonials() {
                 aria-label={`Go to review ${i + 1}`}
                 aria-current={i === index}
                 className={`h-2 rounded-full transition-all duration-200 ${
-                  i === index ? 'w-5 bg-[var(--accent)]' : 'w-2 bg-neutral-200'
+                  i === index ? 'w-5 bg-black' : 'w-2 bg-neutral-200'
                 }`}
               />
             ))}

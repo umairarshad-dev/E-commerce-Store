@@ -35,10 +35,10 @@ export default function ColorSwatches({
           className={`
             relative w-[16px] h-[16px] rounded-full border-2 transition-all duration-300 flex-shrink-0
             ${selectedColor === color.name
-              ? 'border-[var(--accent)] ring-2 ring-[var(--accent)] ring-offset-2 scale-110'
-              : 'border-gray-300 hover:border-[var(--accent)] hover:scale-105'
+              ? 'border-black ring-2 ring-black ring-offset-2 scale-110'
+              : 'border-gray-300 hover:border-black hover:scale-105'
             }
-            focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
+            focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
           `}
           style={{ backgroundColor: color.hex }}
           aria-label={`Select color ${color.name}`}
@@ -47,7 +47,11 @@ export default function ColorSwatches({
         >
           {selectedColor === color.name && (
             <svg
-              className="absolute inset-0 m-auto w-2.5 h-2.5 text-white"
+              className={`absolute inset-0 m-auto w-2.5 h-2.5 ${
+                color.name.toLowerCase().includes('white') || color.name.toLowerCase().includes('khaki') || color.hex === '#fff' || color.hex === '#ffffff'
+                  ? 'text-neutral-900'
+                  : 'text-white'
+              }`}
               fill="currentColor"
               viewBox="0 0 20 20"
             >

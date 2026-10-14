@@ -33,9 +33,9 @@ export default function ColorFilter({
             title={label}
             aria-label={`${label} color${checked ? ', selected' : ''}`}
             aria-pressed={checked}
-            className={`relative flex h-7 w-7 items-center justify-center rounded-full transition-all duration-150 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 ${
+            className={`relative flex h-7 w-7 items-center justify-center rounded-full transition-all duration-150 hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 ${
               checked
-                ? 'ring-2 ring-[var(--accent)] ring-offset-2 ring-offset-white'
+                ? 'ring-2 ring-black ring-offset-2 ring-offset-white'
                 : ''
             }`}
             style={{ backgroundColor: color.hex }}

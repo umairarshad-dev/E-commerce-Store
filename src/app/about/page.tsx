@@ -141,8 +141,8 @@ export default function AboutPage() {
                       key={label}
                       className="flex items-center gap-3 rounded-2xl border border-black/5 bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
                     >
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)]">
-                        <Icon className="h-5 w-5 text-[var(--accent)]" aria-hidden="true" />
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-100">
+                        <Icon className="h-5 w-5 text-black" aria-hidden="true" />
                       </span>
                       <span className="text-sm font-semibold text-[var(--ink)]">{label}</span>
                     </div>
@@ -167,7 +167,7 @@ export default function AboutPage() {
                       key={member.name}
                       className="flex items-center gap-4 rounded-2xl border border-black/5 bg-white p-5 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
                     >
-                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)] text-base font-bold text-[var(--accent)]">
+                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-base font-bold text-black">
                         {member.name
                           .split(' ')
                           .map((p) => p[0])

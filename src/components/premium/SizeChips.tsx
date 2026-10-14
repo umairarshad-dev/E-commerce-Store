@@ -46,11 +46,11 @@ export default function SizeChips({
             aria-pressed={isSelected}
             disabled={!item.inStock}
             onClick={() => onSelect?.(item.label)}
-            className={`inline-flex h-9 min-w-[44px] items-center justify-center rounded-lg border px-3 text-xs font-semibold transition-colors duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent-soft)] focus-visible:border-[var(--accent)] ${
+            className={`inline-flex h-9 min-w-[44px] items-center justify-center rounded-lg border px-3 text-xs font-semibold transition-colors duration-150 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black/10 focus-visible:border-black ${
               isSelected
-                ? 'border-[var(--accent)] bg-[var(--accent-soft)] text-[var(--accent)]'
+                ? 'border-black bg-black text-white'
                 : item.inStock
-                  ? 'border-black/15 bg-white text-[var(--ink)] hover:border-[var(--accent)] hover:text-[var(--accent)]'
+                  ? 'border-black/15 bg-white text-[var(--ink)] hover:border-black hover:text-black'
                   : 'cursor-not-allowed border-black/10 bg-neutral-50 text-[var(--muted)] opacity-60'
             }`}
           >

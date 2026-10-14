@@ -265,12 +265,12 @@ function ShopContent() {
                     type="button"
                     onClick={() => setSidebarCollapsed(false)}
                     aria-label="Expand filters"
-                    className="flex h-10 w-10 items-center justify-center rounded-xl bg-[var(--accent-soft)] text-[var(--accent)] transition-colors duration-150 hover:bg-[var(--accent)] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl bg-neutral-100 text-black transition-colors duration-150 hover:bg-black hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
                   >
                     <FunnelIcon className="h-5 w-5" />
                   </button>
                   {activeCount > 0 && (
-                    <span className="text-[11px] font-bold tabular-nums text-[var(--accent)]">
+                    <span className="text-[11px] font-bold tabular-nums text-black">
                       {activeCount}
                     </span>
                   )}
@@ -282,8 +282,8 @@ function ShopContent() {
             <main className="min-w-0 flex-1">
               {results.length === 0 && !isPending ? (
                 <div className="rounded-3xl border border-dashed border-black/10 bg-white px-6 py-16 text-center">
-                  <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--accent-soft)]">
-                    <MagnifyingGlassIcon className="h-7 w-7 text-[var(--accent)]" />
+                  <span className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-neutral-100">
+                    <MagnifyingGlassIcon className="h-7 w-7 text-black" />
                   </span>
                   <h2 className="font-heading text-lg font-extrabold text-[var(--ink)]">
                     No products match your filters
@@ -295,7 +295,7 @@ function ShopContent() {
                   <button
                     type="button"
                     onClick={clearAll}
-                    className="mt-6 h-11 rounded-xl bg-[var(--accent)] px-6 text-sm font-semibold text-white shadow-[0_4px_14px_rgba(46,125,50,0.3)] transition-colors duration-150 hover:brightness-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+                    className="mt-6 h-11 rounded-xl bg-black px-6 text-sm font-semibold text-white shadow-sm transition-colors duration-150 hover:bg-neutral-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
                   >
                     Clear filters
                   </button>
@@ -325,7 +325,7 @@ function ShopContent() {
                     <div className="mt-10 flex justify-center">
                       <nav className="flex items-center gap-1 sm:gap-2" aria-label="Pagination">
                         <button
-                          className="flex items-center gap-1 rounded-lg border border-black/10 px-3 py-2 text-xs text-[var(--ink)] transition-colors duration-150 hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-40 sm:px-4 sm:py-2 sm:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+                          className="flex items-center gap-1 rounded-lg border border-black/10 px-3 py-2 text-xs text-[var(--ink)] transition-colors duration-150 hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-40 sm:px-4 sm:py-2 sm:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
                           disabled={page === 1}
                           onClick={() => setPage((p) => p - 1)}
                         >
@@ -339,9 +339,9 @@ function ShopContent() {
                           <button
                             key={p}
                             aria-current={page === p ? 'page' : undefined}
-                            className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs transition-colors duration-150 sm:h-10 sm:w-10 sm:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 ${
+                            className={`flex h-8 w-8 items-center justify-center rounded-lg text-xs transition-colors duration-150 sm:h-10 sm:w-10 sm:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 ${
                               page === p
-                                ? 'bg-[var(--accent)] font-semibold text-white shadow-[0_4px_12px_rgba(46,125,50,0.3)]'
+                                ? 'bg-black font-semibold text-white shadow-sm'
                                 : 'border border-black/10 text-[var(--ink)] hover:bg-neutral-50'
                             }`}
                             onClick={() => setPage(p)}
@@ -351,7 +351,7 @@ function ShopContent() {
                         ))}
 
                         <button
-                          className="flex items-center gap-1 rounded-lg border border-black/10 px-3 py-2 text-xs text-[var(--ink)] transition-colors duration-150 hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-40 sm:px-4 sm:py-2 sm:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+                          className="flex items-center gap-1 rounded-lg border border-black/10 px-3 py-2 text-xs text-[var(--ink)] transition-colors duration-150 hover:bg-neutral-50 disabled:cursor-not-allowed disabled:opacity-40 sm:px-4 sm:py-2 sm:text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
                           disabled={page === totalPages}
                           onClick={() => setPage((p) => p + 1)}
                         >

@@ -230,7 +230,7 @@ export default function SortDropdown<T extends string = string>({
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={open ? listboxId : undefined}
-        className="flex h-11 items-center gap-2 rounded-xl border border-black/10 bg-white px-4 text-sm transition-colors duration-150 hover:border-black/20 focus:border-[var(--accent)] focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--accent-soft)]"
+        className="flex h-11 items-center gap-2 rounded-xl border border-black/10 bg-white px-4 text-sm transition-colors duration-150 hover:border-black/20 focus:border-black focus:outline-none focus-visible:ring-[3px] focus-visible:ring-black/10"
       >
         <span className="text-[var(--muted)]">{label}:</span>
         <span className="font-semibold text-[var(--ink)]">{selectedLabel}</span>
@@ -262,7 +262,7 @@ export default function SortDropdown<T extends string = string>({
                 onClick={() => select(option)}
                 className={`flex h-10 cursor-pointer select-none items-center gap-2.5 rounded-xl px-3 text-sm transition-colors duration-100 ${
                   selected
-                    ? 'bg-[var(--accent-soft)] font-semibold text-[var(--accent)]'
+                    ? 'bg-neutral-100 font-semibold text-black'
                     : active
                       ? 'bg-neutral-100 text-[var(--ink)]'
                       : 'text-[var(--ink)]'
@@ -271,13 +271,13 @@ export default function SortDropdown<T extends string = string>({
                 {Icon && (
                   <Icon
                     className={`h-4 w-4 shrink-0 ${
-                      selected ? 'text-[var(--accent)]' : 'text-[var(--muted)]'
+                      selected ? 'text-black' : 'text-[var(--muted)]'
                     }`}
                   />
                 )}
                 <span className="truncate">{option.label}</span>
                 {selected && (
-                  <CheckIcon className="ml-auto h-4 w-4 shrink-0 text-[var(--accent)]" strokeWidth={2.5} />
+                  <CheckIcon className="ml-auto h-4 w-4 shrink-0 text-black" strokeWidth={2.5} />
                 )}
               </div>
             );
@@ -302,7 +302,7 @@ export default function SortDropdown<T extends string = string>({
                 type="button"
                 onClick={() => close()}
                 aria-label="Close"
-                className="flex h-8 w-8 items-center justify-center rounded-lg text-[var(--muted)] transition-colors hover:bg-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+                className="flex h-8 w-8 items-center justify-center rounded-lg text-[var(--muted)] transition-colors hover:bg-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
               >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -325,7 +325,7 @@ export default function SortDropdown<T extends string = string>({
                     onClick={() => select(option)}
                     className={`flex h-12 cursor-pointer select-none items-center gap-3 rounded-xl px-3 text-base transition-colors duration-100 ${
                       selected
-                        ? 'bg-[var(--accent-soft)] font-semibold text-[var(--accent)]'
+                        ? 'bg-neutral-100 font-semibold text-black'
                         : active
                           ? 'bg-neutral-100 text-[var(--ink)]'
                           : 'text-[var(--ink)]'
@@ -334,13 +334,13 @@ export default function SortDropdown<T extends string = string>({
                     {Icon && (
                       <Icon
                         className={`h-5 w-5 shrink-0 ${
-                          selected ? 'text-[var(--accent)]' : 'text-[var(--muted)]'
+                          selected ? 'text-black' : 'text-[var(--muted)]'
                         }`}
                       />
                     )}
                     <span className="truncate">{option.label}</span>
                     {selected && (
-                      <CheckIcon className="ml-auto h-5 w-5 shrink-0 text-[var(--accent)]" strokeWidth={2.5} />
+                      <CheckIcon className="ml-auto h-5 w-5 shrink-0 text-black" strokeWidth={2.5} />
                     )}
                   </div>
                 );

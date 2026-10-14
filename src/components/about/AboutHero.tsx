@@ -12,7 +12,7 @@ export default function AboutHero() {
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <Reveal>
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--accent)]">
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[var(--muted)]">
                   Our Story
                 </p>
                 <h1 className="mt-2 font-heading text-4xl font-extrabold tracking-tight text-[var(--ink)] md:text-5xl">

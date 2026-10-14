@@ -45,9 +45,9 @@ export default function CheckboxFilter({
             />
             <span
               aria-hidden="true"
-              className={`flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-md border transition-colors duration-150 peer-focus-visible:ring-2 peer-focus-visible:ring-[var(--accent)] peer-focus-visible:ring-offset-2 ${
+              className={`flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-md border transition-colors duration-150 peer-focus-visible:ring-2 peer-focus-visible:ring-black peer-focus-visible:ring-offset-2 ${
                 checked
-                  ? 'border-[var(--accent)] bg-[var(--accent)]'
+                  ? 'border-black bg-black'
                   : 'border-black/15 bg-white'
               }`}
             >
@@ -67,7 +67,7 @@ export default function CheckboxFilter({
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="ml-2 mt-1 rounded-md px-2 py-1 text-xs font-semibold text-[var(--accent)] transition-colors duration-150 hover:bg-[var(--accent-soft)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+          className="ml-2 mt-1 rounded-md px-2 py-1 text-xs font-semibold text-black transition-colors duration-150 hover:bg-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
         >
           {expanded ? 'Show less' : `Show more (${options.length - visibleCount})`}
         </button>

@@ -106,13 +106,13 @@ export default function QuickViewModal({
       >
         {/* Header */}
         <div className="sticky top-0 bg-[var(--surface)] z-10 px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-          <span className="text-xs font-bold uppercase tracking-widest text-[var(--accent)]">
+          <span className="text-xs font-bold uppercase tracking-widest text-[var(--muted)]">
             Quick View
           </span>
           <button
             ref={closeButtonRef}
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+            className="p-2 hover:bg-gray-100 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-black"
             aria-label="Close modal"
           >
             <XMarkIcon className="w-6 h-6 text-[var(--ink)]" />
@@ -177,7 +177,7 @@ export default function QuickViewModal({
             {/* Right Column - Details */}
             <div className="space-y-4">
               {/* Category Label */}
-              <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--accent)]">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-[var(--muted)]">
                 {product.category} · {product.fabric || 'COTTON'}
               </p>
 
@@ -191,7 +191,7 @@ export default function QuickViewModal({
 
               {/* Price */}
               <div className="flex items-center gap-2">
-                <span className="font-extrabold text-xl text-[var(--accent)] tabular-nums">
+                <span className="font-extrabold text-xl text-black tabular-nums">
                   {formatPrice(product.price)}
                 </span>
                 {product.compareAtPrice && (
@@ -238,7 +238,7 @@ export default function QuickViewModal({
                     </p>
                     <button
                       onClick={() => setShowSizeGuide(!showSizeGuide)}
-                      className="text-[10px] font-medium text-[var(--accent)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
+                      className="text-[10px] font-medium text-black hover:underline focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
                     >
                       Size Guide
                     </button>
@@ -302,10 +302,10 @@ export default function QuickViewModal({
                   flex items-center justify-center gap-2
                   transition-all duration-200
                   ${isFormValid && !isAdding
-                    ? 'bg-[var(--accent)] text-white hover:bg-[var(--accent)]/90'
+                    ? 'bg-black text-white hover:bg-neutral-800'
                     : 'bg-gray-200 text-gray-400 cursor-not-allowed'
                   }
-                  focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
+                  focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
                 `}
               >
                 {isAdding ? (
@@ -336,7 +336,7 @@ export default function QuickViewModal({
                   flex items-center justify-center gap-2
                   border border-gray-300 text-[var(--ink)]
                   hover:bg-gray-50 transition-all duration-200
-                  focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
+                  focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
                 `}
               >
                 View Full Details
@@ -348,19 +348,19 @@ export default function QuickViewModal({
               {/* Trust Row */}
               <div className="flex flex-wrap gap-3 pt-3 border-t border-gray-200">
                 <div className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                   </svg>
                   <span className="text-[10px] text-[var(--muted)]">Free Delivery</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                   </svg>
                   <span className="text-[10px] text-[var(--muted)]">Easy Returns</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <svg className="w-4 h-4 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                   </svg>
                   <span className="text-[10px] text-[var(--muted)]">Cash on Delivery</span>

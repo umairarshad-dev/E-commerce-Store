@@ -75,7 +75,7 @@ export default function PriceRangeSlider({
         <div className="absolute inset-x-0 h-1 rounded-full bg-neutral-200" />
         {/* Accent fill between thumbs */}
         <div
-          className="absolute h-1 rounded-full bg-[var(--accent)] transition-[left,right] duration-100"
+          className="absolute h-1 rounded-full bg-black transition-[left,right] duration-100"
           style={{
             left: `${toPct(value[0])}%`,
             right: `${100 - toPct(value[1])}%`,
@@ -130,7 +130,7 @@ export default function PriceRangeSlider({
                 (e.target as HTMLInputElement).blur();
               }
             }}
-            className="h-10 w-full rounded-xl border border-black/5 bg-neutral-50 pl-9 pr-3 text-sm tabular-nums text-[var(--ink)] transition-colors duration-150 focus:border-[var(--accent)] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)]"
+            className="h-10 w-full rounded-xl border border-black/5 bg-neutral-50 pl-9 pr-3 text-sm tabular-nums text-[var(--ink)] transition-colors duration-150 focus:border-black focus:bg-white focus:outline-none focus:ring-2 focus:ring-black/10"
           />
         </label>
         <label className="relative block">
@@ -155,7 +155,7 @@ export default function PriceRangeSlider({
                 (e.target as HTMLInputElement).blur();
               }
             }}
-            className="h-10 w-full rounded-xl border border-black/5 bg-neutral-50 pl-9 pr-3 text-sm tabular-nums text-[var(--ink)] transition-colors duration-150 focus:border-[var(--accent)] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)]"
+            className="h-10 w-full rounded-xl border border-black/5 bg-neutral-50 pl-9 pr-3 text-sm tabular-nums text-[var(--ink)] transition-colors duration-150 focus:border-black focus:bg-white focus:outline-none focus:ring-2 focus:ring-black/10"
           />
         </label>
       </div>

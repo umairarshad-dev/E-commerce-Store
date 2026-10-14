@@ -189,8 +189,8 @@ export default function FiltersSidebar({
       <div className="thin-scrollbar max-h-[calc(100vh-7rem)] overflow-y-auto rounded-3xl border border-black/5 bg-white p-5 shadow-soft lg:sticky lg:top-24 lg:self-start">
         <div className="mb-1 flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-[var(--accent-soft)]">
-              <FunnelIcon className="h-4 w-4 text-[var(--accent)]" />
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-neutral-100">
+              <FunnelIcon className="h-4 w-4 text-black" />
             </span>
             <h2 className="font-heading text-lg font-extrabold text-[var(--ink)]">
               Filters
@@ -201,7 +201,7 @@ export default function FiltersSidebar({
               <button
                 type="button"
                 onClick={onClearAll}
-                className="rounded-lg px-2 py-1 text-xs font-semibold text-[var(--accent)] transition-colors duration-150 hover:bg-[var(--accent-soft)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+                className="rounded-lg px-2 py-1 text-xs font-semibold text-black transition-colors duration-150 hover:bg-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
               >
                 Clear all
               </button>
@@ -211,7 +211,7 @@ export default function FiltersSidebar({
                 type="button"
                 onClick={onCollapse}
                 aria-label="Collapse filters"
-                className="flex h-7 w-7 items-center justify-center rounded-lg text-[var(--muted)] transition-colors duration-150 hover:bg-neutral-100 hover:text-[var(--ink)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+                className="flex h-7 w-7 items-center justify-center rounded-lg text-[var(--muted)] transition-colors duration-150 hover:bg-neutral-100 hover:text-[var(--ink)] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
               >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />

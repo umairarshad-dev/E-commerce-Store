@@ -30,7 +30,7 @@ export default function FilterSection({
         onClick={onToggle}
         aria-expanded={open}
         aria-controls={contentId}
-        className="flex w-full items-center justify-between gap-2 py-3.5 text-left select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 rounded-lg"
+        className="flex w-full items-center justify-between gap-2 py-3.5 text-left select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 rounded-lg"
       >
         <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-[var(--ink)]">
           {title}

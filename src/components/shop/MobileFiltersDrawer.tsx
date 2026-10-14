@@ -154,14 +154,14 @@ export default function MobileFiltersDrawer({
             <button
               type="button"
               onClick={onClearAll}
-              className="h-11 shrink-0 rounded-xl border border-black/10 px-5 text-sm font-semibold text-[var(--ink)] transition-colors duration-150 hover:border-black/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+              className="h-11 shrink-0 rounded-xl border border-black/10 px-5 text-sm font-semibold text-[var(--ink)] transition-colors duration-150 hover:border-black/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
             >
               Clear all
             </button>
             <button
               type="button"
               onClick={onApply}
-              className="h-11 flex-1 rounded-xl bg-[var(--accent)] text-sm font-semibold text-white shadow-[0_4px_14px_rgba(46,125,50,0.3)] transition-colors duration-150 hover:brightness-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+              className="h-11 flex-1 rounded-xl bg-black text-sm font-semibold text-white shadow-sm transition-colors duration-150 hover:bg-neutral-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
             >
               Show {resultCount} {resultCount === 1 ? 'result' : 'results'}
             </button>

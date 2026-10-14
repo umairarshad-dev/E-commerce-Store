@@ -58,7 +58,7 @@ export default function ProductReviews({
             <option value="latest">Latest</option>
             <option value="helpful">Most Helpful</option>
           </select>
-          <button className="ml-2 rounded-xl bg-[var(--accent)] px-6 py-3 text-base font-semibold text-white shadow-[0_4px_14px_rgba(46,125,50,0.3)] transition hover:brightness-95 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--accent-soft)]">Write a Review</button>
+          <button className="ml-2 rounded-xl bg-black px-6 py-3 text-base font-semibold text-white shadow-sm transition hover:bg-neutral-800 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-black">Write a Review</button>
         </div>
       </div>
 
@@ -77,7 +77,7 @@ export default function ProductReviews({
               <span className="font-bold text-black text-base">
                 {review.user}
               </span>
-              {review.verified && <span className="ml-1 text-green-600 font-bold text-base">●</span>}
+              {review.verified && <span className="ml-1 text-black font-bold text-base">●</span>}
             </div>
             <p className="text-gray-700 text-base mb-2">{review.comment}</p>
             <span className="text-gray-400 text-sm">Posted on {review.date}</span>

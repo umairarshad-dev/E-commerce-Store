@@ -43,7 +43,7 @@ function StarRow({ rating, count }: { rating: number; count: number }) {
         ))}
       </div>
       <span className="text-sm text-[var(--muted)] tabular-nums">{rating.toFixed(1)}</span>
-      <span className="text-sm text-[var(--accent)] font-medium hover:underline cursor-pointer">
+      <span className="text-sm text-black font-medium hover:underline cursor-pointer">
         ({count} reviews)
       </span>
     </div>
@@ -105,7 +105,7 @@ export default function BuyBox({ product, onAddToCart, onBuyNow }: BuyBoxProps) 
     <div className="flex flex-col gap-6">
       {/* Category + Rating */}
       <div className="flex flex-col gap-1.5">
-        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--accent)]">
+        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--muted)]">
           {product.brand ?? 'Clothing'} · {product.category ?? 'Apparel'}
         </span>
         <StarRow rating={product.rating} count={product.reviews} />
@@ -118,7 +118,7 @@ export default function BuyBox({ product, onAddToCart, onBuyNow }: BuyBoxProps) 
 
       {/* Price row */}
       <div className="flex items-center flex-wrap gap-3">
-        <span className="text-3xl font-bold text-[var(--accent)] tabular-nums">
+        <span className="text-3xl font-bold text-black tabular-nums">
           {formatPrice(salePrice)}
         </span>
         {originalPrice && originalPrice > salePrice && (
@@ -168,7 +168,7 @@ export default function BuyBox({ product, onAddToCart, onBuyNow }: BuyBoxProps) 
             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
             disabled={quantity <= 1}
             aria-label="Decrease quantity"
-            className="w-11 h-full flex items-center justify-center text-[var(--ink)] hover:text-[var(--accent)] disabled:opacity-40 transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--accent)]"
+            className="w-11 h-full flex items-center justify-center text-[var(--ink)] hover:text-black disabled:opacity-40 transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
@@ -180,7 +180,7 @@ export default function BuyBox({ product, onAddToCart, onBuyNow }: BuyBoxProps) 
           <button
             onClick={() => setQuantity((q) => q + 1)}
             aria-label="Increase quantity"
-            className="w-11 h-full flex items-center justify-center text-[var(--ink)] hover:text-[var(--accent)] transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--accent)]"
+            className="w-11 h-full flex items-center justify-center text-[var(--ink)] hover:text-black transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -196,11 +196,11 @@ export default function BuyBox({ product, onAddToCart, onBuyNow }: BuyBoxProps) 
           className={`
             flex-1 h-14 rounded-2xl font-bold text-sm flex items-center justify-center gap-2
             transition-all duration-200
-            focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
+            focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
             ${isReady && addState === 'idle'
-              ? 'bg-[var(--accent)] text-white hover:opacity-90 shadow-[0_4px_14px_rgba(46,125,50,0.35)] hover:shadow-[0_6px_20px_rgba(46,125,50,0.45)]'
+              ? 'bg-black text-white hover:bg-neutral-800 shadow-sm'
               : addState === 'added'
-              ? 'bg-emerald-600 text-white'
+              ? 'bg-black text-white'
               : 'bg-gray-200 text-gray-400 cursor-not-allowed'}
           `}
         >
@@ -225,9 +225,9 @@ export default function BuyBox({ product, onAddToCart, onBuyNow }: BuyBoxProps) 
         aria-label="Buy it now"
         className={`
           w-full h-12 rounded-2xl font-bold text-sm border-2 transition-all duration-150
-          focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
+          focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
           ${isReady
-            ? 'border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent-soft)]'
+            ? 'border-black text-black bg-white hover:bg-black hover:text-white'
             : 'border-gray-200 text-gray-400 cursor-not-allowed'}
         `}
       >

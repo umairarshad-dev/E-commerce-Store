@@ -123,9 +123,9 @@ export function ViewToggle({
   onChange: (view: ViewMode) => void;
 }) {
   const buttonClass = (active: boolean) =>
-    `flex h-9 w-9 items-center justify-center rounded-lg transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-1 ${
+    `flex h-9 w-9 items-center justify-center rounded-lg transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-1 ${
       active
-        ? 'bg-[var(--accent-soft)] text-[var(--accent)]'
+        ? 'bg-neutral-100 text-black'
         : 'text-[var(--muted)] hover:bg-neutral-100 hover:text-[var(--ink)]'
     }`;
 

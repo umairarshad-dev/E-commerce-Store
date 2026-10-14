@@ -34,7 +34,7 @@ export default function ActiveFilterChips({
             type="button"
             onClick={chip.onRemove}
             aria-label={`Remove filter ${chip.label}`}
-            className="flex h-4.5 w-4.5 items-center justify-center rounded-full text-[var(--muted)] transition-colors duration-150 hover:bg-[var(--accent-soft)] hover:text-[var(--accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)]"
+            className="flex h-4.5 w-4.5 items-center justify-center rounded-full text-[var(--muted)] transition-colors duration-150 hover:bg-neutral-200 hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
           >
             <XMarkIcon className="h-3 w-3" strokeWidth={2.5} />
           </button>
@@ -44,7 +44,7 @@ export default function ActiveFilterChips({
       <button
         type="button"
         onClick={onClearAll}
-        className="ml-1 rounded-full px-2 py-1.5 text-xs font-semibold text-[var(--accent)] underline-offset-2 transition-colors duration-150 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+        className="ml-1 rounded-full px-2 py-1.5 text-xs font-semibold text-black underline-offset-2 transition-colors duration-150 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
       >
         Clear all
       </button>

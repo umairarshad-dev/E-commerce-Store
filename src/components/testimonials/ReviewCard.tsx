@@ -26,7 +26,7 @@ function GoldStars({ rating, className = '' }: { rating: number; className?: str
 function VerifiedCheck() {
   return (
     <svg
-      className="h-4 w-4 shrink-0 text-[var(--accent)]"
+      className="h-4 w-4 shrink-0 text-black"
       viewBox="0 0 20 20"
       fill="currentColor"
       role="img"
@@ -66,7 +66,7 @@ function Avatar({ review }: { review: Review }) {
   return (
     <span
       aria-hidden="true"
-      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)] text-sm font-bold text-[var(--accent)]"
+      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-100 text-sm font-bold text-black"
     >
       {initials}
     </span>
@@ -102,7 +102,7 @@ export default function ReviewCard({ review }: { review: Review }) {
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="mt-1 self-start text-xs font-semibold text-[var(--accent)] transition-colors hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 rounded"
+          className="mt-1 self-start text-xs font-semibold text-black transition-colors hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 rounded"
         >
           {expanded ? 'Read less' : 'Read more'}
         </button>

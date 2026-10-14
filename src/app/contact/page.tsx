@@ -16,8 +16,8 @@ const MAX_MESSAGE = 500;
 
 const inputClasses =
   'h-12 w-full rounded-xl border border-black/10 bg-neutral-50 pl-11 pr-4 text-sm text-[var(--ink)] ' +
-  'transition-colors duration-150 placeholder:text-neutral-400 focus:border-[var(--accent)] focus:bg-white ' +
-  'focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)]';
+  'transition-colors duration-150 placeholder:text-neutral-400 focus:border-black focus:bg-white ' +
+  'focus:outline-none focus:ring-2 focus:ring-black/10';
 
 /** Business hours: Mon-Fri 9-18, Sat 10-16, Sun closed (local time). */
 function isOpenNow(date = new Date()): boolean {
@@ -216,13 +216,13 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Tell us more about your inquiry..."
-                    className="w-full resize-none rounded-xl border border-black/10 bg-neutral-50 p-4 text-sm text-[var(--ink)] transition-colors duration-150 placeholder:text-neutral-400 focus:border-[var(--accent)] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[var(--accent-soft)]"
+                    className="w-full resize-none rounded-xl border border-black/10 bg-neutral-50 p-4 text-sm text-[var(--ink)] transition-colors duration-150 placeholder:text-neutral-400 focus:border-black focus:bg-white focus:outline-none focus:ring-2 focus:ring-black/10"
                   />
                 </div>
 
                 <div aria-live="polite">
                   {status === 'success' ? (
-                    <div className="flex h-12 items-center justify-center gap-2 rounded-xl bg-[var(--accent-soft)] text-sm font-semibold text-[var(--accent)]">
+                    <div className="flex h-12 items-center justify-center gap-2 rounded-xl bg-neutral-100 text-sm font-semibold text-black">
                       <CheckCircleIcon className="h-5 w-5" aria-hidden="true" />
                       Thank you! Your message has been sent.
                     </div>
@@ -230,7 +230,7 @@ export default function ContactPage() {
                     <button
                       type="submit"
                       disabled={!canSubmit || status === 'loading'}
-                      className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-[var(--accent)] text-sm font-bold text-white shadow-[0_4px_14px_rgba(46,125,50,0.3)] transition duration-200 hover:brightness-95 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--accent-soft)] disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
+                      className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-black text-sm font-bold text-white shadow-sm transition duration-200 hover:bg-neutral-800 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-black/10 disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none"
                     >
                       {status === 'loading' ? (
                         <>
@@ -262,12 +262,12 @@ export default function ContactPage() {
                   <span
                     className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold ${
                       open
-                        ? 'bg-[var(--accent-soft)] text-[var(--accent)]'
+                        ? 'bg-black text-white'
                         : 'bg-neutral-100 text-[var(--muted)]'
                     }`}
                   >
                     <span
-                      className={`h-1.5 w-1.5 rounded-full ${open ? 'bg-[var(--accent)]' : 'bg-neutral-400'}`}
+                      className={`h-1.5 w-1.5 rounded-full ${open ? 'bg-white' : 'bg-neutral-400'}`}
                       aria-hidden="true"
                     />
                     {open ? 'Open now' : 'Closed now'}
@@ -276,8 +276,8 @@ export default function ContactPage() {
 
                 <ul className="mt-6 space-y-5">
                   <li className="flex items-start gap-3.5">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)]">
-                      <MapPinIcon className="h-5 w-5 text-[var(--accent)]" aria-hidden="true" />
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-100">
+                      <MapPinIcon className="h-5 w-5 text-black" aria-hidden="true" />
                     </span>
                     <div>
                       <p className="text-sm font-bold text-[var(--ink)]">Address</p>
@@ -285,7 +285,7 @@ export default function ContactPage() {
                         href="https://maps.google.com/?q=123+Fashion+Street+Lahore"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
+                        className="text-sm text-[var(--muted)] transition-colors hover:text-black"
                       >
                         123 Fashion Street, Lahore, Pakistan 54000
                       </a>
@@ -293,20 +293,20 @@ export default function ContactPage() {
                   </li>
 
                   <li className="flex items-start gap-3.5">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)]">
-                      <EnvelopeIcon className="h-5 w-5 text-[var(--accent)]" aria-hidden="true" />
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-100">
+                      <EnvelopeIcon className="h-5 w-5 text-black" aria-hidden="true" />
                     </span>
                     <div>
                       <p className="text-sm font-bold text-[var(--ink)]">Email</p>
                       <a
                         href="mailto:support@pakipreneurs.com"
-                        className="block text-sm text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
+                        className="block text-sm text-[var(--muted)] transition-colors hover:text-black"
                       >
                         support@pakipreneurs.com
                       </a>
                       <a
                         href="mailto:info@pakipreneurs.com"
-                        className="block text-sm text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
+                        className="block text-sm text-[var(--muted)] transition-colors hover:text-black"
                       >
                         info@pakipreneurs.com
                       </a>
@@ -314,14 +314,14 @@ export default function ContactPage() {
                   </li>
 
                   <li className="flex items-start gap-3.5">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)]">
-                      <PhoneIcon className="h-5 w-5 text-[var(--accent)]" aria-hidden="true" />
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-100">
+                      <PhoneIcon className="h-5 w-5 text-black" aria-hidden="true" />
                     </span>
                     <div>
                       <p className="text-sm font-bold text-[var(--ink)]">Phone</p>
                       <a
                         href="tel:+923001234567"
-                        className="block text-sm text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
+                        className="block text-sm text-[var(--muted)] transition-colors hover:text-black"
                       >
                         +92 300 1234567
                       </a>
@@ -329,7 +329,7 @@ export default function ContactPage() {
                         href="https://wa.me/923001234567"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block text-sm text-[var(--muted)] transition-colors hover:text-[var(--accent)]"
+                        className="block text-sm text-[var(--muted)] transition-colors hover:text-black"
                       >
                         WhatsApp us
                       </a>
@@ -337,8 +337,8 @@ export default function ContactPage() {
                   </li>
 
                   <li className="flex items-start gap-3.5">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)]">
-                      <ClockIcon className="h-5 w-5 text-[var(--accent)]" aria-hidden="true" />
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-100">
+                      <ClockIcon className="h-5 w-5 text-black" aria-hidden="true" />
                     </span>
                     <div>
                       <p className="text-sm font-bold text-[var(--ink)]">Business Hours</p>
@@ -361,7 +361,7 @@ export default function ContactPage() {
                     href="https://maps.google.com/?q=123+Fashion+Street+Lahore"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-1 inline-block text-xs font-semibold text-[var(--accent)] transition-colors hover:underline"
+                    className="mt-1 inline-block text-xs font-semibold text-black transition-colors hover:underline"
                   >
                     Open in Google Maps
                   </a>

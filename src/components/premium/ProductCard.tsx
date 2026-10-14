@@ -125,7 +125,7 @@ export default function ProductCard({
             bg-white shadow-lg flex items-center justify-center
             transition-all duration-300
             ${isWishlisted ? 'scale-110' : 'hover:scale-110'}
-            focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
+            focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
           `}
           aria-label={isWishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
           aria-pressed={isWishlisted}
@@ -175,11 +175,11 @@ export default function ProductCard({
             transition-transform duration-300 ease-out
             ${isHovered ? 'translate-y-0' : 'translate-y-full'}
             lg:block hidden
-            focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
+            focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
           `}
           aria-label="Quick view"
         >
-          <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[var(--accent)]">
+          <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-black">
             Quick View
           </span>
         </button>
@@ -240,7 +240,7 @@ export default function ProductCard({
         <div className="flex items-center justify-between mt-auto">
           {/* Price */}
           <div className="flex items-center gap-2">
-            <span className="text-base font-bold text-[var(--accent)] tabular-nums">
+            <span className="text-base font-bold text-black tabular-nums">
               {formatPrice(product.price)}
             </span>
             {product.compareAtPrice && (
@@ -263,8 +263,8 @@ export default function ProductCard({
             className={`
               w-8 h-8 rounded-lg flex items-center justify-center
               transition-all duration-300
-              bg-[var(--accent-soft)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white hover:scale-105
-              focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
+              bg-black text-white hover:bg-neutral-800 hover:scale-105
+              focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2
             `}
             aria-label="Add to cart"
           >

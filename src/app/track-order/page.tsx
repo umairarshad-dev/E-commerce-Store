@@ -75,8 +75,8 @@ function TrackOrderContent() {
 
           {/* Header */}
           <div className="mb-8 flex items-start gap-4">
-            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)]">
-              <TruckIcon className="h-7 w-7 text-[var(--accent)]" aria-hidden="true" />
+            <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-neutral-100">
+              <TruckIcon className="h-7 w-7 text-black" aria-hidden="true" />
             </span>
             <div>
               <h1 className="font-heading text-3xl font-extrabold tracking-tight text-[var(--ink)] md:text-4xl">
@@ -107,8 +107,8 @@ function TrackOrderContent() {
                   key={label}
                   className="flex items-center gap-3 rounded-2xl border border-black/5 bg-white p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
                 >
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--accent-soft)]">
-                    <Icon className="h-4.5 w-4.5 text-[var(--accent)]" aria-hidden="true" />
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-100">
+                    <Icon className="h-4.5 w-4.5 text-black" aria-hidden="true" />
                   </span>
                   <span className="text-sm font-semibold text-[var(--ink)]">{label}</span>
                 </div>

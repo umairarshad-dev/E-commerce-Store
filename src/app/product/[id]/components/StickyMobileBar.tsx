@@ -47,7 +47,7 @@ export default function StickyMobileBar({ price, isReady, onAddToCart, mainButto
           flex-1 h-12 rounded-2xl font-bold text-sm flex items-center justify-center gap-2
           transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2
           ${isReady
-            ? 'bg-[var(--accent)] text-white shadow-[0_4px_14px_rgba(46,125,50,0.35)]'
+            ? 'bg-[var(--accent)] text-white shadow-sm'
             : 'bg-gray-200 text-gray-400 cursor-not-allowed'}
         `}
       >

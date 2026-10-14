@@ -22,7 +22,7 @@ const STATUS_STYLES: Record<OrderStatus, string> = {
   Packed: 'bg-blue-50 text-blue-700',
   Shipped: 'bg-blue-50 text-blue-700',
   'Out for Delivery': 'bg-amber-50 text-amber-700',
-  Delivered: 'bg-[var(--accent-soft)] text-[var(--accent)]',
+  Delivered: 'bg-black text-white',
 };
 
 const formatRs = (n: number) => `Rs ${n.toLocaleString('en-US')}`;
@@ -43,16 +43,16 @@ function Stepper({ current }: { current: OrderStatus }) {
                 <span
                   aria-hidden="true"
                   className={`absolute right-1/2 top-4 h-0.5 w-full ${
-                    i <= currentIndex ? 'bg-[var(--accent)]' : 'bg-neutral-200'
+                    i <= currentIndex ? 'bg-black' : 'bg-neutral-200'
                   }`}
                 />
               )}
               <span
                 className={`relative z-10 mx-auto flex h-8 w-8 items-center justify-center rounded-full border-2 text-xs font-bold ${
                   done
-                    ? 'border-[var(--accent)] bg-[var(--accent)] text-white'
+                    ? 'border-black bg-black text-white'
                     : active
-                      ? 'animate-pulse border-[var(--accent)] bg-white text-[var(--accent)]'
+                      ? 'animate-pulse border-black bg-white text-black'
                       : 'border-neutral-200 bg-white text-neutral-400'
                 }`}
               >
@@ -81,9 +81,9 @@ function Stepper({ current }: { current: OrderStatus }) {
                 <span
                   className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-xs font-bold ${
                     done
-                      ? 'border-[var(--accent)] bg-[var(--accent)] text-white'
+                      ? 'border-black bg-black text-white'
                       : active
-                        ? 'animate-pulse border-[var(--accent)] bg-white text-[var(--accent)]'
+                        ? 'animate-pulse border-black bg-white text-black'
                         : 'border-neutral-200 bg-white text-neutral-400'
                   }`}
                 >
@@ -92,7 +92,7 @@ function Stepper({ current }: { current: OrderStatus }) {
                 {i < ORDER_STEPS.length - 1 && (
                   <span
                     aria-hidden="true"
-                    className={`w-0.5 flex-1 ${i < currentIndex ? 'bg-[var(--accent)]' : 'bg-neutral-200'}`}
+                    className={`w-0.5 flex-1 ${i < currentIndex ? 'bg-black' : 'bg-neutral-200'}`}
                   />
                 )}
               </div>
@@ -156,8 +156,8 @@ export default function TrackOrderResult({ order }: { order: TrackedOrder }) {
       {/* Courier */}
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-black/5 bg-white p-5 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
         <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent-soft)]">
-            <TruckIcon className="h-5 w-5 text-[var(--accent)]" aria-hidden="true" />
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-100">
+            <TruckIcon className="h-5 w-5 text-black" aria-hidden="true" />
           </span>
           <div>
             <p className="text-sm font-bold text-[var(--ink)]">{order.courier.name}</p>
@@ -169,11 +169,11 @@ export default function TrackOrderResult({ order }: { order: TrackedOrder }) {
         <button
           type="button"
           onClick={copyTracking}
-          className="flex h-9 items-center gap-1.5 rounded-xl border border-black/10 px-3 text-xs font-semibold text-[var(--ink)] transition-colors duration-150 hover:border-[var(--accent)] hover:text-[var(--accent)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2"
+          className="flex h-9 items-center gap-1.5 rounded-xl border border-black/10 px-3 text-xs font-semibold text-[var(--ink)] transition-colors duration-150 hover:border-black hover:text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
           aria-label="Copy tracking number"
         >
           {copied ? (
-            <CheckIcon className="h-4 w-4 text-[var(--accent)]" strokeWidth={3} />
+            <CheckIcon className="h-4 w-4 text-black" strokeWidth={3} />
           ) : (
             <ClipboardDocumentIcon className="h-4 w-4" />
           )}
@@ -190,7 +190,7 @@ export default function TrackOrderResult({ order }: { order: TrackedOrder }) {
               <li key={event.date} className="flex gap-3">
                 <span
                   className={`mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full ${
-                    event.status === order.status ? 'bg-[var(--accent)]' : 'bg-neutral-200'
+                    event.status === order.status ? 'bg-black' : 'bg-neutral-200'
                   }`}
                   aria-hidden="true"
                 />
@@ -265,7 +265,7 @@ export default function TrackOrderResult({ order }: { order: TrackedOrder }) {
       <div className="flex flex-col gap-3 sm:flex-row">
         <a
           href="mailto:support@pakipreneurs.com"
-          className="flex h-11 flex-1 items-center justify-center gap-2 rounded-xl border border-black/15 bg-white text-sm font-semibold text-[var(--ink)] transition-all duration-200 hover:border-[var(--accent)] hover:bg-[var(--accent)] hover:text-white focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--accent-soft)]"
+          className="flex h-11 flex-1 items-center justify-center gap-2 rounded-xl border border-black/15 bg-white text-sm font-semibold text-[var(--ink)] transition-all duration-200 hover:border-black hover:bg-black hover:text-white focus:outline-none focus-visible:ring-[3px] focus-visible:ring-black/10"
         >
           <LifebuoyIcon className="h-4 w-4" aria-hidden="true" />
           Need help?
@@ -273,7 +273,7 @@ export default function TrackOrderResult({ order }: { order: TrackedOrder }) {
         <button
           type="button"
           onClick={() => window.print()}
-          className="flex h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-[var(--accent)] text-sm font-semibold text-white shadow-[0_4px_14px_rgba(46,125,50,0.3)] transition hover:brightness-95 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--accent-soft)]"
+          className="flex h-11 flex-1 items-center justify-center gap-2 rounded-xl bg-black text-sm font-semibold text-white shadow-sm transition hover:bg-neutral-800 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-black/10"
         >
           <HomeIcon className="h-4 w-4" aria-hidden="true" />
           Download invoice

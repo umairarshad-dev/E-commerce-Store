@@ -69,7 +69,7 @@ export default function PDPClient({ product, relatedProducts }: Props) {
                 {crumb.href ? (
                   <Link
                     href={crumb.href}
-                    className="hover:text-[var(--accent)] transition-colors focus:outline-none focus:underline"
+                    className="hover:text-black transition-colors focus:outline-none focus:underline"
                   >
                     {crumb.label}
                   </Link>

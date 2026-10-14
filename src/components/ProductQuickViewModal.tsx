@@ -108,7 +108,7 @@ export default function ProductQuickViewModal({ product, isOpen, onClose }: Prod
                         onClick={() => setSelectedSize(size)}
                         className={`px-4 py-2 rounded-full text-sm border transition-all ${
                           selectedSize === size
-                            ? 'bg-[var(--accent)] text-white border-[var(--accent)]'
+                            ? 'bg-black text-white border-black'
                             : 'bg-[#F0F0F0] text-black border-gray-200'
                         }`}
                       >
@@ -140,7 +140,7 @@ export default function ProductQuickViewModal({ product, isOpen, onClose }: Prod
 
               <button
                 onClick={handleAddToCart}
-                className="w-full rounded-xl bg-[var(--accent)] py-3 px-6 font-semibold text-white shadow-[0_4px_14px_rgba(46,125,50,0.3)] flex items-center justify-center gap-2 transition hover:brightness-95 focus:outline-none focus-visible:ring-[3px] focus-visible:ring-[var(--accent-soft)]"
+                className="w-full rounded-xl bg-black py-3 px-6 font-semibold text-white shadow-sm flex items-center justify-center gap-2 transition hover:bg-neutral-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
               >
                 <ShoppingBagIcon className="w-5 h-5" />
                 Add to Cart
